@@ -74,15 +74,43 @@ export default defineConfig({
       },
     ],
   },
+  // Add watch options to limit file watching
+  watchOptions: isDev
+    ? {
+        ignored: [
+          '**/node_modules/**',
+          '**/dist/**',
+          '**/.git/**',
+          '**/coverage/**',
+          '**/*.log',
+          '**/temp/**',
+          '**/tmp/**',
+        ],
+        aggregateTimeout: 300,
+        poll: false,
+      }
+    : undefined,
   devServer: isDev
     ? {
         historyApiFallback: true,
-        port: parseInt(process.env.PORT ?? '3000'),
+        port: parseInt(process.env.PORT ?? '5999'),
+        host: 'bb.test',
         allowedHosts: 'all',
+        watchFiles: {
+          paths: ['src/**/*'],
+          options: {
+            ignored: ['**/node_modules/**', '**/dist/**', '**/.git/**', '**/coverage/**'],
+          },
+        },
         proxy: [
           {
-            context: ['/api', '/proxy', '/plugins'],
+            context: ['/api', '/proxy', '/plugins', '/observe/api', '/observe/proxy', '/observe/plugins'],
             target: 'http://localhost:8080',
+            pathRewrite: {
+              '^/observe/api': '/api',
+              '^/observe/proxy': '/proxy',
+              '^/observe/plugins': '/plugins',
+            },
           },
         ],
         client: {

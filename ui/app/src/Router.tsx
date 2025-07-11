@@ -146,7 +146,8 @@ function Router(): ReactElement {
               </RequireAuth>
             }
           />
-          <Route path="*" element={<Navigate replace to="/" />} />
+
+          <Route path="*" element={<Navigate replace to="/perses" />} />
         </Routes>
       </Suspense>
     </ErrorBoundary>

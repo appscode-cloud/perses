@@ -11,6 +11,10 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+// Base prefix for all routes
+export const BASE_PREFIX = '/observe';
+
+// Route definitions with prefix
 export const AdminRoute = '/admin';
 export const SignInRoute = '/sign-in';
 export const SignUpRoute = '/sign-up';
@@ -20,46 +24,12 @@ export const ProjectRoute = '/projects';
 export const ExploreRoute = '/explore';
 export const ProfileRoute = '/profile';
 
-const paths = [
-  AdminRoute,
-  SignInRoute,
-  SignUpRoute,
-  ConfigRoute,
-  ImportRoute,
-  ProjectRoute,
-  ExploreRoute,
-  ProfileRoute,
-];
-const prefixPaths = [AdminRoute, ProjectRoute];
-
 export function getBasePathName(): string {
-  return extractBasePathName(window.location.pathname);
-}
+  const path = window.location.pathname;
 
-// This dynamically/generically determines the pathPrefix
-// by stripping the first known endpoint suffix from the window location path.
-// It works out of the box for both direct
-// hosting and reverse proxy deployments with no additional configurations required.
-export function extractBasePathName(path: string): string {
-  let basePath = path;
-  if (basePath.endsWith('/')) {
-    basePath = basePath.slice(0, -1);
+  if (path.startsWith(BASE_PREFIX)) {
+    return BASE_PREFIX;
   }
-  for (const path of paths) {
-    if (path && basePath.endsWith(path)) {
-      basePath = basePath.slice(0, basePath.length - path.length);
-      break;
-    }
-  }
-  return removeAnyRoutePrefix(basePath);
-}
 
-function removeAnyRoutePrefix(basePath: string): string {
-  for (const prefixPath of prefixPaths) {
-    const split = basePath.split(prefixPath)[0];
-    if (split !== undefined && split !== basePath) {
-      return split;
-    }
-  }
-  return basePath;
+  return '/';
 }

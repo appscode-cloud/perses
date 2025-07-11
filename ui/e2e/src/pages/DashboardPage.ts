@@ -21,18 +21,6 @@ type PanelGroupConfig = {
   name: string;
 };
 
-type MockQueryRangeQueryConfig = {
-  query: string;
-  response: {
-    status?: 200;
-    body: string;
-  };
-};
-
-type MockQueryRangeConfig = {
-  queries: MockQueryRangeQueryConfig[];
-};
-
 type ThemeName = 'light' | 'dark';
 
 type PanelNameOrPanel = string | Panel;
@@ -361,24 +349,6 @@ export class DashboardPage {
    * Mock responses from '/api/v1/query_range' by the query parameter in the
    * request. Useful for stabilizing charts when taking screenshots.
    */
-  async mockQueryRangeRequests({ queries }: MockQueryRangeConfig): Promise<void> {
-    // Mock data response, so we can make assertions on consistent response data.
-    await this.page.route('**/api/v1/query_range', (route) => {
-      const request = route.request();
-      const requestPostData = request.postDataJSON();
-
-      const requestQuery = typeof requestPostData === 'object' ? requestPostData['query'] : undefined;
-      const mockQuery = queries.find((mockQueryConfig) => mockQueryConfig.query === requestQuery);
-
-      if (mockQuery) {
-        // Found a config for mocking this query. Return the mock response.
-        route.fulfill(mockQuery.response);
-      } else {
-        // No config found. Let the request continue normally.
-        route.continue();
-      }
-    });
-  }
 
   async cleanupMockRequests(): Promise<void> {
     await this.page.unroute('**/api/v1/query_range');
