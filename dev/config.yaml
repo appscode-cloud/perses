@@ -1,7 +1,7 @@
 security:
   readonly: false
   encryption_key: "=tW$56zytgB&3jN2E%7-+qrGZE?v6LCc"
-  enable_auth: true
+  enable_auth: false
   authorization:
     guest_permissions:
       - actions:
@@ -15,6 +15,8 @@ security:
   authentication:
     providers:
       enable_native: true
+
+api_prefix: "/observe"
 
 database:
   file:
@@ -53,4 +55,5 @@ frontend:
     ## File Database setup
 
 plugin:
-  enable_dev: true
+  enable_dev: false
+  path: observe/plugins

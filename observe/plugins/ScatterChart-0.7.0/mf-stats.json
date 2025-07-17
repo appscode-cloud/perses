@@ -1,0 +1,235 @@
+{
+  "id": "ScatterChart",
+  "name": "ScatterChart",
+  "metaData": {
+    "name": "ScatterChart",
+    "type": "app",
+    "buildInfo": {
+      "buildVersion": "0.7.0",
+      "buildName": "@perses-dev/scatter-chart-plugin"
+    },
+    "remoteEntry": {
+      "name": "__mf/js/ScatterChart.41ec0a5a.js",
+      "path": "",
+      "type": "global"
+    },
+    "types": {
+      "path": "",
+      "name": "",
+      "zip": "",
+      "api": ""
+    },
+    "globalName": "ScatterChart",
+    "pluginVersion": "0.11.2",
+    "prefetchInterface": false,
+    "publicPath": "/plugins/ScatterChart/"
+  },
+  "shared": [
+    {
+      "singleton": true,
+      "requiredVersion": "^11.11.3",
+      "shareScope": "default",
+      "name": "@emotion/react",
+      "version": "11.14.0",
+      "eager": false,
+      "id": "ScatterChart:@emotion/react",
+      "assets": {
+        "js": {
+          "async": [
+            "__mf/js/async/964.34b88a18.js"
+          ],
+          "sync": [
+            "__mf/js/async/960.e791a996.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      },
+      "usedIn": []
+    },
+    {
+      "singleton": true,
+      "requiredVersion": "^11.14.0",
+      "shareScope": "default",
+      "name": "@emotion/styled",
+      "version": "11.14.0",
+      "eager": false,
+      "id": "ScatterChart:@emotion/styled",
+      "assets": {
+        "js": {
+          "async": [
+            "__mf/js/async/964.34b88a18.js",
+            "__mf/js/async/960.e791a996.js"
+          ],
+          "sync": [
+            "__mf/js/async/694.903128f9.js",
+            "__mf/js/async/770.da7255d0.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      },
+      "usedIn": []
+    },
+    {
+      "singleton": true,
+      "requiredVersion": "^0.51.0-rc.1",
+      "shareScope": "default",
+      "name": "@perses-dev/components",
+      "version": "0.51.0-rc.1",
+      "eager": false,
+      "id": "ScatterChart:@perses-dev/components",
+      "assets": {
+        "js": {
+          "async": [
+            "__mf/js/async/694.903128f9.js",
+            "__mf/js/async/960.e791a996.js",
+            "__mf/js/async/173.c19d3b98.js",
+            "__mf/js/async/75.06e41df4.js",
+            "__mf/js/async/740.c78d3483.js",
+            "__mf/js/async/964.34b88a18.js"
+          ],
+          "sync": [
+            "__mf/js/async/690.fec7e893.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      },
+      "usedIn": []
+    },
+    {
+      "singleton": true,
+      "requiredVersion": "^4.1.0",
+      "shareScope": "default",
+      "name": "date-fns",
+      "version": "4.1.0",
+      "eager": false,
+      "id": "ScatterChart:date-fns",
+      "assets": {
+        "js": {
+          "async": [],
+          "sync": [
+            "__mf/js/async/75.06e41df4.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      },
+      "usedIn": []
+    },
+    {
+      "singleton": true,
+      "requiredVersion": "18.2.0",
+      "shareScope": "default",
+      "name": "react-dom",
+      "version": "18.3.1",
+      "eager": false,
+      "id": "ScatterChart:react-dom",
+      "assets": {
+        "js": {
+          "async": [
+            "__mf/js/async/964.34b88a18.js"
+          ],
+          "sync": [
+            "__mf/js/async/173.c19d3b98.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      },
+      "usedIn": []
+    },
+    {
+      "singleton": true,
+      "requiredVersion": "18.2.0",
+      "shareScope": "default",
+      "name": "react",
+      "version": "18.3.1",
+      "eager": false,
+      "id": "ScatterChart:react",
+      "assets": {
+        "js": {
+          "async": [],
+          "sync": [
+            "__mf/js/async/964.34b88a18.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      },
+      "usedIn": []
+    },
+    {
+      "singleton": true,
+      "requiredVersion": "^3.2.0",
+      "shareScope": "default",
+      "name": "date-fns-tz",
+      "version": "3.2.0",
+      "eager": false,
+      "id": "ScatterChart:date-fns-tz",
+      "assets": {
+        "js": {
+          "async": [
+            "__mf/js/async/75.06e41df4.js"
+          ],
+          "sync": [
+            "__mf/js/async/740.c78d3483.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      },
+      "usedIn": []
+    }
+  ],
+  "remotes": [],
+  "exposes": [
+    {
+      "path": "./ScatterChart",
+      "id": "ScatterChart:ScatterChart",
+      "name": "ScatterChart",
+      "requires": [],
+      "file": "src/ScatterChart.ts",
+      "assets": {
+        "js": {
+          "sync": [
+            "__mf/js/527.22e5486f.js",
+            "__mf/js/async/150.4fc9e087.js",
+            "__mf/js/async/__federation_expose_ScatterChart.ec1c47a4.js"
+          ],
+          "async": [
+            "__mf/js/async/964.34b88a18.js",
+            "__mf/js/async/156.c11b1700.js",
+            "__mf/js/async/690.fec7e893.js",
+            "__mf/js/async/694.903128f9.js",
+            "__mf/js/async/960.e791a996.js",
+            "__mf/js/async/173.c19d3b98.js",
+            "__mf/js/async/75.06e41df4.js",
+            "__mf/js/async/740.c78d3483.js"
+          ]
+        },
+        "css": {
+          "sync": [],
+          "async": [
+            "__mf/css/async/341.9c79ef64.css"
+          ]
+        }
+      }
+    }
+  ]
+}

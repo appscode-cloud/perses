@@ -134,7 +134,7 @@ function Router(): ReactElement {
             }
           />
 
-          <Route path="*" element={<Navigate replace to="/perses" />} />
+          <Route path="*" element={<Navigate replace to="/" />} />
         </Routes>
       </Suspense>
     </ErrorBoundary>

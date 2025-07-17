@@ -73,7 +73,7 @@ export const useUsageMetrics = (): UseUsageMetricsResults => {
 };
 
 const submitMetrics = async (stats: UsageMetrics): Promise<void> => {
-  await fetch('/api/v1/view', {
+  await fetch('/observe/api/v1/view', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

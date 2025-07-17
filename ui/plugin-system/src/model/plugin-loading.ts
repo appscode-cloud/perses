@@ -41,9 +41,11 @@ export function dynamicImportPluginLoader(plugins: DynamicImportPlugin[]): Plugi
 
   return {
     async getInstalledPlugins(): Promise<PluginModuleResource[]> {
+      window.console.log('asassasdasd');
       return Promise.resolve(Array.from(importMap.keys()));
     },
     importPluginModule(resource): Promise<unknown> {
+      window.console.log('this is form module plugin');
       const importFn = importMap.get(resource);
       if (importFn === undefined) {
         throw new Error('Plugin not found');

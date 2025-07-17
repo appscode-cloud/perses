@@ -1,0 +1,1 @@
+{"version":3,"file":"markdown-panel-model.d.ts","sourceRoot":"","sources":["../../src/markdown-panel-model.ts"],"names":[],"mappings":"AAaA,OAAO,EAAE,UAAU,EAAE,MAAM,kBAAkB,CAAC;AAE9C;;GAEG;AACH,MAAM,WAAW,uBAAwB,SAAQ,UAAU,CAAC,oBAAoB,CAAC;IAC/E,IAAI,EAAE,UAAU,CAAC;CAClB;AAED,MAAM,WAAW,oBAAoB;IACnC,IAAI,EAAE,MAAM,CAAC;CACd;AAED,wBAAgB,iCAAiC,IAAI,oBAAoB,CAExE"}

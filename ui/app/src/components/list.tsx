@@ -1,5 +1,3 @@
-
-
 import { Tooltip } from '@mui/material';
 import { GridColDef } from '@mui/x-data-grid';
 import { GridInitialStateCommunity } from '@mui/x-data-grid/models/gridStateCommunity';

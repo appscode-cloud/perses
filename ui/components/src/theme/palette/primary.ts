@@ -12,18 +12,18 @@
 // limitations under the License.
 
 import { PaletteMode, SimplePaletteColorOptions } from '@mui/material';
-import { blue } from './colors';
+import { blue, orange } from './colors';
 
 export const primary = (mode: PaletteMode): SimplePaletteColorOptions => {
   return mode === 'light'
     ? {
-        main: blue[500],
-        dark: blue[600],
-        light: blue[50],
+        main: orange[500],
+        dark: orange[600],
+        light: orange[50],
       }
     : {
-        main: blue[400],
-        dark: blue[800],
-        light: blue[200],
+        main: orange[400],
+        dark: orange[800],
+        light: orange[200],
       };
 };

@@ -1,0 +1,191 @@
+{
+  "id": "HistogramChart",
+  "name": "HistogramChart",
+  "metaData": {
+    "name": "HistogramChart",
+    "type": "app",
+    "buildInfo": {
+      "buildVersion": "0.8.0",
+      "buildName": "@perses-dev/histogram-chart"
+    },
+    "remoteEntry": {
+      "name": "__mf/js/HistogramChart.784bad7b.js",
+      "path": "",
+      "type": "global"
+    },
+    "types": {
+      "path": "",
+      "name": "",
+      "zip": "",
+      "api": ""
+    },
+    "globalName": "HistogramChart",
+    "pluginVersion": "0.11.2",
+    "prefetchInterface": false,
+    "publicPath": "/plugins/HistogramChart/"
+  },
+  "shared": [
+    {
+      "singleton": true,
+      "requiredVersion": "^0.51.0-rc.1",
+      "shareScope": "default",
+      "name": "@perses-dev/components",
+      "version": "0.51.0-rc.1",
+      "eager": false,
+      "id": "HistogramChart:@perses-dev/components",
+      "assets": {
+        "js": {
+          "async": [
+            "__mf/js/async/964.43dfdff1.js",
+            "__mf/js/async/173.559dd07b.js",
+            "__mf/js/async/243.62daf2a7.js",
+            "__mf/js/async/774.dd36f661.js"
+          ],
+          "sync": [
+            "__mf/js/async/675.d0bf7c6f.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      },
+      "usedIn": [
+        "./HistogramChart"
+      ]
+    },
+    {
+      "singleton": true,
+      "requiredVersion": "^0.51.0-rc.1",
+      "shareScope": "default",
+      "name": "@perses-dev/core",
+      "version": "0.51.0-rc.1",
+      "eager": false,
+      "id": "HistogramChart:@perses-dev/core",
+      "assets": {
+        "js": {
+          "async": [
+            "__mf/js/async/964.43dfdff1.js"
+          ],
+          "sync": [
+            "__mf/js/async/243.62daf2a7.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      },
+      "usedIn": []
+    },
+    {
+      "singleton": true,
+      "requiredVersion": "^10.1.1",
+      "shareScope": "default",
+      "name": "immer",
+      "version": "10.1.1",
+      "eager": false,
+      "id": "HistogramChart:immer",
+      "assets": {
+        "js": {
+          "async": [],
+          "sync": [
+            "__mf/js/async/774.dd36f661.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      },
+      "usedIn": [
+        "./HistogramChart"
+      ]
+    },
+    {
+      "singleton": true,
+      "requiredVersion": "18.2.0",
+      "shareScope": "default",
+      "name": "react-dom",
+      "version": "18.3.1",
+      "eager": false,
+      "id": "HistogramChart:react-dom",
+      "assets": {
+        "js": {
+          "async": [
+            "__mf/js/async/964.43dfdff1.js"
+          ],
+          "sync": [
+            "__mf/js/async/173.559dd07b.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      },
+      "usedIn": []
+    },
+    {
+      "singleton": true,
+      "requiredVersion": "18.2.0",
+      "shareScope": "default",
+      "name": "react",
+      "version": "18.3.1",
+      "eager": false,
+      "id": "HistogramChart:react",
+      "assets": {
+        "js": {
+          "async": [],
+          "sync": [
+            "__mf/js/async/964.43dfdff1.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      },
+      "usedIn": [
+        "./HistogramChart"
+      ]
+    }
+  ],
+  "remotes": [],
+  "exposes": [
+    {
+      "path": "./HistogramChart",
+      "id": "HistogramChart:HistogramChart",
+      "name": "HistogramChart",
+      "requires": [
+        "react",
+        "@perses-dev/components",
+        "immer"
+      ],
+      "file": "src/HistogramChart.ts",
+      "assets": {
+        "js": {
+          "sync": [
+            "__mf/js/async/293.4b900ec5.js",
+            "__mf/js/async/814.e731cff8.js",
+            "__mf/js/async/__federation_expose_HistogramChart.ca5cc74f.js"
+          ],
+          "async": [
+            "__mf/js/async/964.43dfdff1.js",
+            "__mf/js/async/173.559dd07b.js",
+            "__mf/js/async/790.6a0807fd.js",
+            "__mf/js/async/675.d0bf7c6f.js",
+            "__mf/js/async/243.62daf2a7.js",
+            "__mf/js/async/774.dd36f661.js"
+          ]
+        },
+        "css": {
+          "sync": [],
+          "async": [
+            "__mf/css/async/341.1e19d050.css"
+          ]
+        }
+      }
+    }
+  ]
+}

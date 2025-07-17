@@ -56,9 +56,11 @@ export function mockPluginRegistry(...mockPlugins: MockPlugin[]): Omit<PluginReg
 
   const pluginLoader: PluginLoader = {
     getInstalledPlugins() {
+      window.console.log('whye');
       return Promise.resolve([mockPluginResource]);
     },
     importPluginModule(/* resource */) {
+      console.log('came here');
       return Promise.resolve(mockPluginModule);
     },
   };

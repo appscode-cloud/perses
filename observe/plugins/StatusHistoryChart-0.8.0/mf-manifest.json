@@ -1,0 +1,368 @@
+{
+  "id": "StatusHistoryChart",
+  "name": "StatusHistoryChart",
+  "metaData": {
+    "name": "StatusHistoryChart",
+    "type": "app",
+    "buildInfo": {
+      "buildVersion": "0.8.0",
+      "buildName": "@perses-dev/status-history-chart-plugin"
+    },
+    "remoteEntry": {
+      "name": "__mf/js/StatusHistoryChart.6d61a5ec.js",
+      "path": "",
+      "type": "global"
+    },
+    "types": {
+      "path": "",
+      "name": "",
+      "zip": "",
+      "api": ""
+    },
+    "globalName": "StatusHistoryChart",
+    "pluginVersion": "0.11.2",
+    "prefetchInterface": false,
+    "publicPath": "/plugins/StatusHistoryChart/"
+  },
+  "shared": [
+    {
+      "id": "StatusHistoryChart:@emotion/react",
+      "name": "@emotion/react",
+      "version": "11.14.0",
+      "singleton": true,
+      "requiredVersion": "^11.11.3",
+      "assets": {
+        "js": {
+          "async": [
+            "__mf/js/async/964.03c8778c.js"
+          ],
+          "sync": [
+            "__mf/js/async/960.587af91a.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      }
+    },
+    {
+      "id": "StatusHistoryChart:@emotion/styled",
+      "name": "@emotion/styled",
+      "version": "11.14.0",
+      "singleton": true,
+      "requiredVersion": "^11.14.0",
+      "assets": {
+        "js": {
+          "async": [
+            "__mf/js/async/964.03c8778c.js",
+            "__mf/js/async/960.587af91a.js"
+          ],
+          "sync": [
+            "__mf/js/async/694.f0fc36da.js",
+            "__mf/js/async/770.ddaea8f9.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      }
+    },
+    {
+      "id": "StatusHistoryChart:@hookform/resolvers",
+      "name": "@hookform/resolvers",
+      "version": "3.10.0",
+      "singleton": true,
+      "requiredVersion": "^3.10.0",
+      "assets": {
+        "js": {
+          "async": [
+            "__mf/js/async/292.6a606f52.js",
+            "__mf/js/async/964.03c8778c.js"
+          ],
+          "sync": [
+            "__mf/js/async/214.bd903be0.js",
+            "__mf/js/async/738.a0be8511.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      }
+    },
+    {
+      "id": "StatusHistoryChart:@perses-dev/components",
+      "name": "@perses-dev/components",
+      "version": "0.51.0-rc.1",
+      "singleton": true,
+      "requiredVersion": "^0.51.0-rc.1",
+      "assets": {
+        "js": {
+          "async": [
+            "__mf/js/async/964.03c8778c.js",
+            "__mf/js/async/173.23a9af58.js",
+            "__mf/js/async/960.587af91a.js",
+            "__mf/js/async/770.ddaea8f9.js",
+            "__mf/js/async/75.2cda0740.js",
+            "__mf/js/async/740.6b036ded.js",
+            "__mf/js/async/292.6a606f52.js"
+          ],
+          "sync": [
+            "__mf/js/async/20.8c88bb68.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      }
+    },
+    {
+      "id": "StatusHistoryChart:@perses-dev/plugin-system",
+      "name": "@perses-dev/plugin-system",
+      "version": "0.51.0-rc.1",
+      "singleton": true,
+      "requiredVersion": "^0.51.0-rc.1",
+      "assets": {
+        "js": {
+          "async": [
+            "__mf/js/async/964.03c8778c.js",
+            "__mf/js/async/173.23a9af58.js",
+            "__mf/js/async/960.587af91a.js",
+            "__mf/js/async/292.6a606f52.js",
+            "__mf/js/async/770.ddaea8f9.js",
+            "__mf/js/async/238.e1063a95.js",
+            "__mf/js/async/224.d1554d4a.js",
+            "__mf/js/async/75.2cda0740.js",
+            "__mf/js/async/740.6b036ded.js",
+            "__mf/js/async/750.d65bf3f6.js",
+            "__mf/js/async/512.f3a280e8.js",
+            "__mf/js/async/20.8c88bb68.js",
+            "__mf/js/async/738.a0be8511.js",
+            "__mf/js/async/980.a5638582.js",
+            "__mf/js/async/503.6a0b07a4.js",
+            "__mf/js/async/981.caaa6409.js"
+          ],
+          "sync": [
+            "__mf/js/async/886.19e7df50.js"
+          ]
+        },
+        "css": {
+          "async": [
+            "__mf/css/async/263.17332bd7.css"
+          ],
+          "sync": []
+        }
+      }
+    },
+    {
+      "id": "StatusHistoryChart:@tanstack/react-query",
+      "name": "@tanstack/react-query",
+      "version": "4.39.1",
+      "singleton": true,
+      "requiredVersion": "^4.39.1",
+      "assets": {
+        "js": {
+          "async": [
+            "__mf/js/async/964.03c8778c.js"
+          ],
+          "sync": [
+            "__mf/js/async/980.a5638582.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      }
+    },
+    {
+      "id": "StatusHistoryChart:date-fns",
+      "name": "date-fns",
+      "version": "4.1.0",
+      "singleton": true,
+      "requiredVersion": "^4.1.0",
+      "assets": {
+        "js": {
+          "async": [],
+          "sync": [
+            "__mf/js/async/75.2cda0740.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      }
+    },
+    {
+      "id": "StatusHistoryChart:echarts",
+      "name": "echarts",
+      "version": "5.5.0",
+      "singleton": true,
+      "requiredVersion": "^undefined",
+      "assets": {
+        "js": {
+          "async": [],
+          "sync": [
+            "__mf/js/async/503.6a0b07a4.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      }
+    },
+    {
+      "id": "StatusHistoryChart:lodash",
+      "name": "lodash",
+      "version": "4.17.21",
+      "singleton": true,
+      "requiredVersion": "^4.17.21",
+      "assets": {
+        "js": {
+          "async": [],
+          "sync": [
+            "__mf/js/async/981.caaa6409.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      }
+    },
+    {
+      "id": "StatusHistoryChart:react-dom",
+      "name": "react-dom",
+      "version": "18.3.1",
+      "singleton": true,
+      "requiredVersion": "18.2.0",
+      "assets": {
+        "js": {
+          "async": [
+            "__mf/js/async/964.03c8778c.js"
+          ],
+          "sync": [
+            "__mf/js/async/173.23a9af58.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      }
+    },
+    {
+      "id": "StatusHistoryChart:react-hook-form",
+      "name": "react-hook-form",
+      "version": "7.54.2",
+      "singleton": true,
+      "requiredVersion": "^7.54.2",
+      "assets": {
+        "js": {
+          "async": [
+            "__mf/js/async/964.03c8778c.js"
+          ],
+          "sync": [
+            "__mf/js/async/292.6a606f52.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      }
+    },
+    {
+      "id": "StatusHistoryChart:react",
+      "name": "react",
+      "version": "18.3.1",
+      "singleton": true,
+      "requiredVersion": "18.2.0",
+      "assets": {
+        "js": {
+          "async": [],
+          "sync": [
+            "__mf/js/async/964.03c8778c.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      }
+    },
+    {
+      "id": "StatusHistoryChart:date-fns-tz",
+      "name": "date-fns-tz",
+      "version": "3.2.0",
+      "singleton": true,
+      "requiredVersion": "^3.2.0",
+      "assets": {
+        "js": {
+          "async": [
+            "__mf/js/async/238.e1063a95.js",
+            "__mf/js/async/75.2cda0740.js"
+          ],
+          "sync": [
+            "__mf/js/async/740.6b036ded.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      }
+    }
+  ],
+  "remotes": [],
+  "exposes": [
+    {
+      "id": "StatusHistoryChart:StatusHistoryChart",
+      "name": "StatusHistoryChart",
+      "assets": {
+        "js": {
+          "sync": [
+            "__mf/js/async/750.d65bf3f6.js",
+            "__mf/js/async/491.dd94c4b9.js",
+            "__mf/js/async/764.2a5ca7c2.js",
+            "__mf/js/async/__federation_expose_StatusHistoryChart.3b86a115.js"
+          ],
+          "async": [
+            "__mf/js/async/964.03c8778c.js",
+            "__mf/js/async/960.587af91a.js",
+            "__mf/js/async/770.ddaea8f9.js",
+            "__mf/js/async/lib-router.c90fcaed.js",
+            "__mf/js/async/151.1be1f0b4.js",
+            "__mf/js/async/886.19e7df50.js",
+            "__mf/js/async/488.f3f63548.js",
+            "__mf/js/async/238.e1063a95.js",
+            "__mf/js/async/224.d1554d4a.js",
+            "__mf/js/async/512.f3a280e8.js",
+            "__mf/js/async/20.8c88bb68.js",
+            "__mf/js/async/292.6a606f52.js",
+            "__mf/js/async/738.a0be8511.js",
+            "__mf/js/async/173.23a9af58.js",
+            "__mf/js/async/980.a5638582.js",
+            "__mf/js/async/75.2cda0740.js",
+            "__mf/js/async/503.6a0b07a4.js",
+            "__mf/js/async/740.6b036ded.js",
+            "__mf/js/async/981.caaa6409.js"
+          ]
+        },
+        "css": {
+          "sync": [],
+          "async": [
+            "__mf/css/async/263.17332bd7.css",
+            "__mf/css/async/341.17332bd7.css"
+          ]
+        }
+      },
+      "path": "./StatusHistoryChart"
+    }
+  ]
+}

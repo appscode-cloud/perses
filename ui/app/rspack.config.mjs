@@ -1,3 +1,16 @@
+// Copyright 2024 The Perses Authors
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+// http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
 import { resolve } from 'node:path';
 import rspack from '@rspack/core';
 import refreshPlugin from '@rspack/plugin-react-refresh';
@@ -61,43 +74,15 @@ export default defineConfig({
       },
     ],
   },
-  // Add watch options to limit file watching
-  watchOptions: isDev
-    ? {
-        ignored: [
-          '**/node_modules/**',
-          '**/dist/**',
-          '**/.git/**',
-          '**/coverage/**',
-          '**/*.log',
-          '**/temp/**',
-          '**/tmp/**',
-        ],
-        aggregateTimeout: 300,
-        poll: false,
-      }
-    : undefined,
   devServer: isDev
     ? {
         historyApiFallback: true,
-        port: parseInt(process.env.PORT ?? '5999'),
-        host: 'bb.test',
+        port: parseInt(process.env.PORT ?? '3000'),
         allowedHosts: 'all',
-        watchFiles: {
-          paths: ['src/**/*'],
-          options: {
-            ignored: ['**/node_modules/**', '**/dist/**', '**/.git/**', '**/coverage/**'],
-          },
-        },
         proxy: [
           {
-            context: ['/api', '/proxy', '/plugins', '/observe/api', '/observe/proxy', '/observe/plugins'],
+            context: ['/api', '/proxy', '/plugins'],
             target: 'http://localhost:8080',
-            pathRewrite: {
-              '^/observe/api': '/api',
-              '^/observe/proxy': '/proxy',
-              '^/observe/plugins': '/plugins',
-            },
           },
         ],
         client: {
@@ -117,8 +102,8 @@ export default defineConfig({
     new rspack.HtmlRspackPlugin({
       template: './index.html',
       favicon: './favicon.ico',
-      publicPath: isDev ? '/' : 'PREFIX_PATH_PLACEHOLDER/',
+      publicPath: isDev ? '/observe' : 'PREFIX_PATH_PLACEHOLDER/',
     }),
     isDev ? new refreshPlugin() : null,
   ].filter(Boolean),
-});
+})

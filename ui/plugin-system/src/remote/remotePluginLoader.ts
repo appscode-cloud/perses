@@ -1,5 +1,3 @@
-
-
 import { PluginLoader, PluginMetadata, PluginModuleResource } from '@perses-dev/plugin-system';
 import { RemotePluginModule } from './PersesPlugin.types';
 import { loadPlugin } from './PluginRuntime';
@@ -33,7 +31,10 @@ const isPluginModuleResource = (pluginModule: unknown): pluginModule is PluginMo
 export const remotePluginLoader = (baseURL?: string): PluginLoader => {
   return {
     getInstalledPlugins: async (): Promise<PluginModuleResource[]> => {
-      const pluginsResponse = await fetch(`${baseURL ? baseURL : ''}/api/v1/plugins`);
+      window.console.log('here it comes');
+      console.log('her it goes', baseURL);
+
+      const pluginsResponse = await fetch(`${baseURL ? baseURL : '/observe'}/api/v1/plugins`);
 
       const plugins = await pluginsResponse.json();
 
@@ -52,6 +53,7 @@ export const remotePluginLoader = (baseURL?: string): PluginLoader => {
       return pluginModules;
     },
     importPluginModule: async (resource): Promise<RemotePluginModule> => {
+      window.console.log('came inside import plugin module');
       const pluginModuleName = resource.metadata.name;
 
       const pluginModule: RemotePluginModule = {};

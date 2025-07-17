@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-require-imports */
 
-
 import { FederationHost, init, loadRemote } from '@module-federation/enhanced/runtime';
 import * as ReactQuery from '@tanstack/react-query';
 import React from 'react';
@@ -192,7 +191,9 @@ const registerRemote = (name: string, baseURL?: string): void => {
   const pluginRuntime = getPluginRuntime();
   const existingRemote = pluginRuntime.options.remotes.find((remote) => remote.name === name);
   if (!existingRemote) {
-    const remoteEntryURL = baseURL ? `${baseURL}/${name}/mf-manifest.json` : `/plugins/${name}/mf-manifest.json`;
+    const remoteEntryURL = baseURL
+      ? `${baseURL}/${name}/mf-manifest.json`
+      : `/observe/plugins/${name}/mf-manifest.json`;
     pluginRuntime.registerRemotes([
       {
         name,
@@ -209,7 +210,6 @@ export const loadPlugin = async (
   baseURL?: string
 ): Promise<RemotePluginModule | null> => {
   registerRemote(moduleName, baseURL);
-
   return loadRemote<RemotePluginModule>(`${moduleName}/${pluginName}`);
 };
 

@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkDatasourceVariable=self.webpackChunkDatasourceVariable||[]).push([["620"],{29161:function(e,t,a){a.r(t);var r=a(24246),c=a(54538),o=a.n(c);a(37634).createRoot(document.getElementById("root")).render((0,r.jsx)(o().StrictMode,{}))}}]);

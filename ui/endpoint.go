@@ -48,6 +48,7 @@ var (
 		"/config",
 		"/explore",
 		"/profile",
+		"/metrics",
 	}
 	capturingPluginName = regexp.MustCompile(`/plugins/([a-zA-Z0-9_-]+)/?.*`)
 )
@@ -93,6 +94,7 @@ func (f *frontend) servePluginFiles(c echo.Context) error {
 		return apiinterface.NotFoundError
 	}
 	devEnvironment := loaded.DevEnvironment
+
 	if devEnvironment == nil {
 		// In that case, we need to read the requested files from the file system.
 		// The First thing to do is to replace the URL path with the local path of the plugin.
@@ -100,6 +102,7 @@ func (f *frontend) servePluginFiles(c echo.Context) error {
 		// Then we just need to rely on the echo router to serve the file.
 		return c.File(localPath)
 	}
+	logrus.Error("After the replacement", f.apiPrefix, pluginName)
 	// Otherwise, it means we are in a dev environment, and we need to proxy the request to the dev server.
 	// When developing a plugin, you will be able to serve the files of the plugin using a dev server (with rsbuild).
 	var proxyErr error
@@ -152,6 +155,10 @@ func proxyPrepareRequest(c echo.Context, devEnvironment *v1.PluginInDevelopment)
 func (f *frontend) assetHandler() echo.HandlerFunc {
 	return func(c echo.Context) error {
 		fileName := c.Request().URL.Path
+		if fileName == "" || fileName == "/" {
+			fileName = "/app/dist/index.html"
+		}
+
 		assetFile, err := asts.Open(fileName)
 		if err != nil {
 			logrus.WithError(err).Errorf("Unable to open the file %s", fileName)
@@ -160,7 +167,8 @@ func (f *frontend) assetHandler() echo.HandlerFunc {
 			}
 			return apiinterface.HandleError(err)
 		}
-		defer assetFile.Close() //nolint:errcheck
+		defer assetFile.Close()
+
 		data, err := io.ReadAll(assetFile)
 		if err != nil {
 			logrus.WithError(err).Error("Error reading React index.html")

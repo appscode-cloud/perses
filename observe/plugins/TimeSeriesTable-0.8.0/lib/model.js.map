@@ -1,0 +1,1 @@
+{"version":3,"sources":["../../src/model.ts"],"sourcesContent":["// eslint-disable-next-line @typescript-eslint/no-empty-object-type\nexport interface TimeSeriesTableOptions {}\n"],"names":[],"mappings":"AAAA,mEAAmE;AACnE,WAA0C"}
