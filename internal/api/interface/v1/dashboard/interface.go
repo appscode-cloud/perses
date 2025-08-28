@@ -31,6 +31,9 @@ type Query struct {
 	// The value can come from the path of the URL or from the query parameter
 	Project      string `param:"project" query:"project"`
 	MetadataOnly bool   `query:"metadata_only"`
+
+	User   string `param:"user" query:"user"`
+	Folder string `param:"folder" query:"folder"`
 }
 
 func (q *Query) GetMetadataOnlyQueryParam() bool {

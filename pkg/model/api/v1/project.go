@@ -35,6 +35,10 @@ func (p *Project) GetMetadata() modelAPI.Metadata {
 	return &p.Metadata
 }
 
+func (p *Project) SetUserID(id int64) {
+	p.Metadata.UserID = id
+}
+
 func (p *Project) GetKind() string {
 	return string(p.Kind)
 }

@@ -24,6 +24,8 @@ import (
 type Parameters struct {
 	Project string
 	Name    string
+	UserID  int64
+	Owner   string
 }
 
 type Service[T api.Entity, K api.Entity, V databaseModel.Query] interface {

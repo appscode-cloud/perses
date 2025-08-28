@@ -14,6 +14,7 @@
 package core
 
 import (
+	"fmt"
 	"github.com/labstack/echo/v4"
 	echoUtils "github.com/perses/common/echo"
 	"github.com/perses/perses/internal/api/core/middleware"
@@ -157,10 +158,14 @@ func (a *api) collectRoutes() []*route.Group {
 	for _, ept := range a.apiEndpoints {
 		ept.CollectRoutes(apiGroup)
 	}
-	apiV1Group := &route.Group{Path: a.apiPrefix + utils.APIV1Prefix}
+	apiV1Group := &route.Group{Path: a.apiPrefix + utils.APIV1Prefix + fmt.Sprintf("/:%s", utils.ParamsOwner)}
 	for _, ept := range a.apiV1Endpoints {
 		ept.CollectRoutes(apiV1Group)
 	}
+	//apiV1Group.Middlewares = []echo.MiddlewareFunc{
+	//	a.ownerCheckMiddleware, // ✅ Owner check here
+	//}
+
 	proxyGroup := &route.Group{Path: a.apiPrefix + "/proxy"}
 	a.proxyEndpoint.CollectRoutes(proxyGroup)
 	return []*route.Group{apiGroup, apiV1Group, proxyGroup}

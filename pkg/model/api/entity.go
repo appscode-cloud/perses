@@ -16,10 +16,18 @@ package api
 type Metadata interface {
 	GetName() string
 	Flatten(sensitive bool)
+
+	GetUserID() int64
+
+	GetProject() string
+
+	GetFolderID() int64
 }
 
 type Entity interface {
 	GetKind() string
 	GetMetadata() Metadata
 	GetSpec() interface{}
+
+	SetUserID(id int64)
 }

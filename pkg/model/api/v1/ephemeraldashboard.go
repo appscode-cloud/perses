@@ -106,6 +106,10 @@ func (e *EphemeralDashboard) GetKind() string {
 	return string(e.Kind)
 }
 
+func (e *EphemeralDashboard) SetUserID(id int64) {
+	e.Metadata.UserID = id
+}
+
 func (e *EphemeralDashboard) GetSpec() interface{} {
 	return e.Spec
 }

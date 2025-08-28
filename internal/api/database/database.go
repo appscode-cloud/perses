@@ -17,6 +17,8 @@ import (
 	"database/sql"
 	"encoding/json"
 	"fmt"
+	"net"
+	"strings"
 	"time"
 
 	modelAPI "github.com/perses/perses/pkg/model/api"
@@ -98,52 +100,128 @@ func New(conf config.Database) (databaseModel.DAO, error) {
 		}
 	} else if conf.SQL != nil {
 		c := conf.SQL
-		mysqlConfig := mysql.Config{
-			User:                     string(c.User),
-			Passwd:                   string(c.Password),
-			Net:                      c.Net,
-			Addr:                     string(c.Addr),
-			DBName:                   c.DBName,
-			Collation:                c.Collation,
-			Loc:                      c.Loc,
-			MaxAllowedPacket:         c.MaxAllowedPacket,
-			ServerPubKey:             c.ServerPubKey,
-			Timeout:                  time.Duration(c.Timeout),
-			ReadTimeout:              time.Duration(c.ReadTimeout),
-			WriteTimeout:             time.Duration(c.WriteTimeout),
-			AllowAllFiles:            c.AllowAllFiles,
-			AllowCleartextPasswords:  c.AllowCleartextPasswords,
-			AllowFallbackToPlaintext: c.AllowFallbackToPlaintext,
-			AllowNativePasswords:     c.AllowNativePasswords,
-			AllowOldPasswords:        c.AllowOldPasswords,
-			CheckConnLiveness:        c.CheckConnLiveness,
-			ClientFoundRows:          c.ClientFoundRows,
-			ColumnsWithAlias:         c.ColumnsWithAlias,
-			InterpolateParams:        c.InterpolateParams,
-			MultiStatements:          c.MultiStatements,
-			ParseTime:                c.ParseTime,
-			RejectReadOnly:           c.RejectReadOnly,
+
+		driver := c.Driver
+		if driver == "" {
+			driver = "mysql"
 		}
 
-		// (OPTIONAL) Configure TLS
-		if c.TLSConfig != nil {
-			tlsConfig, parseErr := promConfig.NewTLSConfig(c.TLSConfig)
-			if parseErr != nil {
-				logrus.WithError(parseErr).Error("Failed to parse TLS from configuration")
-				return nil, parseErr
+		var dsn string
+		var sqlDriver string
+		switch driver {
+		case "postgres", "pg", "psql":
+			// Use Addr (secret.Hidden) as host[:port]
+			addrStr := string(c.Addr)
+			hostPart := ""
+			if addrStr != "" {
+				h, p, err := net.SplitHostPort(addrStr)
+				if err == nil {
+					hostPart = fmt.Sprintf("host=%s port=%s", h, p)
+				} else {
+					// If Addr doesn't include port, use it as host
+					// NOTE: lib/pq will accept "host=..." without port.
+					hostPart = fmt.Sprintf("host=%s", addrStr)
+				}
 			}
-			tlsConfigName := "perses-tls"
-			if err := mysql.RegisterTLSConfig(tlsConfigName, tlsConfig); err != nil {
-				logrus.WithError(err).Error("Failed to register TLS configuration for mysql connection")
-				return nil, err
+
+			// Determine sslmode. If TLSConfig provided, prefer require; otherwise disable.
+			sslmode := "disable"
+			if c.TLSConfig != nil {
+				sslmode = "require"
 			}
-			mysqlConfig.TLSConfig = tlsConfigName
+
+			// connect_timeout in seconds (use 0 if not set)
+			timeoutSec := int(time.Duration(c.Timeout).Seconds())
+
+			// Build DSN. We quote values using simple formatting; for more complex values consider url.QueryEscape.
+			// lib/pq accepts space-separated key=value pairs.
+			dsnParts := []string{}
+			if hostPart != "" {
+				dsnParts = append(dsnParts, hostPart)
+			}
+			if string(c.User) != "" {
+				dsnParts = append(dsnParts, fmt.Sprintf("user=%s", string(c.User)))
+			}
+			if string(c.Password) != "" {
+				dsnParts = append(dsnParts, fmt.Sprintf("password=%s", string(c.Password)))
+			}
+			if c.DBName != "" {
+				dsnParts = append(dsnParts, fmt.Sprintf("dbname=%s", c.DBName))
+			}
+			dsnParts = append(dsnParts, fmt.Sprintf("sslmode=%s", sslmode))
+			if timeoutSec > 0 {
+				dsnParts = append(dsnParts, fmt.Sprintf("connect_timeout=%d", timeoutSec))
+			}
+
+			dsn = strings.Join(dsnParts, " ")
+			sqlDriver = "postgres"
+
+			// Note: If TLSConfig is provided and you need client cert files or custom CA,
+			// you will have to write cert files and set sslrootcert/sslcert/sslkey paths
+			// in the DSN or use lib/pq TLSConfig hooks.
+
+		case "mysql":
+			mysqlConfig := mysql.Config{
+				User:                     string(c.User),
+				Passwd:                   string(c.Password),
+				Net:                      c.Net,
+				Addr:                     string(c.Addr),
+				DBName:                   c.DBName,
+				Collation:                c.Collation,
+				Loc:                      c.Loc,
+				MaxAllowedPacket:         c.MaxAllowedPacket,
+				ServerPubKey:             c.ServerPubKey,
+				Timeout:                  time.Duration(c.Timeout),
+				ReadTimeout:              time.Duration(c.ReadTimeout),
+				WriteTimeout:             time.Duration(c.WriteTimeout),
+				AllowAllFiles:            c.AllowAllFiles,
+				AllowCleartextPasswords:  c.AllowCleartextPasswords,
+				AllowFallbackToPlaintext: c.AllowFallbackToPlaintext,
+				AllowNativePasswords:     c.AllowNativePasswords,
+				AllowOldPasswords:        c.AllowOldPasswords,
+				CheckConnLiveness:        c.CheckConnLiveness,
+				ClientFoundRows:          c.ClientFoundRows,
+				ColumnsWithAlias:         c.ColumnsWithAlias,
+				InterpolateParams:        c.InterpolateParams,
+				MultiStatements:          c.MultiStatements,
+				ParseTime:                c.ParseTime,
+				RejectReadOnly:           c.RejectReadOnly,
+			}
+
+			// (OPTIONAL) Configure TLS
+			if c.TLSConfig != nil {
+				tlsConfig, parseErr := promConfig.NewTLSConfig(c.TLSConfig)
+				if parseErr != nil {
+					logrus.WithError(parseErr).Error("Failed to parse TLS from configuration")
+					return nil, parseErr
+				}
+				tlsConfigName := "perses-tls"
+				if err := mysql.RegisterTLSConfig(tlsConfigName, tlsConfig); err != nil {
+					logrus.WithError(err).Error("Failed to register TLS configuration for mysql connection")
+					return nil, err
+				}
+				mysqlConfig.TLSConfig = tlsConfigName
+			}
+
+			dsn = mysqlConfig.FormatDSN()
+			sqlDriver = "mysql"
+		default:
+			return nil, fmt.Errorf("unsupported SQL driver: %s", driver)
 		}
 
-		db, err := sql.Open("mysql", mysqlConfig.FormatDSN())
+		db, err := sql.Open(sqlDriver, dsn)
 		if err != nil {
 			return nil, err
 		}
+
+		db.SetConnMaxLifetime(time.Minute * 5)
+		db.SetMaxOpenConns(25)
+		db.SetMaxIdleConns(25)
+
+		if err := db.Ping(); err != nil {
+			return nil, err
+		}
+
 		client = &databaseSQL.DAO{
 			DB:            db,
 			SchemaName:    c.DBName,

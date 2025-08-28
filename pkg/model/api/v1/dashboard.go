@@ -157,6 +157,10 @@ func (d *Dashboard) GetMetadata() modelAPI.Metadata {
 	return &d.Metadata
 }
 
+func (d *Dashboard) SetUserID(id int64) {
+	d.Metadata.UserID = id
+}
+
 func (d *Dashboard) GetKind() string {
 	return string(d.Kind)
 }

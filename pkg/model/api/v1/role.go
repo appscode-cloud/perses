@@ -78,6 +78,10 @@ func (g *GlobalRole) GetMetadata() modelAPI.Metadata {
 	return &g.Metadata
 }
 
+func (g *GlobalRole) SetUserID(id int64) {
+	g.Metadata.UserID = id
+}
+
 func (g *GlobalRole) GetKind() string {
 	return string(g.Kind)
 }

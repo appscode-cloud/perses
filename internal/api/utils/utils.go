@@ -54,6 +54,8 @@ const (
 	PathVariable           = "variables"
 	PathView               = "view"
 	ContextKeyAnonymous    = "anonymous"
+
+	ParamsOwner = "owner"
 )
 
 const MetricNamespace = "perses"
@@ -69,6 +71,10 @@ func GetNameParameter(ctx echo.Context) string {
 
 func GetProjectParameter(ctx echo.Context) string {
 	return ctx.Param(ParamProject)
+}
+
+func GetOwnerParameter(ctx echo.Context) string {
+	return ctx.Param(ParamsOwner)
 }
 
 func IsAnonymous(ctx echo.Context) bool {

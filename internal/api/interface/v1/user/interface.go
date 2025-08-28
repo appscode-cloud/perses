@@ -47,6 +47,7 @@ type DAO interface {
 	Update(entity *v1.User) error
 	Delete(name string) error
 	Get(name string) (*v1.User, error)
+	GetByID(id int64) (*v1.User, error)
 	List(q *Query) ([]*v1.User, error)
 	MetadataList(q *Query) ([]api.Entity, error)
 	RawMetadataList(q *Query) ([]json.RawMessage, error)

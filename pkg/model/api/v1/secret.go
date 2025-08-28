@@ -74,6 +74,10 @@ func (g *GlobalSecret) GetMetadata() modelAPI.Metadata {
 	return &g.Metadata
 }
 
+func (g *GlobalSecret) SetUserID(id int64) {
+	g.Metadata.UserID = id
+}
+
 func (g *GlobalSecret) GetKind() string {
 	return string(g.Kind)
 }

@@ -40,6 +40,9 @@ type Metadata struct {
 	// +kubebuilder:validation:Optional
 	UpdatedAt time.Time `json:"updatedAt" yaml:"updatedAt"`
 	Version   uint64    `json:"version" yaml:"version"`
+	UserID    int64     `json:"userID" yaml:"userID"`
+
+	FolderID int64 `json:"folderID" yaml:"folderID"`
 }
 
 func (m *Metadata) CreateNow() {
@@ -61,10 +64,22 @@ func (m *Metadata) GetName() string {
 	return m.Name
 }
 
+func (m *Metadata) GetUserID() int64 {
+	return m.UserID
+}
+
 func (m *Metadata) Flatten(sensitive bool) {
 	if !sensitive {
 		m.Name = strings.ToLower(m.Name)
 	}
+}
+
+func (m *Metadata) GetProject() string {
+	return ""
+}
+
+func (m *Metadata) GetFolderID() int64 {
+	return m.FolderID
 }
 
 func NewProjectMetadata(project string, name string) *ProjectMetadata {
@@ -183,11 +198,23 @@ func (pm *ProjectMetadata) GetName() string {
 	return pm.Name
 }
 
+func (pm *ProjectMetadata) GetUserID() int64 {
+	return 0
+}
+
+func (pm *ProjectMetadata) GetFolderID() int64 {
+	return pm.FolderID
+}
+
 func (pm *ProjectMetadata) Flatten(sensitive bool) {
 	if !sensitive {
 		pm.Name = strings.ToLower(pm.Name)
 		pm.Project = strings.ToLower(pm.Project)
 	}
+}
+
+func (pm *ProjectMetadata) GetProject() string {
+	return pm.Project
 }
 
 func (pm *ProjectMetadata) Update(previous ProjectMetadata) {

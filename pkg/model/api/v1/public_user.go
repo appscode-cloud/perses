@@ -50,6 +50,10 @@ func (u *PublicUser) GetMetadata() modelAPI.Metadata {
 	return &u.Metadata
 }
 
+func (u *PublicUser) SetUserID(id int64) {
+	u.Metadata.UserID = id
+}
+
 func (u *PublicUser) GetKind() string {
 	return string(u.Kind)
 }

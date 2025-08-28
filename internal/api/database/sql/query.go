@@ -56,27 +56,121 @@ func generateResourceInsertQuery(tableName string, id string, rowJSONDoc []byte,
 }
 
 func (d *DAO) generateInsertQuery(entity modelAPI.Entity) (string, []interface{}, error) {
-	id, tableName, idErr := d.getIDAndTableName(modelV1.Kind(entity.GetKind()), entity.GetMetadata())
-	if idErr != nil {
-		return "", nil, idErr
+	//id, tableName, idErr := d.getIDAndTableName(modelV1.Kind(entity.GetKind()), entity.GetMetadata())
+	//if idErr != nil {
+	//	return "", nil, idErr
+	//}
+	tableName, err := getTableName(modelV1.Kind(entity.GetKind()))
+	if err != nil {
+		return "", nil, err
 	}
+
 	rowJSONDoc, unmarshalErr := json.Marshal(entity)
 	if unmarshalErr != nil {
 		return "", nil, unmarshalErr
 	}
-	var sql string
-	var args []interface{}
-	switch m := entity.GetMetadata().(type) {
-	case *modelV1.ProjectMetadata:
-		sql, args = generateProjectResourceInsertQuery(tableName, id, rowJSONDoc, m)
-	case *modelV1.Metadata:
-		sql, args = generateResourceInsertQuery(tableName, id, rowJSONDoc, m)
+
+	//var getErr error
+	//_, query, getErr := d.get(modelV1.Kind(entity.GetKind()), entity.GetMetadata())
+	//if getErr != nil {
+	//	return "", nil, err
+	//}
+	//
+	//defer query.Close() //nolint:errcheck
+	//if query.Next() {
+	//	var obj modelAPI.Entity
+	//	var rowJSONDoc string
+	//	if scanErr := query.Scan(&rowJSONDoc); scanErr != nil {
+	//		return "", nil, err
+	//	}
+	//	if err = json.Unmarshal([]byte(rowJSONDoc), obj); err != nil {
+	//		return "", nil, err
+	//	}
+	//}
+
+	projectID := int64(0)
+	if entity.GetMetadata().GetProject() != "" {
+		var getErr error
+		projectID, _, getErr = d.get(modelV1.KindProject, modelV1.NewMetadata(entity.GetMetadata().GetProject()))
+		if getErr != nil {
+			return "", nil, err
+		}
 	}
-	return sql, args, nil
+
+	switch entity.GetKind() {
+	case string(modelV1.KindUser):
+		sql, args := sqlbuilder.NewInsertBuilder().
+			InsertInto(tableName).
+			Cols(colName, colDoc).
+			Values(entity.GetMetadata().GetName(), rowJSONDoc).
+			Build()
+		return sql, args, nil
+
+	case string(modelV1.KindProject):
+		sql, args := sqlbuilder.NewInsertBuilder().
+			InsertInto(tableName).
+			Cols("user_id", colName, colDoc).
+			Values(entity.GetMetadata().GetUserID(), entity.GetMetadata().GetName(), rowJSONDoc).
+			Build()
+		return sql, args, nil
+
+	case string(modelV1.KindFolder):
+		sql, args := sqlbuilder.NewInsertBuilder().
+			InsertInto(tableName).
+			Cols("project_id", colName, colDoc).
+			Values(projectID, entity.GetMetadata().GetName(), rowJSONDoc).
+			Build()
+		return sql, args, nil
+
+	case string(modelV1.KindDashboard):
+		sql, args := sqlbuilder.NewInsertBuilder().
+			InsertInto(tableName).
+			Cols("folder_id", colName, colDoc).
+			Values(entity.GetMetadata().GetFolderID(), entity.GetMetadata().GetName(), rowJSONDoc).
+			Build()
+		return sql, args, nil
+
+	case string(modelV1.KindDatasource):
+		sql, args := sqlbuilder.NewInsertBuilder().
+			InsertInto(tableName).
+			Cols("project_id", colName, colDoc).
+			Values(projectID, entity.GetMetadata().GetName(), rowJSONDoc).
+			Build()
+		return sql, args, nil
+
+	case string(modelV1.KindSecret):
+		sql, args := sqlbuilder.NewInsertBuilder().
+			InsertInto(tableName).
+			Cols("project_id", colName, colDoc).
+			Values(projectID, entity.GetMetadata().GetName(), rowJSONDoc).
+			Build()
+		return sql, args, nil
+
+	case string(modelV1.KindVariable):
+		sql, args := sqlbuilder.NewInsertBuilder().
+			InsertInto(tableName).
+			Cols("project_id", colName, colDoc).
+			Values(projectID, entity.GetMetadata().GetName(), rowJSONDoc).
+			Build()
+		return sql, args, nil
+
+	default:
+		return "", nil, fmt.Errorf("unsupported metadata type for kind %s", entity.GetKind())
+	}
 }
 
 func (d *DAO) generateUpdateQuery(entity modelAPI.Entity) (string, []interface{}, error) {
-	id, tableName, idErr := d.getIDAndTableName(modelV1.Kind(entity.GetKind()), entity.GetMetadata())
+	tableName, tableErr := getTableName(modelV1.Kind(entity.GetKind()))
+	if tableErr != nil {
+		return "", nil, tableErr
+	}
+
+	//id, tableName, idErr := d.getIDAndTableName(modelV1.Kind(entity.GetKind()), entity.GetMetadata())
+	//if idErr != nil {
+	//	return "", nil, idErr
+	//}
+
+	id, _, idErr := d.get(modelV1.Kind(entity.GetKind()), entity.GetMetadata())
 	if idErr != nil {
 		return "", nil, idErr
 	}

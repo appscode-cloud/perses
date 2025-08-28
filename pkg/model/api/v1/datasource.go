@@ -156,6 +156,10 @@ func (d *Datasource) GetMetadata() modelAPI.Metadata {
 	return &d.Metadata
 }
 
+func (d *Datasource) SetUserID(id int64) {
+	d.Metadata.UserID = id
+}
+
 func (d *Datasource) GetKind() string {
 	return string(d.Kind)
 }

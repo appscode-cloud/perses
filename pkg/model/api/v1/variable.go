@@ -83,6 +83,10 @@ func (v *GlobalVariable) GetMetadata() modelAPI.Metadata {
 	return &v.Metadata
 }
 
+func (v *GlobalVariable) SetUserID(id int64) {
+	v.Metadata.UserID = id
+}
+
 func (v *GlobalVariable) GetKind() string {
 	return string(v.Kind)
 }

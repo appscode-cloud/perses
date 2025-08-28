@@ -18,6 +18,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"reflect"
+	"strconv"
 
 	"github.com/huandu/go-sqlbuilder"
 	databaseModel "github.com/perses/perses/internal/api/database/model"
@@ -105,22 +106,30 @@ type DAO struct {
 
 func (d *DAO) Init() error {
 	tables := []string{
-		d.createResourceTable(tableGlobalDatasource),
-		d.createResourceTable(tableGlobalRole),
-		d.createResourceTable(tableGlobalRoleBinding),
-		d.createResourceTable(tableGlobalSecret),
-		d.createResourceTable(tableGlobalVariable),
-		d.createResourceTable(tableProject),
-		d.createResourceTable(tableUser),
+		//d.createResourceTable(tableGlobalDatasource),
+		//d.createResourceTable(tableGlobalRole),
+		//d.createResourceTable(tableGlobalRoleBinding),
+		//d.createResourceTable(tableGlobalSecret),
+		//d.createResourceTable(tableGlobalVariable),
+		//d.createResourceTable(tableProject),
+		//d.createResourceTable(tableUser),
+		//
+		//d.createProjectResourceTable(tableDashboard),
+		//d.createProjectResourceTable(tableDatasource),
+		//d.createProjectResourceTable(tableEphemeralDashboard),
+		//d.createProjectResourceTable(tableFolder),
+		//d.createProjectResourceTable(tableRole),
+		//d.createProjectResourceTable(tableRoleBinding),
+		//d.createProjectResourceTable(tableSecret),
+		//d.createProjectResourceTable(tableVariable),
 
-		d.createProjectResourceTable(tableDashboard),
-		d.createProjectResourceTable(tableDatasource),
-		d.createProjectResourceTable(tableEphemeralDashboard),
-		d.createProjectResourceTable(tableFolder),
-		d.createProjectResourceTable(tableRole),
-		d.createProjectResourceTable(tableRoleBinding),
-		d.createProjectResourceTable(tableSecret),
-		d.createProjectResourceTable(tableVariable),
+		d.createUserTable(),
+		d.createProjectTable(),
+		d.createFolderTable(),
+		d.createDashboardTable(),
+		d.createDatasourceTable(),
+		d.createSecretTable(),
+		d.createVariableTable(),
 	}
 
 	for _, table := range tables {
@@ -152,6 +161,80 @@ func (d *DAO) createProjectResourceTable(tableName string) string {
 		String()
 }
 
+func (d *DAO) createUserTable() string {
+	return sqlbuilder.CreateTable(d.generateCompleteTableName(tableUser)).IfNotExists().
+		Define(colID, "BIGSERIAL", "PRIMARY KEY").
+		Define(colName, "VARCHAR(128)", "NOT NULL", "UNIQUE").
+		Define(colDoc, "JSON", "NOT NULL").
+		String()
+}
+
+func (d *DAO) createProjectTable() string {
+	return sqlbuilder.CreateTable(d.generateCompleteTableName(tableProject)).IfNotExists().
+		Define(colID, "BIGSERIAL", "PRIMARY KEY").
+		Define("user_id", "BIGINT", "NOT NULL").
+		Define(colName, "VARCHAR(128)", "NOT NULL").
+		Define(colDoc, "JSON", "NOT NULL").
+		Define("UNIQUE (user_id, name)").
+		Define("FOREIGN KEY (user_id) REFERENCES user(id) ON DELETE CASCADE").
+		String()
+}
+
+func (d *DAO) createFolderTable() string {
+	return sqlbuilder.CreateTable(d.generateCompleteTableName(tableFolder)).IfNotExists().
+		Define(colID, "BIGSERIAL", "PRIMARY KEY").
+		Define("project_id", "BIGINT", "NOT NULL").
+		Define(colName, "VARCHAR(128)", "NOT NULL").
+		Define(colDoc, "JSON", "NOT NULL").
+		Define("UNIQUE (project_id, name)").
+		Define("FOREIGN KEY (project_id) REFERENCES project(id) ON DELETE CASCADE").
+		String()
+}
+
+func (d *DAO) createDashboardTable() string {
+	return sqlbuilder.CreateTable(d.generateCompleteTableName(tableDashboard)).IfNotExists().
+		Define(colID, "BIGSERIAL", "PRIMARY KEY").
+		Define("folder_id", "BIGINT", "NOT NULL").
+		Define(colName, "VARCHAR(128)", "NOT NULL").
+		Define(colDoc, "JSON", "NOT NULL").
+		Define("UNIQUE (folder_id, name)").
+		Define("FOREIGN KEY (folder_id) REFERENCES folder(id) ON DELETE CASCADE").
+		String()
+}
+
+func (d *DAO) createDatasourceTable() string {
+	return sqlbuilder.CreateTable(d.generateCompleteTableName(tableDatasource)).IfNotExists().
+		Define(colID, "BIGSERIAL", "PRIMARY KEY").
+		Define("project_id", "BIGINT", "NOT NULL").
+		Define(colName, "VARCHAR(128)", "NOT NULL").
+		Define(colDoc, "JSON", "NOT NULL").
+		Define("UNIQUE (project_id, name)").
+		Define("FOREIGN KEY (project_id) REFERENCES project(id) ON DELETE CASCADE").
+		String()
+}
+
+func (d *DAO) createSecretTable() string {
+	return sqlbuilder.CreateTable(d.generateCompleteTableName(tableSecret)).IfNotExists().
+		Define(colID, "BIGSERIAL", "PRIMARY KEY").
+		Define("project_id", "BIGINT", "NOT NULL").
+		Define(colName, "VARCHAR(128)", "NOT NULL").
+		Define(colDoc, "JSON", "NOT NULL").
+		Define("UNIQUE (project_id, name)").
+		Define("FOREIGN KEY (project_id) REFERENCES project(id) ON DELETE CASCADE").
+		String()
+}
+
+func (d *DAO) createVariableTable() string {
+	return sqlbuilder.CreateTable(d.generateCompleteTableName(tableVariable)).IfNotExists().
+		Define(colID, "BIGSERIAL", "PRIMARY KEY").
+		Define("project_id", "BIGINT", "NOT NULL").
+		Define(colName, "VARCHAR(128)", "NOT NULL").
+		Define(colDoc, "JSON", "NOT NULL").
+		Define("UNIQUE (project_id, name)").
+		Define("FOREIGN KEY (project_id) REFERENCES project(id) ON DELETE CASCADE").
+		String()
+}
+
 func (d *DAO) createTable(query string) error {
 	r, e := d.DB.Query(query)
 	if e != nil {
@@ -160,34 +243,66 @@ func (d *DAO) createTable(query string) error {
 	return r.Close()
 }
 
-// GetLatestUpdateTime queries the database to retrieve the latest update time for the specified table names.
+//// GetLatestUpdateTime queries the database to retrieve the latest update time for the specified table names.
+//func (d *DAO) GetLatestUpdateTime(kinds []modelV1.Kind) (*string, error) {
+//	sb := sqlbuilder.Select("UPDATE_TIME")
+//	sb.From("information_schema.tables")
+//	var whereConditions []string
+//	for _, kind := range kinds {
+//		tableName, err := getTableName(kind)
+//		if err != nil {
+//			return nil, err
+//		}
+//		whereConditions = append(whereConditions, sb.Equal("TABLE_NAME", tableName))
+//	}
+//	sb.Where(sb.Equal("TABLE_SCHEMA", d.SchemaName), sb.Or(whereConditions...))
+//	sb.OrderBy("UPDATE_TIME").Desc()
+//	query, args := sb.Build()
+//
+//	r, err := d.DB.Query(query, args...)
+//	if err != nil {
+//		return nil, err
+//	}
+//	defer r.Close() //nolint:errcheck
+//
+//	if r.Next() {
+//		var timestamp *string
+//		if scanErr := r.Scan(&timestamp); scanErr != nil {
+//			return nil, scanErr
+//		}
+//		return timestamp, nil
+//	}
+//	return nil, fmt.Errorf("failed to retrieve last update time for tables: %v", kinds)
+//}
+
 func (d *DAO) GetLatestUpdateTime(kinds []modelV1.Kind) (*string, error) {
-	sb := sqlbuilder.Select("UPDATE_TIME")
-	sb.From("information_schema.tables")
-	var whereConditions []string
+	var tableNames []string
 	for _, kind := range kinds {
 		tableName, err := getTableName(kind)
 		if err != nil {
 			return nil, err
 		}
-		whereConditions = append(whereConditions, sb.Equal("TABLE_NAME", tableName))
+		tableNames = append(tableNames, tableName)
 	}
-	sb.Where(sb.Equal("TABLE_SCHEMA", d.SchemaName), sb.Or(whereConditions...))
-	sb.OrderBy("UPDATE_TIME").Desc()
-	query, args := sb.Build()
 
-	r, err := d.DB.Query(query, args...)
-	if err != nil {
+	// In Postgres, we can use pg_stat_all_tables.last_vacuum or last_analyze as a rough "last touched" time
+	// Another option is relfrozenxid_age or checking modification tracking manually.
+	// Here we use pg_stat_all_tables for an approximation.
+	sb := sqlbuilder.NewSelectBuilder()
+	sb.Select("MAX(GREATEST(COALESCE(last_vacuum, 'epoch'::timestamp), COALESCE(last_autovacuum, 'epoch'::timestamp), COALESCE(last_analyze, 'epoch'::timestamp), COALESCE(last_autoanalyze, 'epoch'::timestamp))) AS last_update")
+	sb.From("pg_stat_all_tables")
+	sb.Where(sb.Equal("schemaname", d.SchemaName), sb.In("relname", sqlbuilder.List(tableNames)))
+
+	query, args := sb.Build()
+	row := d.DB.QueryRow(query, args...)
+
+	var lastUpdate sql.NullTime
+	if err := row.Scan(&lastUpdate); err != nil {
 		return nil, err
 	}
-	defer r.Close() //nolint:errcheck
-
-	if r.Next() {
-		var timestamp *string
-		if scanErr := r.Scan(&timestamp); scanErr != nil {
-			return nil, scanErr
-		}
-		return timestamp, nil
+	if lastUpdate.Valid {
+		ts := lastUpdate.Time.Format("2006-01-02 15:04:05")
+		return &ts, nil
 	}
 	return nil, fmt.Errorf("failed to retrieve last update time for tables: %v", kinds)
 }
@@ -207,7 +322,7 @@ func (d *DAO) Create(entity modelAPI.Entity) error {
 		return err
 	}
 	if isExist {
-		return &databaseModel.Error{Key: id, Code: databaseModel.ErrorCodeConflict}
+		return &databaseModel.Error{Key: strconv.FormatInt(id, 10), Code: databaseModel.ErrorCodeConflict}
 	}
 
 	sqlQuery, args, queryErr := d.generateInsertQuery(entity)
@@ -260,7 +375,7 @@ func (d *DAO) Get(kind modelV1.Kind, metadata modelAPI.Metadata, entity modelAPI
 		}
 		return json.Unmarshal([]byte(rowJSONDoc), entity)
 	}
-	return &databaseModel.Error{Key: id, Code: databaseModel.ErrorCodeNotFound}
+	return &databaseModel.Error{Key: strconv.FormatInt(id, 10), Code: databaseModel.ErrorCodeNotFound}
 }
 
 func (d *DAO) RawQuery(query databaseModel.Query) ([]json.RawMessage, error) {
@@ -360,12 +475,17 @@ func (d *DAO) Delete(kind modelV1.Kind, metadata modelAPI.Metadata) error {
 		return err
 	}
 	if !isExist {
-		return &databaseModel.Error{Key: id, Code: databaseModel.ErrorCodeNotFound}
+		return &databaseModel.Error{Key: strconv.FormatInt(id, 10), Code: databaseModel.ErrorCodeNotFound}
 	}
 
-	id, tableName, idErr := d.getIDAndTableName(kind, metadata)
-	if idErr != nil {
-		return idErr
+	//id, tableName, idErr := d.getIDAndTableName(kind, metadata)
+	//if idErr != nil {
+	//	return idErr
+	//}
+
+	tableName, err := getTableName(kind)
+	if err != nil {
+		return err
 	}
 
 	deleteBuilder := sqlbuilder.NewDeleteBuilder().DeleteFrom(tableName)
@@ -413,30 +533,89 @@ func (d *DAO) getIDAndTableName(kind modelV1.Kind, metadata modelAPI.Metadata) (
 
 // generateCompleteTableName concat the tableName and the DBName. This should be used everytime a FROM condition is used.
 func (d *DAO) generateCompleteTableName(tableName string) string {
-	return fmt.Sprintf("%s.%s", d.SchemaName, tableName)
+	//return fmt.Sprintf("%s.%s", d.SchemaName, tableName)
+	return fmt.Sprintf("%s", tableName)
 }
 
-func (d *DAO) exists(kind modelV1.Kind, metadata modelAPI.Metadata) (string, bool, error) {
+func (d *DAO) exists(kind modelV1.Kind, metadata modelAPI.Metadata) (int64, bool, error) {
 	id, query, queryErr := d.get(kind, metadata)
 	if queryErr != nil {
-		return "", false, queryErr
+		return 0, false, queryErr
 	}
 	defer query.Close() //nolint:errcheck
 	return id, query.Next(), nil
 }
 
-func (d *DAO) get(kind modelV1.Kind, metadata modelAPI.Metadata) (string, *sql.Rows, error) {
-	id, tableName, idErr := d.getIDAndTableName(kind, metadata)
-	if idErr != nil {
-		return "", nil, idErr
+func (d *DAO) get(kind modelV1.Kind, metadata modelAPI.Metadata) (int64, *sql.Rows, error) {
+	tableName, err := getTableName(kind)
+	if err != nil {
+		return 0, nil, err
 	}
 
 	queryBuilder := sqlbuilder.NewSelectBuilder().
-		Select(colDoc).
+		Select("*"). // select id as well
 		From(tableName)
-	queryBuilder.Where(queryBuilder.Equal(colID, id))
-	sqlQuery, args := queryBuilder.Build()
 
+	if tableName == tableUser {
+		if metadata.GetName() != "" {
+			queryBuilder.Where(queryBuilder.Equal(colName, metadata.GetName()))
+		} else if metadata.GetUserID() != 0 {
+			queryBuilder.Where(queryBuilder.Equal(colID, metadata.GetUserID()))
+		}
+	} else if tableName == tableProject {
+		if metadata.GetName() != "" && metadata.GetUserID() != 0 {
+			queryBuilder.Where(
+				queryBuilder.And(
+					queryBuilder.Equal("user_id", metadata.GetUserID()),
+					queryBuilder.Equal(colName, metadata.GetName()),
+				),
+			)
+		} else {
+			return 0, nil, fmt.Errorf("either (user_id and name) or id is required for table %s", tableName)
+		}
+	} else if tableName == tableFolder || tableName == tableDatasource || tableName == tableSecret || tableName == tableVariable {
+		if metadata.GetName() != "" {
+			queryBuilder.Where(
+				queryBuilder.And(
+					queryBuilder.Equal("project_id", metadata.GetProject()),
+					queryBuilder.Equal(colName, metadata.GetName()),
+				),
+			)
+		} else {
+			return 0, nil, fmt.Errorf("either (user_id and name) or id is required for table %s", tableName)
+		}
+	} else if tableName == tableDashboard {
+		if metadata.GetName() != "" {
+			queryBuilder.Where(
+				queryBuilder.And(
+					queryBuilder.Equal("folder_id", metadata.GetFolderID()),
+					queryBuilder.Equal(colName, metadata.GetName()),
+				),
+			)
+		} else {
+			return 0, nil, fmt.Errorf("either (user_id and name) or id is required for table %s", tableName)
+		}
+	}
+
+	sqlQuery, args := queryBuilder.Build()
 	rows, err := d.DB.Query(sqlQuery, args...)
-	return id, rows, err
+	if err != nil {
+		return 0, nil, err
+	}
+
+	var id int64
+	if rows.Next() {
+		var doc string
+		if err := rows.Scan(&id, &doc); err != nil {
+			return 0, nil, err
+		}
+		// rewind so caller can still use rows
+		rows.Close()
+		rows, err = d.DB.Query(sqlQuery, args...)
+		if err != nil {
+			return 0, nil, err
+		}
+	}
+
+	return id, rows, nil
 }

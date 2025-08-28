@@ -15,6 +15,7 @@ package toolbox
 
 import (
 	"fmt"
+	"github.com/golang-jwt/jwt/v5"
 	"net/http"
 	"strings"
 
@@ -32,6 +33,7 @@ import (
 func ExtractParameters(ctx echo.Context, caseSensitive bool) apiInterface.Parameters {
 	project := utils.GetProjectParameter(ctx)
 	name := utils.GetNameParameter(ctx)
+	owner := utils.GetOwnerParameter(ctx)
 	if !caseSensitive {
 		project = strings.ToLower(project)
 		name = strings.ToLower(name)
@@ -39,6 +41,7 @@ func ExtractParameters(ctx echo.Context, caseSensitive bool) apiInterface.Parame
 	return apiInterface.Parameters{
 		Project: project,
 		Name:    name,
+		Owner:   owner,
 	}
 }
 
@@ -145,6 +148,27 @@ func (t *toolbox[T, K, V]) Create(ctx echo.Context, entity T) error {
 	if err := t.bind(ctx, entity); err != nil {
 		return err
 	}
+
+	// Extract user ID from JWT token
+	token, ok := ctx.Get("user").(*jwt.Token)
+	if !ok {
+		return apiInterface.UnauthorizedError
+	}
+
+	claims, ok := token.Claims.(jwt.MapClaims)
+	if !ok {
+		return apiInterface.UnauthorizedError
+	}
+
+	userID, ok := claims["user_id"].(int64)
+	if !ok {
+		return apiInterface.UnauthorizedError
+	}
+
+	if meta := entity.GetMetadata(); meta != nil {
+		entity.SetUserID(userID)
+	}
+
 	parameters := ExtractParameters(ctx, t.caseSensitive)
 	if err := t.checkPermission(ctx, entity, parameters, role.CreateAction); err != nil {
 		return err

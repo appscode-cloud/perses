@@ -79,6 +79,10 @@ func (f *Folder) GetMetadata() modelAPI.Metadata {
 	return &f.Metadata
 }
 
+func (f *Folder) SetUserID(id int64) {
+	f.Metadata.UserID = id
+}
+
 func (f *Folder) GetKind() string {
 	return string(f.Kind)
 }

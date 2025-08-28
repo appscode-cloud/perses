@@ -165,6 +165,10 @@ func (g *GlobalRoleBinding) GetMetadata() modelAPI.Metadata {
 	return &g.Metadata
 }
 
+func (g *GlobalRoleBinding) SetUserID(id int64) {
+	g.Metadata.UserID = id
+}
+
 func (g *GlobalRoleBinding) GetKind() string {
 	return string(g.Kind)
 }
