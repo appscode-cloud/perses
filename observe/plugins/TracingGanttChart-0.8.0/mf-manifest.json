@@ -1,0 +1,255 @@
+{
+  "id": "TracingGanttChart",
+  "name": "TracingGanttChart",
+  "metaData": {
+    "name": "TracingGanttChart",
+    "type": "app",
+    "buildInfo": {
+      "buildVersion": "0.8.0",
+      "buildName": "@perses-dev/tracing-gantt-chart-plugin"
+    },
+    "remoteEntry": {
+      "name": "__mf/js/TracingGanttChart.77b94eb3.js",
+      "path": "",
+      "type": "global"
+    },
+    "types": {
+      "path": "",
+      "name": "",
+      "zip": "",
+      "api": ""
+    },
+    "globalName": "TracingGanttChart",
+    "pluginVersion": "0.11.2",
+    "prefetchInterface": false,
+    "publicPath": "/plugins/TracingGanttChart/"
+  },
+  "shared": [
+    {
+      "id": "TracingGanttChart:@emotion/react",
+      "name": "@emotion/react",
+      "version": "11.14.0",
+      "singleton": true,
+      "requiredVersion": "^11.11.3",
+      "assets": {
+        "js": {
+          "async": [
+            "__mf/js/async/964.a98cab40.js"
+          ],
+          "sync": [
+            "__mf/js/async/960.478a8f11.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      }
+    },
+    {
+      "id": "TracingGanttChart:@emotion/styled",
+      "name": "@emotion/styled",
+      "version": "11.14.0",
+      "singleton": true,
+      "requiredVersion": "^11.14.0",
+      "assets": {
+        "js": {
+          "async": [
+            "__mf/js/async/964.a98cab40.js",
+            "__mf/js/async/960.478a8f11.js"
+          ],
+          "sync": [
+            "__mf/js/async/694.4580ad20.js",
+            "__mf/js/async/770.5431adef.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      }
+    },
+    {
+      "id": "TracingGanttChart:@perses-dev/components",
+      "name": "@perses-dev/components",
+      "version": "0.51.0-rc.1",
+      "singleton": true,
+      "requiredVersion": "^0.51.0-rc.1",
+      "assets": {
+        "js": {
+          "async": [
+            "__mf/js/async/964.a98cab40.js",
+            "__mf/js/async/173.6314a363.js",
+            "__mf/js/async/960.478a8f11.js",
+            "__mf/js/async/694.4580ad20.js",
+            "__mf/js/async/75.d81e6bbf.js",
+            "__mf/js/async/740.babbb403.js"
+          ],
+          "sync": [
+            "__mf/js/async/193.12ce9ab1.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      }
+    },
+    {
+      "id": "TracingGanttChart:date-fns",
+      "name": "date-fns",
+      "version": "4.1.0",
+      "singleton": true,
+      "requiredVersion": "^4.1.0",
+      "assets": {
+        "js": {
+          "async": [],
+          "sync": [
+            "__mf/js/async/75.d81e6bbf.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      }
+    },
+    {
+      "id": "TracingGanttChart:lodash",
+      "name": "lodash",
+      "version": "4.17.21",
+      "singleton": true,
+      "requiredVersion": "^4.17.21",
+      "assets": {
+        "js": {
+          "async": [],
+          "sync": [
+            "__mf/js/async/981.bc5132f8.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      }
+    },
+    {
+      "id": "TracingGanttChart:react-dom",
+      "name": "react-dom",
+      "version": "18.3.1",
+      "singleton": true,
+      "requiredVersion": "18.2.0",
+      "assets": {
+        "js": {
+          "async": [
+            "__mf/js/async/964.a98cab40.js"
+          ],
+          "sync": [
+            "__mf/js/async/173.6314a363.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      }
+    },
+    {
+      "id": "TracingGanttChart:react-router-dom",
+      "name": "react-router-dom",
+      "version": "6.30.0",
+      "singleton": true,
+      "requiredVersion": "^6.30.0",
+      "assets": {
+        "js": {
+          "async": [
+            "__mf/js/async/964.a98cab40.js",
+            "__mf/js/async/173.6314a363.js"
+          ],
+          "sync": [
+            "__mf/js/async/377.59c252c4.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      }
+    },
+    {
+      "id": "TracingGanttChart:react",
+      "name": "react",
+      "version": "18.3.1",
+      "singleton": true,
+      "requiredVersion": "18.2.0",
+      "assets": {
+        "js": {
+          "async": [],
+          "sync": [
+            "__mf/js/async/964.a98cab40.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      }
+    },
+    {
+      "id": "TracingGanttChart:date-fns-tz",
+      "name": "date-fns-tz",
+      "version": "3.2.0",
+      "singleton": true,
+      "requiredVersion": "^3.2.0",
+      "assets": {
+        "js": {
+          "async": [
+            "__mf/js/async/75.d81e6bbf.js"
+          ],
+          "sync": [
+            "__mf/js/async/740.babbb403.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      }
+    }
+  ],
+  "remotes": [],
+  "exposes": [
+    {
+      "id": "TracingGanttChart:TracingGanttChart",
+      "name": "TracingGanttChart",
+      "assets": {
+        "js": {
+          "sync": [
+            "__mf/js/async/783.3c2c57f6.js",
+            "__mf/js/async/511.b81ea373.js",
+            "__mf/js/async/__federation_expose_TracingGanttChart.7b5aeb33.js"
+          ],
+          "async": [
+            "__mf/js/async/964.a98cab40.js",
+            "__mf/js/async/173.6314a363.js",
+            "__mf/js/async/960.478a8f11.js",
+            "__mf/js/async/694.4580ad20.js",
+            "__mf/js/async/156.5a401ecb.js",
+            "__mf/js/async/193.12ce9ab1.js",
+            "__mf/js/async/75.d81e6bbf.js",
+            "__mf/js/async/740.babbb403.js",
+            "__mf/js/async/377.59c252c4.js",
+            "__mf/js/async/981.bc5132f8.js"
+          ]
+        },
+        "css": {
+          "sync": [],
+          "async": [
+            "__mf/css/async/341.6c6463ea.css"
+          ]
+        }
+      },
+      "path": "./TracingGanttChart"
+    }
+  ]
+}

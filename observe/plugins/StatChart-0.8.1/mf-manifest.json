@@ -1,0 +1,322 @@
+{
+  "id": "StatChart",
+  "name": "StatChart",
+  "metaData": {
+    "name": "StatChart",
+    "type": "app",
+    "buildInfo": {
+      "buildVersion": "0.8.1",
+      "buildName": "@perses-dev/stat-chart-plugin"
+    },
+    "remoteEntry": {
+      "name": "__mf/js/StatChart.aeb3025c.js",
+      "path": "",
+      "type": "global"
+    },
+    "types": {
+      "path": "",
+      "name": "",
+      "zip": "",
+      "api": ""
+    },
+    "globalName": "StatChart",
+    "pluginVersion": "0.11.2",
+    "prefetchInterface": false,
+    "publicPath": "/plugins/StatChart/"
+  },
+  "shared": [
+    {
+      "id": "StatChart:@emotion/react",
+      "name": "@emotion/react",
+      "version": "11.14.0",
+      "singleton": true,
+      "requiredVersion": "^11.11.3",
+      "assets": {
+        "js": {
+          "async": [
+            "__mf/js/async/964.f3efac0a.js"
+          ],
+          "sync": [
+            "__mf/js/async/960.b6b50cb1.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      }
+    },
+    {
+      "id": "StatChart:@emotion/styled",
+      "name": "@emotion/styled",
+      "version": "11.14.0",
+      "singleton": true,
+      "requiredVersion": "^11.14.0",
+      "assets": {
+        "js": {
+          "async": [
+            "__mf/js/async/964.f3efac0a.js",
+            "__mf/js/async/960.b6b50cb1.js"
+          ],
+          "sync": [
+            "__mf/js/async/694.5088b7d2.js",
+            "__mf/js/async/770.0eef8b15.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      }
+    },
+    {
+      "id": "StatChart:@hookform/resolvers",
+      "name": "@hookform/resolvers",
+      "version": "3.10.0",
+      "singleton": true,
+      "requiredVersion": "^3.10.0",
+      "assets": {
+        "js": {
+          "async": [
+            "__mf/js/async/964.f3efac0a.js"
+          ],
+          "sync": [
+            "__mf/js/async/214.60d550e8.js",
+            "__mf/js/async/738.5905ca00.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      }
+    },
+    {
+      "id": "StatChart:@perses-dev/components",
+      "name": "@perses-dev/components",
+      "version": "0.51.0-rc.1",
+      "singleton": true,
+      "requiredVersion": "^0.51.0-rc.1",
+      "assets": {
+        "js": {
+          "async": [
+            "__mf/js/async/964.f3efac0a.js",
+            "__mf/js/async/173.b6c742e7.js",
+            "__mf/js/async/960.b6b50cb1.js",
+            "__mf/js/async/770.0eef8b15.js",
+            "__mf/js/async/75.fb6da1e8.js",
+            "__mf/js/async/740.6ca05ea5.js"
+          ],
+          "sync": [
+            "__mf/js/async/530.2c488ba4.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      }
+    },
+    {
+      "id": "StatChart:@perses-dev/plugin-system",
+      "name": "@perses-dev/plugin-system",
+      "version": "0.51.0-rc.1",
+      "singleton": true,
+      "requiredVersion": "^0.51.0-rc.1",
+      "assets": {
+        "js": {
+          "async": [
+            "__mf/js/async/964.f3efac0a.js",
+            "__mf/js/async/173.b6c742e7.js",
+            "__mf/js/async/960.b6b50cb1.js",
+            "__mf/js/async/770.0eef8b15.js",
+            "__mf/js/async/238.6c65e7fc.js",
+            "__mf/js/async/224.978cad14.js",
+            "__mf/js/async/75.fb6da1e8.js",
+            "__mf/js/async/740.6ca05ea5.js",
+            "__mf/js/async/954.a9e2abee.js",
+            "__mf/js/async/349.f7381131.js",
+            "__mf/js/async/530.2c488ba4.js",
+            "__mf/js/async/331.b9e6d0dd.js",
+            "__mf/js/async/738.5905ca00.js",
+            "__mf/js/async/503.19801a79.js",
+            "__mf/js/async/981.0942fcbb.js"
+          ],
+          "sync": [
+            "__mf/js/async/845.e4f98502.js"
+          ]
+        },
+        "css": {
+          "async": [
+            "__mf/css/async/263.1ed8bb01.css"
+          ],
+          "sync": []
+        }
+      }
+    },
+    {
+      "id": "StatChart:date-fns",
+      "name": "date-fns",
+      "version": "4.1.0",
+      "singleton": true,
+      "requiredVersion": "^4.1.0",
+      "assets": {
+        "js": {
+          "async": [],
+          "sync": [
+            "__mf/js/async/75.fb6da1e8.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      }
+    },
+    {
+      "id": "StatChart:echarts",
+      "name": "echarts",
+      "version": "5.5.0",
+      "singleton": true,
+      "requiredVersion": "^undefined",
+      "assets": {
+        "js": {
+          "async": [],
+          "sync": [
+            "__mf/js/async/503.19801a79.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      }
+    },
+    {
+      "id": "StatChart:lodash",
+      "name": "lodash",
+      "version": "4.17.21",
+      "singleton": true,
+      "requiredVersion": "^4.17.21",
+      "assets": {
+        "js": {
+          "async": [],
+          "sync": [
+            "__mf/js/async/981.0942fcbb.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      }
+    },
+    {
+      "id": "StatChart:react-dom",
+      "name": "react-dom",
+      "version": "18.3.1",
+      "singleton": true,
+      "requiredVersion": "18.2.0",
+      "assets": {
+        "js": {
+          "async": [
+            "__mf/js/async/964.f3efac0a.js"
+          ],
+          "sync": [
+            "__mf/js/async/173.b6c742e7.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      }
+    },
+    {
+      "id": "StatChart:react",
+      "name": "react",
+      "version": "18.3.1",
+      "singleton": true,
+      "requiredVersion": "18.2.0",
+      "assets": {
+        "js": {
+          "async": [],
+          "sync": [
+            "__mf/js/async/964.f3efac0a.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      }
+    },
+    {
+      "id": "StatChart:date-fns-tz",
+      "name": "date-fns-tz",
+      "version": "3.2.0",
+      "singleton": true,
+      "requiredVersion": "^3.2.0",
+      "assets": {
+        "js": {
+          "async": [
+            "__mf/js/async/238.6c65e7fc.js",
+            "__mf/js/async/75.fb6da1e8.js"
+          ],
+          "sync": [
+            "__mf/js/async/740.6ca05ea5.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      }
+    }
+  ],
+  "remotes": [],
+  "exposes": [
+    {
+      "id": "StatChart:StatChart",
+      "name": "StatChart",
+      "assets": {
+        "js": {
+          "sync": [
+            "__mf/js/async/954.a9e2abee.js",
+            "__mf/js/async/90.defedb11.js",
+            "__mf/js/async/331.b9e6d0dd.js",
+            "__mf/js/async/__federation_expose_StatChart.264f6dad.js"
+          ],
+          "async": [
+            "__mf/js/async/964.f3efac0a.js",
+            "__mf/js/async/960.b6b50cb1.js",
+            "__mf/js/async/770.0eef8b15.js",
+            "__mf/js/async/238.6c65e7fc.js",
+            "__mf/js/async/224.978cad14.js",
+            "__mf/js/async/292.4573cfd2.js",
+            "__mf/js/async/37.a33e38bf.js",
+            "__mf/js/async/349.f7381131.js",
+            "__mf/js/async/530.2c488ba4.js",
+            "__mf/js/async/173.b6c742e7.js",
+            "__mf/js/async/75.fb6da1e8.js",
+            "__mf/js/async/740.6ca05ea5.js",
+            "__mf/js/async/lib-router.3a3f0205.js",
+            "__mf/js/async/845.e4f98502.js",
+            "__mf/js/async/488.078788e1.js",
+            "__mf/js/async/738.5905ca00.js",
+            "__mf/js/async/503.19801a79.js",
+            "__mf/js/async/981.0942fcbb.js"
+          ]
+        },
+        "css": {
+          "sync": [],
+          "async": [
+            "__mf/css/async/341.1ed8bb01.css",
+            "__mf/css/async/263.1ed8bb01.css"
+          ]
+        }
+      },
+      "path": "./StatChart"
+    }
+  ]
+}

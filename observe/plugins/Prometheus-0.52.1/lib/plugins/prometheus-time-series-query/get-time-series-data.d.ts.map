@@ -1,0 +1,1 @@
+{"version":3,"file":"get-time-series-data.d.ts","sourceRoot":"","sources":["../../../../src/plugins/prometheus-time-series-query/get-time-series-data.ts"],"names":[],"mappings":"AAqBA,OAAO,EAAE,qBAAqB,EAAqD,MAAM,2BAA2B,CAAC;AAiBrH,OAAO,EAAE,6BAA6B,EAAE,MAAM,2BAA2B,CAAC;AAG1E,eAAO,MAAM,iBAAiB,EAAE,qBAAqB,CAAC,6BAA6B,CAAC,CAAC,mBAAmB,CAyHvG,CAAC"}

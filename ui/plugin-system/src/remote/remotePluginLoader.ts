@@ -44,7 +44,7 @@ const isPluginModuleResource = (pluginModule: unknown): pluginModule is PluginMo
 export const remotePluginLoader = (baseURL?: string): PluginLoader => {
   return {
     getInstalledPlugins: async (): Promise<PluginModuleResource[]> => {
-      const pluginsResponse = await fetch(`${baseURL ? baseURL : ''}/api/v1/plugins`);
+      const pluginsResponse = await fetch(`${baseURL ? baseURL : ''}/observe/api/v1/plugins`);
 
       const plugins = await pluginsResponse.json();
 

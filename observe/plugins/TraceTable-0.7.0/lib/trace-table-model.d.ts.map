@@ -1,0 +1,1 @@
+{"version":3,"file":"trace-table-model.d.ts","sourceRoot":"","sources":["../../src/trace-table-model.ts"],"names":[],"mappings":"AAaA;;GAEG;AAEH,MAAM,WAAW,iBAAiB;IAChC,MAAM,CAAC,EAAE,uBAAuB,CAAC;CAClC;AAED,MAAM,WAAW,uBAAuB;IACtC,OAAO,CAAC,EAAE,wBAAwB,CAAC;CACpC;AAED,MAAM,WAAW,wBAAwB;IACvC,IAAI,EAAE,MAAM,GAAG,aAAa,CAAC;CAC9B;AAED;;GAEG;AACH,wBAAgB,8BAA8B,IAAI,iBAAiB,CAElE"}

@@ -1,0 +1,2 @@
+export declare const queryExample = "-- Time Series Query\nSELECT \n  toStartOfMinute(timestamp) as time,\n  avg(cpu_usage) as avg_cpu,\n  max(memory_usage) as max_memory\nFROM system_metrics \nWHERE timestamp BETWEEN '{start}' AND '{end}'\nGROUP BY time ORDER BY time\n-- Logs Query  \nSELECT \n  Timestamp as log_time,\n  Body,\n  ServiceName,\n  ResourceAttributes,\n  SeverityNumber,\n  SeverityText\nFROM application_logs \nWHERE timestamp >= '{start}' \nORDER BY time DESC LIMIT 1000";
+//# sourceMappingURL=constants.d.ts.map

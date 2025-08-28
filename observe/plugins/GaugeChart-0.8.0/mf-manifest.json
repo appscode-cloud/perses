@@ -1,0 +1,398 @@
+{
+  "id": "GaugeChart",
+  "name": "GaugeChart",
+  "metaData": {
+    "name": "GaugeChart",
+    "type": "app",
+    "buildInfo": {
+      "buildVersion": "0.8.0",
+      "buildName": "@perses-dev/gauge-chart-plugin"
+    },
+    "remoteEntry": {
+      "name": "__mf/js/GaugeChart.691a7b2b.js",
+      "path": "",
+      "type": "global"
+    },
+    "types": {
+      "path": "",
+      "name": "",
+      "zip": "",
+      "api": ""
+    },
+    "globalName": "GaugeChart",
+    "pluginVersion": "0.11.2",
+    "prefetchInterface": false,
+    "publicPath": "/plugins/GaugeChart/"
+  },
+  "shared": [
+    {
+      "id": "GaugeChart:@emotion/react",
+      "name": "@emotion/react",
+      "version": "11.14.0",
+      "singleton": true,
+      "requiredVersion": "^11.11.3",
+      "assets": {
+        "js": {
+          "async": [
+            "__mf/js/async/964.80d5e8c0.js"
+          ],
+          "sync": [
+            "__mf/js/async/960.fb84169e.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      }
+    },
+    {
+      "id": "GaugeChart:@emotion/styled",
+      "name": "@emotion/styled",
+      "version": "11.14.0",
+      "singleton": true,
+      "requiredVersion": "^11.14.0",
+      "assets": {
+        "js": {
+          "async": [
+            "__mf/js/async/964.80d5e8c0.js",
+            "__mf/js/async/960.fb84169e.js"
+          ],
+          "sync": [
+            "__mf/js/async/694.8b956cd7.js",
+            "__mf/js/async/770.1ddcdb57.js",
+            "__mf/js/async/790.4aa856ac.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      }
+    },
+    {
+      "id": "GaugeChart:@hookform/resolvers",
+      "name": "@hookform/resolvers",
+      "version": "3.10.0",
+      "singleton": true,
+      "requiredVersion": "^3.10.0",
+      "assets": {
+        "js": {
+          "async": [
+            "__mf/js/async/964.80d5e8c0.js"
+          ],
+          "sync": [
+            "__mf/js/async/214.6d1beb4f.js",
+            "__mf/js/async/269.ccb8b7e1.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      }
+    },
+    {
+      "id": "GaugeChart:@perses-dev/components",
+      "name": "@perses-dev/components",
+      "version": "0.51.0-rc.1",
+      "singleton": true,
+      "requiredVersion": "^0.51.0-rc.1",
+      "assets": {
+        "js": {
+          "async": [
+            "__mf/js/async/964.80d5e8c0.js",
+            "__mf/js/async/173.5bfb1682.js",
+            "__mf/js/async/960.fb84169e.js",
+            "__mf/js/async/790.4aa856ac.js",
+            "__mf/js/async/75.4ebd94ad.js",
+            "__mf/js/async/740.a7a03e99.js",
+            "__mf/js/async/774.db64c396.js",
+            "__mf/js/async/623.afdd0af8.js"
+          ],
+          "sync": [
+            "__mf/js/async/530.a36b7115.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      }
+    },
+    {
+      "id": "GaugeChart:@perses-dev/plugin-system",
+      "name": "@perses-dev/plugin-system",
+      "version": "0.51.0-rc.1",
+      "singleton": true,
+      "requiredVersion": "^0.51.0-rc.1",
+      "assets": {
+        "js": {
+          "async": [
+            "__mf/js/async/964.80d5e8c0.js",
+            "__mf/js/async/173.5bfb1682.js",
+            "__mf/js/async/960.fb84169e.js",
+            "__mf/js/async/790.4aa856ac.js",
+            "__mf/js/async/238.3b90e0d1.js",
+            "__mf/js/async/224.dd9ee618.js",
+            "__mf/js/async/75.4ebd94ad.js",
+            "__mf/js/async/740.a7a03e99.js",
+            "__mf/js/async/623.afdd0af8.js",
+            "__mf/js/async/413.13c85eaf.js",
+            "__mf/js/async/738.9f05b40b.js",
+            "__mf/js/async/530.a36b7115.js",
+            "__mf/js/async/197.4db99b8f.js",
+            "__mf/js/async/774.db64c396.js",
+            "__mf/js/async/269.ccb8b7e1.js",
+            "__mf/js/async/503.6b607560.js",
+            "__mf/js/async/981.6ecc2fa1.js",
+            "__mf/js/async/770.1ddcdb57.js",
+            "__mf/js/async/296.6e15d7c1.js"
+          ],
+          "sync": [
+            "__mf/js/async/845.b0c68f69.js"
+          ]
+        },
+        "css": {
+          "async": [
+            "__mf/css/async/263.683bd428.css"
+          ],
+          "sync": []
+        }
+      }
+    },
+    {
+      "id": "GaugeChart:date-fns",
+      "name": "date-fns",
+      "version": "4.1.0",
+      "singleton": true,
+      "requiredVersion": "^4.1.0",
+      "assets": {
+        "js": {
+          "async": [],
+          "sync": [
+            "__mf/js/async/75.4ebd94ad.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      }
+    },
+    {
+      "id": "GaugeChart:echarts",
+      "name": "echarts",
+      "version": "5.5.0",
+      "singleton": true,
+      "requiredVersion": "^undefined",
+      "assets": {
+        "js": {
+          "async": [],
+          "sync": [
+            "__mf/js/async/503.6b607560.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      }
+    },
+    {
+      "id": "GaugeChart:immer",
+      "name": "immer",
+      "version": "10.1.1",
+      "singleton": true,
+      "requiredVersion": "^10.1.1",
+      "assets": {
+        "js": {
+          "async": [],
+          "sync": [
+            "__mf/js/async/774.db64c396.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      }
+    },
+    {
+      "id": "GaugeChart:lodash",
+      "name": "lodash",
+      "version": "4.17.21",
+      "singleton": true,
+      "requiredVersion": "^4.17.21",
+      "assets": {
+        "js": {
+          "async": [],
+          "sync": [
+            "__mf/js/async/981.6ecc2fa1.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      }
+    },
+    {
+      "id": "GaugeChart:mdi-material-ui",
+      "name": "mdi-material-ui",
+      "version": "7.9.3",
+      "singleton": true,
+      "requiredVersion": "7.4.0",
+      "assets": {
+        "js": {
+          "async": [
+            "__mf/js/async/964.80d5e8c0.js",
+            "__mf/js/async/960.fb84169e.js",
+            "__mf/js/async/790.4aa856ac.js"
+          ],
+          "sync": [
+            "__mf/js/async/296.6e15d7c1.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      }
+    },
+    {
+      "id": "GaugeChart:react-dom",
+      "name": "react-dom",
+      "version": "18.3.1",
+      "singleton": true,
+      "requiredVersion": "18.2.0",
+      "assets": {
+        "js": {
+          "async": [
+            "__mf/js/async/964.80d5e8c0.js"
+          ],
+          "sync": [
+            "__mf/js/async/173.5bfb1682.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      }
+    },
+    {
+      "id": "GaugeChart:react",
+      "name": "react",
+      "version": "18.3.1",
+      "singleton": true,
+      "requiredVersion": "18.2.0",
+      "assets": {
+        "js": {
+          "async": [],
+          "sync": [
+            "__mf/js/async/964.80d5e8c0.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      }
+    },
+    {
+      "id": "GaugeChart:use-resize-observer",
+      "name": "use-resize-observer",
+      "version": "9.1.0",
+      "singleton": true,
+      "requiredVersion": "9.1.0",
+      "assets": {
+        "js": {
+          "async": [
+            "__mf/js/async/964.80d5e8c0.js"
+          ],
+          "sync": [
+            "__mf/js/async/553.db3ebdeb.js",
+            "__mf/js/async/623.afdd0af8.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      }
+    },
+    {
+      "id": "GaugeChart:date-fns-tz",
+      "name": "date-fns-tz",
+      "version": "3.2.0",
+      "singleton": true,
+      "requiredVersion": "^3.2.0",
+      "assets": {
+        "js": {
+          "async": [
+            "__mf/js/async/238.3b90e0d1.js",
+            "__mf/js/async/75.4ebd94ad.js"
+          ],
+          "sync": [
+            "__mf/js/async/740.a7a03e99.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      }
+    }
+  ],
+  "remotes": [],
+  "exposes": [
+    {
+      "id": "GaugeChart:GaugeChart",
+      "name": "GaugeChart",
+      "assets": {
+        "js": {
+          "sync": [
+            "__mf/js/async/413.13c85eaf.js",
+            "__mf/js/async/929.fde3d617.js",
+            "__mf/js/async/808.4e339e11.js",
+            "__mf/js/async/197.4db99b8f.js",
+            "__mf/js/async/__federation_expose_GaugeChart.7b0cb8e7.js"
+          ],
+          "async": [
+            "__mf/js/async/964.80d5e8c0.js",
+            "__mf/js/async/173.5bfb1682.js",
+            "__mf/js/async/960.fb84169e.js",
+            "__mf/js/async/790.4aa856ac.js",
+            "__mf/js/async/774.db64c396.js",
+            "__mf/js/async/238.3b90e0d1.js",
+            "__mf/js/async/224.dd9ee618.js",
+            "__mf/js/async/292.d6d07d9c.js",
+            "__mf/js/async/738.9f05b40b.js",
+            "__mf/js/async/1.6f58f98c.js",
+            "__mf/js/async/530.a36b7115.js",
+            "__mf/js/async/75.4ebd94ad.js",
+            "__mf/js/async/740.a7a03e99.js",
+            "__mf/js/async/623.afdd0af8.js",
+            "__mf/js/async/lib-router.c799dfc6.js",
+            "__mf/js/async/845.b0c68f69.js",
+            "__mf/js/async/488.6e73b2c9.js",
+            "__mf/js/async/269.ccb8b7e1.js",
+            "__mf/js/async/503.6b607560.js",
+            "__mf/js/async/981.6ecc2fa1.js",
+            "__mf/js/async/770.1ddcdb57.js",
+            "__mf/js/async/296.6e15d7c1.js"
+          ]
+        },
+        "css": {
+          "sync": [],
+          "async": [
+            "__mf/css/async/341.683bd428.css",
+            "__mf/css/async/263.683bd428.css"
+          ]
+        }
+      },
+      "path": "./GaugeChart"
+    }
+  ]
+}

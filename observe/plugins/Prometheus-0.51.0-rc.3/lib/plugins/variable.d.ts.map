@@ -1,0 +1,1 @@
+{"version":3,"file":"variable.d.ts","sourceRoot":"","sources":["../../../src/plugins/variable.tsx"],"names":[],"mappings":"AAaA,OAAO,EAAE,cAAc,EAAE,cAAc,EAAsB,MAAM,2BAA2B,CAAC;AAI/F,KAAK,gBAAgB,GAAG,MAAM,GAAG,cAAc,CAAC;AAEhD,KAAK,yBAAyB,GAAG;IAC/B,MAAM,EAAE,gBAAgB,EAAE,CAAC;CAC5B,CAAC;AAmDF,eAAO,MAAM,kBAAkB,EAAE,cAAc,CAAC,yBAAyB,CAiBxE,CAAC"}

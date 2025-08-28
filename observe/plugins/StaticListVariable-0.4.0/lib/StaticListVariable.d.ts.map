@@ -1,0 +1,1 @@
+{"version":3,"file":"StaticListVariable.d.ts","sourceRoot":"","sources":["../../src/StaticListVariable.tsx"],"names":[],"mappings":"AAAA,OAAO,EAAE,cAAc,EAAE,cAAc,EAAsB,MAAM,2BAA2B,CAAC;AAG/F,KAAK,gBAAgB,GAAG,MAAM,GAAG,cAAc,CAAC;AAEhD,KAAK,yBAAyB,GAAG;IAC/B,MAAM,EAAE,gBAAgB,EAAE,CAAC;CAC5B,CAAC;AAmDF,eAAO,MAAM,kBAAkB,EAAE,cAAc,CAAC,yBAAyB,CAiBxE,CAAC"}

@@ -1,0 +1,322 @@
+{
+  "id": "Markdown",
+  "name": "Markdown",
+  "metaData": {
+    "name": "Markdown",
+    "type": "app",
+    "buildInfo": {
+      "buildVersion": "0.8.0",
+      "buildName": "@perses-dev/markdown-plugin"
+    },
+    "remoteEntry": {
+      "name": "__mf/js/Markdown.ecf31323.js",
+      "path": "",
+      "type": "global"
+    },
+    "types": {
+      "path": "",
+      "name": "",
+      "zip": "",
+      "api": ""
+    },
+    "globalName": "Markdown",
+    "pluginVersion": "0.11.2",
+    "prefetchInterface": false,
+    "publicPath": "/plugins/Markdown/"
+  },
+  "shared": [
+    {
+      "id": "Markdown:@emotion/react",
+      "name": "@emotion/react",
+      "version": "11.14.0",
+      "singleton": true,
+      "requiredVersion": "^11.11.3",
+      "assets": {
+        "js": {
+          "async": [
+            "__mf/js/async/964.61ccf551.js"
+          ],
+          "sync": [
+            "__mf/js/async/960.8479da60.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      }
+    },
+    {
+      "id": "Markdown:@emotion/styled",
+      "name": "@emotion/styled",
+      "version": "11.14.0",
+      "singleton": true,
+      "requiredVersion": "^11.14.0",
+      "assets": {
+        "js": {
+          "async": [
+            "__mf/js/async/964.61ccf551.js",
+            "__mf/js/async/960.8479da60.js"
+          ],
+          "sync": [
+            "__mf/js/async/694.085ef40d.js",
+            "__mf/js/async/770.21976fa2.js",
+            "__mf/js/async/790.b67b98e2.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      }
+    },
+    {
+      "id": "Markdown:@hookform/resolvers",
+      "name": "@hookform/resolvers",
+      "version": "3.10.0",
+      "singleton": true,
+      "requiredVersion": "^3.10.0",
+      "assets": {
+        "js": {
+          "async": [
+            "__mf/js/async/964.61ccf551.js"
+          ],
+          "sync": [
+            "__mf/js/async/214.08f3138d.js",
+            "__mf/js/async/738.07a61f29.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      }
+    },
+    {
+      "id": "Markdown:@perses-dev/components",
+      "name": "@perses-dev/components",
+      "version": "0.51.0-rc.1",
+      "singleton": true,
+      "requiredVersion": "^0.51.0-rc.1",
+      "assets": {
+        "js": {
+          "async": [
+            "__mf/js/async/964.61ccf551.js",
+            "__mf/js/async/173.c939f26e.js",
+            "__mf/js/async/960.8479da60.js",
+            "__mf/js/async/790.b67b98e2.js",
+            "__mf/js/async/75.997d663c.js",
+            "__mf/js/async/740.55ee1510.js"
+          ],
+          "sync": [
+            "__mf/js/async/20.7b7d541d.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      }
+    },
+    {
+      "id": "Markdown:@perses-dev/plugin-system",
+      "name": "@perses-dev/plugin-system",
+      "version": "0.51.0-rc.1",
+      "singleton": true,
+      "requiredVersion": "^0.51.0-rc.1",
+      "assets": {
+        "js": {
+          "async": [
+            "__mf/js/async/964.61ccf551.js",
+            "__mf/js/async/173.c939f26e.js",
+            "__mf/js/async/960.8479da60.js",
+            "__mf/js/async/790.b67b98e2.js",
+            "__mf/js/async/238.54061f0f.js",
+            "__mf/js/async/224.e5d8921f.js",
+            "__mf/js/async/75.997d663c.js",
+            "__mf/js/async/740.55ee1510.js",
+            "__mf/js/async/90.c1b50607.js",
+            "__mf/js/async/20.7b7d541d.js",
+            "__mf/js/async/738.07a61f29.js",
+            "__mf/js/async/503.bebc5e2e.js",
+            "__mf/js/async/981.56846457.js",
+            "__mf/js/async/770.21976fa2.js"
+          ],
+          "sync": [
+            "__mf/js/async/897.d0ae5303.js"
+          ]
+        },
+        "css": {
+          "async": [
+            "__mf/css/async/263.73e51bf7.css"
+          ],
+          "sync": []
+        }
+      }
+    },
+    {
+      "id": "Markdown:date-fns",
+      "name": "date-fns",
+      "version": "4.1.0",
+      "singleton": true,
+      "requiredVersion": "^4.1.0",
+      "assets": {
+        "js": {
+          "async": [],
+          "sync": [
+            "__mf/js/async/75.997d663c.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      }
+    },
+    {
+      "id": "Markdown:echarts",
+      "name": "echarts",
+      "version": "5.5.0",
+      "singleton": true,
+      "requiredVersion": "^undefined",
+      "assets": {
+        "js": {
+          "async": [],
+          "sync": [
+            "__mf/js/async/503.bebc5e2e.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      }
+    },
+    {
+      "id": "Markdown:lodash",
+      "name": "lodash",
+      "version": "4.17.21",
+      "singleton": true,
+      "requiredVersion": "^4.17.21",
+      "assets": {
+        "js": {
+          "async": [],
+          "sync": [
+            "__mf/js/async/981.56846457.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      }
+    },
+    {
+      "id": "Markdown:react-dom",
+      "name": "react-dom",
+      "version": "18.3.1",
+      "singleton": true,
+      "requiredVersion": "18.2.0",
+      "assets": {
+        "js": {
+          "async": [
+            "__mf/js/async/964.61ccf551.js"
+          ],
+          "sync": [
+            "__mf/js/async/173.c939f26e.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      }
+    },
+    {
+      "id": "Markdown:react",
+      "name": "react",
+      "version": "18.3.1",
+      "singleton": true,
+      "requiredVersion": "18.2.0",
+      "assets": {
+        "js": {
+          "async": [],
+          "sync": [
+            "__mf/js/async/964.61ccf551.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      }
+    },
+    {
+      "id": "Markdown:date-fns-tz",
+      "name": "date-fns-tz",
+      "version": "3.2.0",
+      "singleton": true,
+      "requiredVersion": "^3.2.0",
+      "assets": {
+        "js": {
+          "async": [
+            "__mf/js/async/238.54061f0f.js",
+            "__mf/js/async/75.997d663c.js"
+          ],
+          "sync": [
+            "__mf/js/async/740.55ee1510.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      }
+    }
+  ],
+  "remotes": [],
+  "exposes": [
+    {
+      "id": "Markdown:Markdown",
+      "name": "Markdown",
+      "assets": {
+        "js": {
+          "sync": [
+            "__mf/js/async/610.823ffbd3.js",
+            "__mf/js/async/739.0bdabdbe.js",
+            "__mf/js/async/__federation_expose_Markdown.bb8db6b4.js"
+          ],
+          "async": [
+            "__mf/js/async/964.61ccf551.js",
+            "__mf/js/async/173.c939f26e.js",
+            "__mf/js/async/960.8479da60.js",
+            "__mf/js/async/790.b67b98e2.js",
+            "__mf/js/async/238.54061f0f.js",
+            "__mf/js/async/224.e5d8921f.js",
+            "__mf/js/async/292.f37a44ec.js",
+            "__mf/js/async/90.c1b50607.js",
+            "__mf/js/async/298.e3027300.js",
+            "__mf/js/async/20.7b7d541d.js",
+            "__mf/js/async/75.997d663c.js",
+            "__mf/js/async/740.55ee1510.js",
+            "__mf/js/async/lib-router.1eb11eab.js",
+            "__mf/js/async/897.d0ae5303.js",
+            "__mf/js/async/488.b2e1eb2c.js",
+            "__mf/js/async/738.07a61f29.js",
+            "__mf/js/async/503.bebc5e2e.js",
+            "__mf/js/async/981.56846457.js",
+            "__mf/js/async/770.21976fa2.js"
+          ]
+        },
+        "css": {
+          "sync": [],
+          "async": [
+            "__mf/css/async/341.73e51bf7.css",
+            "__mf/css/async/263.73e51bf7.css"
+          ]
+        }
+      },
+      "path": "./Markdown"
+    }
+  ]
+}

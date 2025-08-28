@@ -203,8 +203,10 @@ const getPluginRuntime = (): ModuleFederation => {
 const registerRemote = (name: string, baseURL?: string): void => {
   const pluginRuntime = getPluginRuntime();
   const existingRemote = pluginRuntime.options.remotes.find((remote) => remote.name === name);
+  console.log("bhbdsc+++");
+  
   if (!existingRemote) {
-    const remoteEntryURL = baseURL ? `${baseURL}/${name}/mf-manifest.json` : `/plugins/${name}/mf-manifest.json`;
+    const remoteEntryURL = baseURL ? `${baseURL}/${name}/mf-manifest.json` : `/observe/plugins/${name}/mf-manifest.json`;
     pluginRuntime.registerRemotes([
       {
         name,

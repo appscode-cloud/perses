@@ -1,0 +1,1 @@
+{"version":3,"file":"prometheus-datasource.d.ts","sourceRoot":"","sources":["../../../src/plugins/prometheus-datasource.tsx"],"names":[],"mappings":"AAcA,OAAO,EAAE,gBAAgB,EAAE,MAAM,2BAA2B,CAAC;AAC7D,OAAO,EAML,gBAAgB,EAIjB,MAAM,UAAU,CAAC;AAClB,OAAO,EAAE,wBAAwB,EAAE,MAAM,SAAS,CAAC;AAgFnD,eAAO,MAAM,oBAAoB,EAAE,gBAAgB,CAAC,wBAAwB,EAAE,gBAAgB,CAK7F,CAAC"}

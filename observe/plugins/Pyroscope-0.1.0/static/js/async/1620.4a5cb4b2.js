@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkPyroscope=self.webpackChunkPyroscope||[]).push([["1620"],{29161:function(e,o,t){t.r(o);var r=t(24246),c=t(54538),n=t.n(c);t(37634).createRoot(document.getElementById("root")).render((0,r.jsx)(n().StrictMode,{}))}}]);

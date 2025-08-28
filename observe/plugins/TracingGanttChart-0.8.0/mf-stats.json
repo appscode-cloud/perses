@@ -1,0 +1,297 @@
+{
+  "id": "TracingGanttChart",
+  "name": "TracingGanttChart",
+  "metaData": {
+    "name": "TracingGanttChart",
+    "type": "app",
+    "buildInfo": {
+      "buildVersion": "0.8.0",
+      "buildName": "@perses-dev/tracing-gantt-chart-plugin"
+    },
+    "remoteEntry": {
+      "name": "__mf/js/TracingGanttChart.77b94eb3.js",
+      "path": "",
+      "type": "global"
+    },
+    "types": {
+      "path": "",
+      "name": "",
+      "zip": "",
+      "api": ""
+    },
+    "globalName": "TracingGanttChart",
+    "pluginVersion": "0.11.2",
+    "prefetchInterface": false,
+    "publicPath": "/plugins/TracingGanttChart/"
+  },
+  "shared": [
+    {
+      "singleton": true,
+      "requiredVersion": "^11.11.3",
+      "shareScope": "default",
+      "name": "@emotion/react",
+      "version": "11.14.0",
+      "eager": false,
+      "id": "TracingGanttChart:@emotion/react",
+      "assets": {
+        "js": {
+          "async": [
+            "__mf/js/async/964.a98cab40.js"
+          ],
+          "sync": [
+            "__mf/js/async/960.478a8f11.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      },
+      "usedIn": []
+    },
+    {
+      "singleton": true,
+      "requiredVersion": "^11.14.0",
+      "shareScope": "default",
+      "name": "@emotion/styled",
+      "version": "11.14.0",
+      "eager": false,
+      "id": "TracingGanttChart:@emotion/styled",
+      "assets": {
+        "js": {
+          "async": [
+            "__mf/js/async/964.a98cab40.js",
+            "__mf/js/async/960.478a8f11.js"
+          ],
+          "sync": [
+            "__mf/js/async/694.4580ad20.js",
+            "__mf/js/async/770.5431adef.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      },
+      "usedIn": []
+    },
+    {
+      "singleton": true,
+      "requiredVersion": "^0.51.0-rc.1",
+      "shareScope": "default",
+      "name": "@perses-dev/components",
+      "version": "0.51.0-rc.1",
+      "eager": false,
+      "id": "TracingGanttChart:@perses-dev/components",
+      "assets": {
+        "js": {
+          "async": [
+            "__mf/js/async/964.a98cab40.js",
+            "__mf/js/async/173.6314a363.js",
+            "__mf/js/async/960.478a8f11.js",
+            "__mf/js/async/694.4580ad20.js",
+            "__mf/js/async/75.d81e6bbf.js",
+            "__mf/js/async/740.babbb403.js"
+          ],
+          "sync": [
+            "__mf/js/async/193.12ce9ab1.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      },
+      "usedIn": [
+        "./TracingGanttChart"
+      ]
+    },
+    {
+      "singleton": true,
+      "requiredVersion": "^4.1.0",
+      "shareScope": "default",
+      "name": "date-fns",
+      "version": "4.1.0",
+      "eager": false,
+      "id": "TracingGanttChart:date-fns",
+      "assets": {
+        "js": {
+          "async": [],
+          "sync": [
+            "__mf/js/async/75.d81e6bbf.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      },
+      "usedIn": []
+    },
+    {
+      "singleton": true,
+      "requiredVersion": "^4.17.21",
+      "shareScope": "default",
+      "name": "lodash",
+      "version": "4.17.21",
+      "eager": false,
+      "id": "TracingGanttChart:lodash",
+      "assets": {
+        "js": {
+          "async": [],
+          "sync": [
+            "__mf/js/async/981.bc5132f8.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      },
+      "usedIn": [
+        "./TracingGanttChart"
+      ]
+    },
+    {
+      "singleton": true,
+      "requiredVersion": "18.2.0",
+      "shareScope": "default",
+      "name": "react-dom",
+      "version": "18.3.1",
+      "eager": false,
+      "id": "TracingGanttChart:react-dom",
+      "assets": {
+        "js": {
+          "async": [
+            "__mf/js/async/964.a98cab40.js"
+          ],
+          "sync": [
+            "__mf/js/async/173.6314a363.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      },
+      "usedIn": []
+    },
+    {
+      "singleton": true,
+      "requiredVersion": "^6.30.0",
+      "shareScope": "default",
+      "name": "react-router-dom",
+      "version": "6.30.0",
+      "eager": false,
+      "id": "TracingGanttChart:react-router-dom",
+      "assets": {
+        "js": {
+          "async": [
+            "__mf/js/async/964.a98cab40.js",
+            "__mf/js/async/173.6314a363.js"
+          ],
+          "sync": [
+            "__mf/js/async/377.59c252c4.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      },
+      "usedIn": [
+        "./TracingGanttChart"
+      ]
+    },
+    {
+      "singleton": true,
+      "requiredVersion": "18.2.0",
+      "shareScope": "default",
+      "name": "react",
+      "version": "18.3.1",
+      "eager": false,
+      "id": "TracingGanttChart:react",
+      "assets": {
+        "js": {
+          "async": [],
+          "sync": [
+            "__mf/js/async/964.a98cab40.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      },
+      "usedIn": [
+        "./TracingGanttChart"
+      ]
+    },
+    {
+      "singleton": true,
+      "requiredVersion": "^3.2.0",
+      "shareScope": "default",
+      "name": "date-fns-tz",
+      "version": "3.2.0",
+      "eager": false,
+      "id": "TracingGanttChart:date-fns-tz",
+      "assets": {
+        "js": {
+          "async": [
+            "__mf/js/async/75.d81e6bbf.js"
+          ],
+          "sync": [
+            "__mf/js/async/740.babbb403.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      },
+      "usedIn": []
+    }
+  ],
+  "remotes": [],
+  "exposes": [
+    {
+      "path": "./TracingGanttChart",
+      "id": "TracingGanttChart:TracingGanttChart",
+      "name": "TracingGanttChart",
+      "requires": [
+        "react",
+        "@perses-dev/components",
+        "lodash",
+        "react-router-dom"
+      ],
+      "file": "src/TracingGanttChart.ts",
+      "assets": {
+        "js": {
+          "sync": [
+            "__mf/js/async/783.3c2c57f6.js",
+            "__mf/js/async/511.b81ea373.js",
+            "__mf/js/async/__federation_expose_TracingGanttChart.7b5aeb33.js"
+          ],
+          "async": [
+            "__mf/js/async/964.a98cab40.js",
+            "__mf/js/async/173.6314a363.js",
+            "__mf/js/async/960.478a8f11.js",
+            "__mf/js/async/694.4580ad20.js",
+            "__mf/js/async/156.5a401ecb.js",
+            "__mf/js/async/193.12ce9ab1.js",
+            "__mf/js/async/75.d81e6bbf.js",
+            "__mf/js/async/740.babbb403.js",
+            "__mf/js/async/377.59c252c4.js",
+            "__mf/js/async/981.bc5132f8.js"
+          ]
+        },
+        "css": {
+          "sync": [],
+          "async": [
+            "__mf/css/async/341.6c6463ea.css"
+          ]
+        }
+      }
+    }
+  ]
+}

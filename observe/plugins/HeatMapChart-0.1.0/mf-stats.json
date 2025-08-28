@@ -1,0 +1,194 @@
+{
+  "id": "HeatMapChart",
+  "name": "HeatMapChart",
+  "metaData": {
+    "name": "HeatMapChart",
+    "type": "app",
+    "buildInfo": {
+      "buildVersion": "0.1.0",
+      "buildName": "@perses-dev/heatmap-chart"
+    },
+    "remoteEntry": {
+      "name": "__mf/js/HeatMapChart.f4e439a2.js",
+      "path": "",
+      "type": "global"
+    },
+    "types": {
+      "path": "",
+      "name": "",
+      "zip": "",
+      "api": ""
+    },
+    "globalName": "HeatMapChart",
+    "pluginVersion": "0.11.2",
+    "prefetchInterface": false,
+    "publicPath": "/plugins/HeatMapChart/"
+  },
+  "shared": [
+    {
+      "singleton": true,
+      "requiredVersion": "^0.51.0-rc.1",
+      "shareScope": "default",
+      "name": "@perses-dev/components",
+      "version": "0.51.0-rc.1",
+      "eager": false,
+      "id": "HeatMapChart:@perses-dev/components",
+      "assets": {
+        "js": {
+          "async": [
+            "__mf/js/async/964.e0a6d475.js",
+            "__mf/js/async/173.84280b3d.js",
+            "__mf/js/async/243.6ae4a99d.js",
+            "__mf/js/async/774.67a44c32.js"
+          ],
+          "sync": [
+            "__mf/js/async/20.6bfae051.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      },
+      "usedIn": [
+        "./HeatMapChart"
+      ]
+    },
+    {
+      "singleton": true,
+      "requiredVersion": "^0.51.0-rc.1",
+      "shareScope": "default",
+      "name": "@perses-dev/core",
+      "version": "0.51.0-rc.1",
+      "eager": false,
+      "id": "HeatMapChart:@perses-dev/core",
+      "assets": {
+        "js": {
+          "async": [
+            "__mf/js/async/964.e0a6d475.js"
+          ],
+          "sync": [
+            "__mf/js/async/243.6ae4a99d.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      },
+      "usedIn": [
+        "./HeatMapChart"
+      ]
+    },
+    {
+      "singleton": true,
+      "requiredVersion": "^10.1.1",
+      "shareScope": "default",
+      "name": "immer",
+      "version": "10.1.1",
+      "eager": false,
+      "id": "HeatMapChart:immer",
+      "assets": {
+        "js": {
+          "async": [],
+          "sync": [
+            "__mf/js/async/774.67a44c32.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      },
+      "usedIn": [
+        "./HeatMapChart"
+      ]
+    },
+    {
+      "singleton": true,
+      "requiredVersion": "18.2.0",
+      "shareScope": "default",
+      "name": "react-dom",
+      "version": "18.3.1",
+      "eager": false,
+      "id": "HeatMapChart:react-dom",
+      "assets": {
+        "js": {
+          "async": [
+            "__mf/js/async/964.e0a6d475.js"
+          ],
+          "sync": [
+            "__mf/js/async/173.84280b3d.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      },
+      "usedIn": []
+    },
+    {
+      "singleton": true,
+      "requiredVersion": "18.2.0",
+      "shareScope": "default",
+      "name": "react",
+      "version": "18.3.1",
+      "eager": false,
+      "id": "HeatMapChart:react",
+      "assets": {
+        "js": {
+          "async": [],
+          "sync": [
+            "__mf/js/async/964.e0a6d475.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      },
+      "usedIn": [
+        "./HeatMapChart"
+      ]
+    }
+  ],
+  "remotes": [],
+  "exposes": [
+    {
+      "path": "./HeatMapChart",
+      "id": "HeatMapChart:HeatMapChart",
+      "name": "HeatMapChart",
+      "requires": [
+        "react",
+        "@perses-dev/components",
+        "immer",
+        "@perses-dev/core"
+      ],
+      "file": "src/HeatMapChart.ts",
+      "assets": {
+        "js": {
+          "sync": [
+            "__mf/js/async/293.99df9529.js",
+            "__mf/js/async/482.c5733a0e.js",
+            "__mf/js/async/__federation_expose_HeatMapChart.01a851ae.js"
+          ],
+          "async": [
+            "__mf/js/async/964.e0a6d475.js",
+            "__mf/js/async/790.c03dfad3.js",
+            "__mf/js/async/20.6bfae051.js",
+            "__mf/js/async/173.84280b3d.js",
+            "__mf/js/async/243.6ae4a99d.js",
+            "__mf/js/async/774.67a44c32.js"
+          ]
+        },
+        "css": {
+          "sync": [],
+          "async": [
+            "__mf/css/async/341.2a93d99b.css"
+          ]
+        }
+      }
+    }
+  ]
+}

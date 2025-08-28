@@ -1,0 +1,454 @@
+{
+  "id": "Table",
+  "name": "Table",
+  "metaData": {
+    "name": "Table",
+    "type": "app",
+    "buildInfo": {
+      "buildVersion": "0.7.1",
+      "buildName": "@perses-dev/table-plugin"
+    },
+    "remoteEntry": {
+      "name": "__mf/js/Table.768b2f2d.js",
+      "path": "",
+      "type": "global"
+    },
+    "types": {
+      "path": "",
+      "name": "",
+      "zip": "",
+      "api": ""
+    },
+    "globalName": "Table",
+    "pluginVersion": "0.11.2",
+    "prefetchInterface": false,
+    "publicPath": "/plugins/Table/"
+  },
+  "shared": [
+    {
+      "id": "Table:@emotion/react",
+      "name": "@emotion/react",
+      "version": "11.14.0",
+      "singleton": true,
+      "requiredVersion": "^11.11.3",
+      "assets": {
+        "js": {
+          "async": [
+            "__mf/js/async/1964.979a7101.js"
+          ],
+          "sync": [
+            "__mf/js/async/3960.c992ac30.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      }
+    },
+    {
+      "id": "Table:@emotion/styled",
+      "name": "@emotion/styled",
+      "version": "11.14.0",
+      "singleton": true,
+      "requiredVersion": "^11.14.0",
+      "assets": {
+        "js": {
+          "async": [
+            "__mf/js/async/1964.979a7101.js",
+            "__mf/js/async/3960.c992ac30.js"
+          ],
+          "sync": [
+            "__mf/js/async/6770.84690346.js",
+            "__mf/js/async/694.4b146780.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      }
+    },
+    {
+      "id": "Table:@hookform/resolvers",
+      "name": "@hookform/resolvers",
+      "version": "3.10.0",
+      "singleton": true,
+      "requiredVersion": "^3.10.0",
+      "assets": {
+        "js": {
+          "async": [
+            "__mf/js/async/6292.20be7eae.js",
+            "__mf/js/async/1964.979a7101.js"
+          ],
+          "sync": [
+            "__mf/js/async/5214.19ee9ad8.js",
+            "__mf/js/async/738.e2fbbd72.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      }
+    },
+    {
+      "id": "Table:@perses-dev/components",
+      "name": "@perses-dev/components",
+      "version": "0.51.0-rc.1",
+      "singleton": true,
+      "requiredVersion": "^0.51.0-rc.1",
+      "assets": {
+        "js": {
+          "async": [
+            "__mf/js/async/1964.979a7101.js",
+            "__mf/js/async/9173.00408de3.js",
+            "__mf/js/async/3960.c992ac30.js",
+            "__mf/js/async/6770.84690346.js",
+            "__mf/js/async/5901.2aaa62a6.js",
+            "__mf/js/async/4075.4fb81a28.js",
+            "__mf/js/async/7740.dcade8b6.js",
+            "__mf/js/async/6292.20be7eae.js"
+          ],
+          "sync": [
+            "__mf/js/async/8970.e4194572.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      }
+    },
+    {
+      "id": "Table:@perses-dev/core",
+      "name": "@perses-dev/core",
+      "version": "0.51.0-rc.1",
+      "singleton": true,
+      "requiredVersion": "^0.51.0-rc.1",
+      "assets": {
+        "js": {
+          "async": [
+            "__mf/js/async/1964.979a7101.js",
+            "__mf/js/async/4238.e22a8e1b.js",
+            "__mf/js/async/3224.fbb884ab.js",
+            "__mf/js/async/4075.4fb81a28.js"
+          ],
+          "sync": [
+            "__mf/js/async/5901.2aaa62a6.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      }
+    },
+    {
+      "id": "Table:@perses-dev/dashboards",
+      "name": "@perses-dev/dashboards",
+      "version": "0.51.0-rc.1",
+      "singleton": true,
+      "requiredVersion": "^0.51.0-rc.1",
+      "assets": {
+        "js": {
+          "async": [
+            "__mf/js/async/1964.979a7101.js",
+            "__mf/js/async/9173.00408de3.js",
+            "__mf/js/async/3960.c992ac30.js",
+            "__mf/js/async/6292.20be7eae.js",
+            "__mf/js/async/6770.84690346.js",
+            "__mf/js/async/5377.0695a823.js",
+            "__mf/js/async/5901.2aaa62a6.js",
+            "__mf/js/async/4238.e22a8e1b.js",
+            "__mf/js/async/3224.fbb884ab.js",
+            "__mf/js/async/4075.4fb81a28.js",
+            "__mf/js/async/6357.e10e2a7f.js",
+            "__mf/js/async/3090.f748dadb.js",
+            "__mf/js/async/8970.e4194572.js",
+            "__mf/js/async/9354.fc319e8b.js",
+            "__mf/js/async/7740.dcade8b6.js",
+            "__mf/js/async/lib-router.d60ae988.js",
+            "__mf/js/async/3598.193e9962.js",
+            "__mf/js/async/8565.0065c3c7.js",
+            "__mf/js/async/5503.c5750d0c.js",
+            "__mf/js/async/6284.0d33a1ae.js",
+            "__mf/js/async/5912.b68e4631.js",
+            "__mf/js/async/5981.95116879.js",
+            "__mf/js/async/738.e2fbbd72.js",
+            "__mf/js/async/3980.9246eb0c.js"
+          ],
+          "sync": [
+            "__mf/js/async/7179.516df6f8.js"
+          ]
+        },
+        "css": {
+          "async": [
+            "__mf/css/async/5263.cbbd94a8.css"
+          ],
+          "sync": []
+        }
+      }
+    },
+    {
+      "id": "Table:@perses-dev/plugin-system",
+      "name": "@perses-dev/plugin-system",
+      "version": "0.51.0-rc.1",
+      "singleton": true,
+      "requiredVersion": "^0.51.0-rc.1",
+      "assets": {
+        "js": {
+          "async": [
+            "__mf/js/async/1964.979a7101.js",
+            "__mf/js/async/9173.00408de3.js",
+            "__mf/js/async/3960.c992ac30.js",
+            "__mf/js/async/6292.20be7eae.js",
+            "__mf/js/async/6770.84690346.js",
+            "__mf/js/async/5377.0695a823.js",
+            "__mf/js/async/5901.2aaa62a6.js",
+            "__mf/js/async/4238.e22a8e1b.js",
+            "__mf/js/async/3224.fbb884ab.js",
+            "__mf/js/async/4075.4fb81a28.js",
+            "__mf/js/async/7740.dcade8b6.js",
+            "__mf/js/async/4300.4e662fdf.js",
+            "__mf/js/async/9010.06449312.js",
+            "__mf/js/async/3090.f748dadb.js",
+            "__mf/js/async/8970.e4194572.js",
+            "__mf/js/async/9354.fc319e8b.js",
+            "__mf/js/async/8565.0065c3c7.js",
+            "__mf/js/async/5503.c5750d0c.js",
+            "__mf/js/async/7179.516df6f8.js",
+            "__mf/js/async/6284.0d33a1ae.js",
+            "__mf/js/async/5912.b68e4631.js",
+            "__mf/js/async/5981.95116879.js",
+            "__mf/js/async/738.e2fbbd72.js",
+            "__mf/js/async/3980.9246eb0c.js"
+          ],
+          "sync": [
+            "__mf/js/async/3598.193e9962.js"
+          ]
+        },
+        "css": {
+          "async": [
+            "__mf/css/async/5263.cbbd94a8.css"
+          ],
+          "sync": []
+        }
+      }
+    },
+    {
+      "id": "Table:@tanstack/react-query",
+      "name": "@tanstack/react-query",
+      "version": "4.39.1",
+      "singleton": true,
+      "requiredVersion": "^4.39.1",
+      "assets": {
+        "js": {
+          "async": [
+            "__mf/js/async/1964.979a7101.js"
+          ],
+          "sync": [
+            "__mf/js/async/3980.9246eb0c.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      }
+    },
+    {
+      "id": "Table:date-fns",
+      "name": "date-fns",
+      "version": "4.1.0",
+      "singleton": true,
+      "requiredVersion": "^4.1.0",
+      "assets": {
+        "js": {
+          "async": [],
+          "sync": [
+            "__mf/js/async/4075.4fb81a28.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      }
+    },
+    {
+      "id": "Table:echarts",
+      "name": "echarts",
+      "version": "5.5.0",
+      "singleton": true,
+      "requiredVersion": "^undefined",
+      "assets": {
+        "js": {
+          "async": [],
+          "sync": [
+            "__mf/js/async/5503.c5750d0c.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      }
+    },
+    {
+      "id": "Table:lodash",
+      "name": "lodash",
+      "version": "4.17.21",
+      "singleton": true,
+      "requiredVersion": "^4.17.21",
+      "assets": {
+        "js": {
+          "async": [],
+          "sync": [
+            "__mf/js/async/5981.95116879.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      }
+    },
+    {
+      "id": "Table:react-dom",
+      "name": "react-dom",
+      "version": "18.3.1",
+      "singleton": true,
+      "requiredVersion": "18.2.0",
+      "assets": {
+        "js": {
+          "async": [
+            "__mf/js/async/1964.979a7101.js"
+          ],
+          "sync": [
+            "__mf/js/async/9173.00408de3.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      }
+    },
+    {
+      "id": "Table:react-hook-form",
+      "name": "react-hook-form",
+      "version": "7.54.2",
+      "singleton": true,
+      "requiredVersion": "^7.54.2",
+      "assets": {
+        "js": {
+          "async": [
+            "__mf/js/async/1964.979a7101.js"
+          ],
+          "sync": [
+            "__mf/js/async/6292.20be7eae.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      }
+    },
+    {
+      "id": "Table:react",
+      "name": "react",
+      "version": "18.3.1",
+      "singleton": true,
+      "requiredVersion": "18.2.0",
+      "assets": {
+        "js": {
+          "async": [],
+          "sync": [
+            "__mf/js/async/1964.979a7101.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      }
+    },
+    {
+      "id": "Table:date-fns-tz",
+      "name": "date-fns-tz",
+      "version": "3.2.0",
+      "singleton": true,
+      "requiredVersion": "^3.2.0",
+      "assets": {
+        "js": {
+          "async": [
+            "__mf/js/async/4238.e22a8e1b.js",
+            "__mf/js/async/4075.4fb81a28.js"
+          ],
+          "sync": [
+            "__mf/js/async/7740.dcade8b6.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      }
+    }
+  ],
+  "remotes": [],
+  "exposes": [
+    {
+      "id": "Table:Table",
+      "name": "Table",
+      "assets": {
+        "js": {
+          "sync": [
+            "__mf/js/async/9010.06449312.js",
+            "__mf/js/async/3372.d4622f1a.js",
+            "__mf/js/async/9354.fc319e8b.js",
+            "__mf/js/async/__federation_expose_Table.12e32a6d.js"
+          ],
+          "async": [
+            "__mf/js/async/1964.979a7101.js",
+            "__mf/js/async/9173.00408de3.js",
+            "__mf/js/async/3960.c992ac30.js",
+            "__mf/js/async/6770.84690346.js",
+            "__mf/js/async/6284.0d33a1ae.js",
+            "__mf/js/async/4300.4e662fdf.js",
+            "__mf/js/async/5912.b68e4631.js",
+            "__mf/js/async/7179.516df6f8.js",
+            "__mf/js/async/6357.e10e2a7f.js",
+            "__mf/js/async/4238.e22a8e1b.js",
+            "__mf/js/async/3224.fbb884ab.js",
+            "__mf/js/async/5377.0695a823.js",
+            "__mf/js/async/3090.f748dadb.js",
+            "__mf/js/async/8970.e4194572.js",
+            "__mf/js/async/4075.4fb81a28.js",
+            "__mf/js/async/7740.dcade8b6.js",
+            "__mf/js/async/6292.20be7eae.js",
+            "__mf/js/async/5901.2aaa62a6.js",
+            "__mf/js/async/lib-router.d60ae988.js",
+            "__mf/js/async/3598.193e9962.js",
+            "__mf/js/async/8565.0065c3c7.js",
+            "__mf/js/async/5503.c5750d0c.js",
+            "__mf/js/async/738.e2fbbd72.js",
+            "__mf/js/async/3980.9246eb0c.js",
+            "__mf/js/async/5981.95116879.js",
+            "__mf/js/async/8488.d5eddfc6.js"
+          ]
+        },
+        "css": {
+          "sync": [],
+          "async": [
+            "__mf/css/async/5263.cbbd94a8.css",
+            "__mf/css/async/2341.cbbd94a8.css"
+          ]
+        }
+      },
+      "path": "./Table"
+    }
+  ]
+}

@@ -1,0 +1,271 @@
+{
+  "id": "DatasourceVariable",
+  "name": "DatasourceVariable",
+  "metaData": {
+    "name": "DatasourceVariable",
+    "type": "app",
+    "buildInfo": {
+      "buildVersion": "0.2.0",
+      "buildName": "@perses-dev/datasource-variable-plugin"
+    },
+    "remoteEntry": {
+      "name": "static/js/DatasourceVariable.413c6135.js",
+      "path": "",
+      "type": "global"
+    },
+    "types": {
+      "path": "",
+      "name": "",
+      "zip": "",
+      "api": ""
+    },
+    "globalName": "DatasourceVariable",
+    "pluginVersion": "0.14.3",
+    "prefetchInterface": false,
+    "publicPath": "/plugins/DatasourceVariable/"
+  },
+  "shared": [
+    {
+      "id": "DatasourceVariable:@emotion/react",
+      "name": "@emotion/react",
+      "version": "11.14.0",
+      "singleton": true,
+      "requiredVersion": "^11.11.3",
+      "assets": {
+        "js": {
+          "async": [],
+          "sync": [
+            "static/js/async/960.14fa83ec.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      }
+    },
+    {
+      "id": "DatasourceVariable:@emotion/styled",
+      "name": "@emotion/styled",
+      "version": "11.14.0",
+      "singleton": true,
+      "requiredVersion": "^11.14.0",
+      "assets": {
+        "js": {
+          "async": [],
+          "sync": [
+            "static/js/async/694.e3b67f72.js",
+            "static/js/async/770.e0951cc3.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      }
+    },
+    {
+      "id": "DatasourceVariable:@hookform/resolvers",
+      "name": "@hookform/resolvers",
+      "version": "3.10.0",
+      "singleton": true,
+      "requiredVersion": "^3.10.0",
+      "assets": {
+        "js": {
+          "async": [],
+          "sync": [
+            "static/js/async/214.e7a302ac.js",
+            "static/js/async/738.06975006.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      }
+    },
+    {
+      "id": "DatasourceVariable:@perses-dev/components",
+      "name": "@perses-dev/components",
+      "version": "0.51.0-rc.1",
+      "singleton": true,
+      "requiredVersion": "^0.51.0-rc.1",
+      "assets": {
+        "js": {
+          "async": [],
+          "sync": [
+            "static/js/async/20.1c3fa156.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      }
+    },
+    {
+      "id": "DatasourceVariable:@perses-dev/plugin-system",
+      "name": "@perses-dev/plugin-system",
+      "version": "0.51.0-rc.1",
+      "singleton": true,
+      "requiredVersion": "^0.51.0-rc.1",
+      "assets": {
+        "js": {
+          "async": [],
+          "sync": [
+            "static/js/async/897.447a32ca.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      }
+    },
+    {
+      "id": "DatasourceVariable:date-fns",
+      "name": "date-fns",
+      "version": "4.1.0",
+      "singleton": true,
+      "requiredVersion": "^4.1.0",
+      "assets": {
+        "js": {
+          "async": [],
+          "sync": [
+            "static/js/async/75.cd9f423b.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      }
+    },
+    {
+      "id": "DatasourceVariable:echarts",
+      "name": "echarts",
+      "version": "5.5.0",
+      "singleton": true,
+      "requiredVersion": "^undefined",
+      "assets": {
+        "js": {
+          "async": [],
+          "sync": [
+            "static/js/async/503.18a4f460.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      }
+    },
+    {
+      "id": "DatasourceVariable:lodash",
+      "name": "lodash",
+      "version": "4.17.21",
+      "singleton": true,
+      "requiredVersion": "^4.17.21",
+      "assets": {
+        "js": {
+          "async": [],
+          "sync": [
+            "static/js/async/981.3bc180c6.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      }
+    },
+    {
+      "id": "DatasourceVariable:react-dom",
+      "name": "react-dom",
+      "version": "18.3.1",
+      "singleton": true,
+      "requiredVersion": "18.2.0",
+      "assets": {
+        "js": {
+          "async": [],
+          "sync": [
+            "static/js/async/lib-react.0b0661c7.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      }
+    },
+    {
+      "id": "DatasourceVariable:react",
+      "name": "react",
+      "version": "18.3.1",
+      "singleton": true,
+      "requiredVersion": "18.2.0",
+      "assets": {
+        "js": {
+          "async": [],
+          "sync": [
+            "static/js/async/lib-react.0b0661c7.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      }
+    },
+    {
+      "id": "DatasourceVariable:date-fns-tz",
+      "name": "date-fns-tz",
+      "version": "3.2.0",
+      "singleton": true,
+      "requiredVersion": "^3.2.0",
+      "assets": {
+        "js": {
+          "async": [],
+          "sync": [
+            "static/js/async/740.db5eefb1.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      }
+    }
+  ],
+  "remotes": [],
+  "exposes": [
+    {
+      "id": "DatasourceVariable:DatasourceVariable",
+      "name": "DatasourceVariable",
+      "assets": {
+        "js": {
+          "sync": [
+            "static/js/async/222.854e15b2.js",
+            "static/js/async/__federation_expose_DatasourceVariable.614e6b05.js"
+          ],
+          "async": [
+            "static/js/async/lib-router.6313d022.js",
+            "static/js/async/292.9ba37397.js",
+            "static/js/async/991.c6d9eb46.js",
+            "static/js/async/488.dc8864f1.js",
+            "static/js/async/238.56f2e391.js",
+            "static/js/async/224.1e73f9d4.js",
+            "static/js/async/90.b7a8810f.js"
+          ]
+        },
+        "css": {
+          "sync": [],
+          "async": [
+            "static/css/async/759.5ab1f3da.css"
+          ]
+        }
+      },
+      "path": "./DatasourceVariable"
+    }
+  ]
+}

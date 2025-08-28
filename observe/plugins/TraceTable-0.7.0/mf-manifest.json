@@ -1,0 +1,235 @@
+{
+  "id": "TraceTable",
+  "name": "TraceTable",
+  "metaData": {
+    "name": "TraceTable",
+    "type": "app",
+    "buildInfo": {
+      "buildVersion": "0.7.0",
+      "buildName": "@perses-dev/trace-table-plugin"
+    },
+    "remoteEntry": {
+      "name": "__mf/js/TraceTable.d244402d.js",
+      "path": "",
+      "type": "global"
+    },
+    "types": {
+      "path": "",
+      "name": "",
+      "zip": "",
+      "api": ""
+    },
+    "globalName": "TraceTable",
+    "pluginVersion": "0.11.2",
+    "prefetchInterface": false,
+    "publicPath": "/plugins/TraceTable/"
+  },
+  "shared": [
+    {
+      "id": "TraceTable:@emotion/react",
+      "name": "@emotion/react",
+      "version": "11.14.0",
+      "singleton": true,
+      "requiredVersion": "^11.11.3",
+      "assets": {
+        "js": {
+          "async": [
+            "__mf/js/async/964.01c67113.js"
+          ],
+          "sync": [
+            "__mf/js/async/960.dc16b984.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      }
+    },
+    {
+      "id": "TraceTable:@emotion/styled",
+      "name": "@emotion/styled",
+      "version": "11.14.0",
+      "singleton": true,
+      "requiredVersion": "^11.14.0",
+      "assets": {
+        "js": {
+          "async": [
+            "__mf/js/async/964.01c67113.js",
+            "__mf/js/async/960.dc16b984.js"
+          ],
+          "sync": [
+            "__mf/js/async/694.3c3c415f.js",
+            "__mf/js/async/770.6cac4f4b.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      }
+    },
+    {
+      "id": "TraceTable:@perses-dev/components",
+      "name": "@perses-dev/components",
+      "version": "0.51.0-rc.1",
+      "singleton": true,
+      "requiredVersion": "^0.51.0-rc.1",
+      "assets": {
+        "js": {
+          "async": [
+            "__mf/js/async/964.01c67113.js",
+            "__mf/js/async/173.f0db00ba.js",
+            "__mf/js/async/960.dc16b984.js",
+            "__mf/js/async/694.3c3c415f.js",
+            "__mf/js/async/75.c1d82ca8.js",
+            "__mf/js/async/740.fe5d3770.js"
+          ],
+          "sync": [
+            "__mf/js/async/764.102c33d3.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      }
+    },
+    {
+      "id": "TraceTable:date-fns",
+      "name": "date-fns",
+      "version": "4.1.0",
+      "singleton": true,
+      "requiredVersion": "^4.1.0",
+      "assets": {
+        "js": {
+          "async": [],
+          "sync": [
+            "__mf/js/async/75.c1d82ca8.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      }
+    },
+    {
+      "id": "TraceTable:react-dom",
+      "name": "react-dom",
+      "version": "18.3.1",
+      "singleton": true,
+      "requiredVersion": "18.2.0",
+      "assets": {
+        "js": {
+          "async": [
+            "__mf/js/async/964.01c67113.js"
+          ],
+          "sync": [
+            "__mf/js/async/173.f0db00ba.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      }
+    },
+    {
+      "id": "TraceTable:react-router-dom",
+      "name": "react-router-dom",
+      "version": "6.30.0",
+      "singleton": true,
+      "requiredVersion": "^6.30.0",
+      "assets": {
+        "js": {
+          "async": [
+            "__mf/js/async/964.01c67113.js",
+            "__mf/js/async/173.f0db00ba.js"
+          ],
+          "sync": [
+            "__mf/js/async/377.d6e7ba1a.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      }
+    },
+    {
+      "id": "TraceTable:react",
+      "name": "react",
+      "version": "18.3.1",
+      "singleton": true,
+      "requiredVersion": "18.2.0",
+      "assets": {
+        "js": {
+          "async": [],
+          "sync": [
+            "__mf/js/async/964.01c67113.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      }
+    },
+    {
+      "id": "TraceTable:date-fns-tz",
+      "name": "date-fns-tz",
+      "version": "3.2.0",
+      "singleton": true,
+      "requiredVersion": "^3.2.0",
+      "assets": {
+        "js": {
+          "async": [
+            "__mf/js/async/75.c1d82ca8.js"
+          ],
+          "sync": [
+            "__mf/js/async/740.fe5d3770.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      }
+    }
+  ],
+  "remotes": [],
+  "exposes": [
+    {
+      "id": "TraceTable:TraceTable",
+      "name": "TraceTable",
+      "assets": {
+        "js": {
+          "sync": [
+            "__mf/js/async/51.a8d0a55c.js",
+            "__mf/js/async/902.129cd5da.js",
+            "__mf/js/async/__federation_expose_TraceTable.0bcb874f.js"
+          ],
+          "async": [
+            "__mf/js/async/964.01c67113.js",
+            "__mf/js/async/173.f0db00ba.js",
+            "__mf/js/async/960.dc16b984.js",
+            "__mf/js/async/694.3c3c415f.js",
+            "__mf/js/async/156.525f3a44.js",
+            "__mf/js/async/75.c1d82ca8.js",
+            "__mf/js/async/764.102c33d3.js",
+            "__mf/js/async/740.fe5d3770.js",
+            "__mf/js/async/377.d6e7ba1a.js"
+          ]
+        },
+        "css": {
+          "sync": [],
+          "async": [
+            "__mf/css/async/341.3d4493d2.css"
+          ]
+        }
+      },
+      "path": "./TraceTable"
+    }
+  ]
+}

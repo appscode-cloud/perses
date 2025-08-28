@@ -1,0 +1,1 @@
+{"version":3,"file":"thresholds.d.ts","sourceRoot":"","sources":["../../../src/utils/thresholds.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,gBAAgB,EAAE,MAAM,kBAAkB,CAAC;AACpD,OAAO,EAAE,iBAAiB,EAAE,MAAM,wBAAwB,CAAC;AAE3D,wBAAgB,sBAAsB,CACpC,KAAK,EAAE,MAAM,EACb,UAAU,EAAE,gBAAgB,GAAG,SAAS,EACxC,WAAW,EAAE,iBAAiB,EAC9B,YAAY,EAAE,MAAM,GACnB,MAAM,GAAG,IAAI,CAcf"}

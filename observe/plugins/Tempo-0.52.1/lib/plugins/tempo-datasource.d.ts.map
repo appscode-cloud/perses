@@ -1,0 +1,1 @@
+{"version":3,"file":"tempo-datasource.d.ts","sourceRoot":"","sources":["../../../src/plugins/tempo-datasource.tsx"],"names":[],"mappings":"AAaA,OAAO,EAAE,gBAAgB,EAAE,MAAM,2BAA2B,CAAC;AAC7D,OAAO,EAAE,WAAW,EAAkE,MAAM,uBAAuB,CAAC;AACpH,OAAO,EAAE,mBAAmB,EAAE,MAAM,0BAA0B,CAAC;AA+B/D,eAAO,MAAM,eAAe,EAAE,gBAAgB,CAAC,mBAAmB,EAAE,WAAW,CAI9E,CAAC"}

@@ -1,0 +1,1 @@
+{"version":3,"file":"trace-query-model.d.ts","sourceRoot":"","sources":["../../../src/model/trace-query-model.ts"],"names":[],"mappings":"AAaA,OAAO,EAAE,qBAAqB,EAAE,MAAM,2BAA2B,CAAC;AAClE,OAAO,EAAE,uBAAuB,EAAE,MAAM,mBAAmB,CAAC;AAC5D;;GAEG;AACH,MAAM,WAAW,mBAAmB;IAClC,KAAK,EAAE,MAAM,CAAC;IACd,KAAK,CAAC,EAAE,MAAM,CAAC;IACf,UAAU,CAAC,EAAE,qBAAqB,CAAC,uBAAuB,CAAC,CAAC;CAC7D"}

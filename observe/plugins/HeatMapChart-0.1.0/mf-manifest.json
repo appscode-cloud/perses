@@ -1,0 +1,164 @@
+{
+  "id": "HeatMapChart",
+  "name": "HeatMapChart",
+  "metaData": {
+    "name": "HeatMapChart",
+    "type": "app",
+    "buildInfo": {
+      "buildVersion": "0.1.0",
+      "buildName": "@perses-dev/heatmap-chart"
+    },
+    "remoteEntry": {
+      "name": "__mf/js/HeatMapChart.f4e439a2.js",
+      "path": "",
+      "type": "global"
+    },
+    "types": {
+      "path": "",
+      "name": "",
+      "zip": "",
+      "api": ""
+    },
+    "globalName": "HeatMapChart",
+    "pluginVersion": "0.11.2",
+    "prefetchInterface": false,
+    "publicPath": "/plugins/HeatMapChart/"
+  },
+  "shared": [
+    {
+      "id": "HeatMapChart:@perses-dev/components",
+      "name": "@perses-dev/components",
+      "version": "0.51.0-rc.1",
+      "singleton": true,
+      "requiredVersion": "^0.51.0-rc.1",
+      "assets": {
+        "js": {
+          "async": [
+            "__mf/js/async/964.e0a6d475.js",
+            "__mf/js/async/173.84280b3d.js",
+            "__mf/js/async/243.6ae4a99d.js",
+            "__mf/js/async/774.67a44c32.js"
+          ],
+          "sync": [
+            "__mf/js/async/20.6bfae051.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      }
+    },
+    {
+      "id": "HeatMapChart:@perses-dev/core",
+      "name": "@perses-dev/core",
+      "version": "0.51.0-rc.1",
+      "singleton": true,
+      "requiredVersion": "^0.51.0-rc.1",
+      "assets": {
+        "js": {
+          "async": [
+            "__mf/js/async/964.e0a6d475.js"
+          ],
+          "sync": [
+            "__mf/js/async/243.6ae4a99d.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      }
+    },
+    {
+      "id": "HeatMapChart:immer",
+      "name": "immer",
+      "version": "10.1.1",
+      "singleton": true,
+      "requiredVersion": "^10.1.1",
+      "assets": {
+        "js": {
+          "async": [],
+          "sync": [
+            "__mf/js/async/774.67a44c32.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      }
+    },
+    {
+      "id": "HeatMapChart:react-dom",
+      "name": "react-dom",
+      "version": "18.3.1",
+      "singleton": true,
+      "requiredVersion": "18.2.0",
+      "assets": {
+        "js": {
+          "async": [
+            "__mf/js/async/964.e0a6d475.js"
+          ],
+          "sync": [
+            "__mf/js/async/173.84280b3d.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      }
+    },
+    {
+      "id": "HeatMapChart:react",
+      "name": "react",
+      "version": "18.3.1",
+      "singleton": true,
+      "requiredVersion": "18.2.0",
+      "assets": {
+        "js": {
+          "async": [],
+          "sync": [
+            "__mf/js/async/964.e0a6d475.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      }
+    }
+  ],
+  "remotes": [],
+  "exposes": [
+    {
+      "id": "HeatMapChart:HeatMapChart",
+      "name": "HeatMapChart",
+      "assets": {
+        "js": {
+          "sync": [
+            "__mf/js/async/293.99df9529.js",
+            "__mf/js/async/482.c5733a0e.js",
+            "__mf/js/async/__federation_expose_HeatMapChart.01a851ae.js"
+          ],
+          "async": [
+            "__mf/js/async/964.e0a6d475.js",
+            "__mf/js/async/790.c03dfad3.js",
+            "__mf/js/async/20.6bfae051.js",
+            "__mf/js/async/173.84280b3d.js",
+            "__mf/js/async/243.6ae4a99d.js",
+            "__mf/js/async/774.67a44c32.js"
+          ]
+        },
+        "css": {
+          "sync": [],
+          "async": [
+            "__mf/css/async/341.2a93d99b.css"
+          ]
+        }
+      },
+      "path": "./HeatMapChart"
+    }
+  ]
+}

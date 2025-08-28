@@ -1,0 +1,1 @@
+{"version":3,"file":"SpanEvents.d.ts","sourceRoot":"","sources":["../../../../src/TracingGanttChart/DetailPane/SpanEvents.tsx"],"names":[],"mappings":"AAeA,OAAO,EAAE,YAAY,EAAE,MAAM,OAAO,CAAC;AAErC,OAAO,EAAE,KAAK,EAAE,IAAI,EAAS,MAAM,UAAU,CAAC;AAG9C,MAAM,WAAW,kBAAkB;IACjC,KAAK,EAAE,KAAK,CAAC;IACb,IAAI,EAAE,IAAI,CAAC;CACZ;AAED,wBAAgB,aAAa,CAAC,KAAK,EAAE,kBAAkB,GAAG,YAAY,CAYrE"}

@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkFlameChart=self.webpackChunkFlameChart||[]).push([["620"],{29161:function(e,t,r){r.r(t);var a=r(24246),n=r(54538),c=r.n(n);r(37634).createRoot(document.getElementById("root")).render((0,a.jsx)(c().StrictMode,{}))}}]);
