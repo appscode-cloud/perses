@@ -100,13 +100,11 @@ function HomeView(): ReactElement {
       <Grid container spacing={8}>
         <Grid item xs={12} lg={8}>
           <Stack gap={2}>
-            <ImportantDashboards />
             <ProjectsAndDashboards />
           </Stack>
         </Grid>
         <Grid item xs={12} lg={4}>
           <Stack gap={2}>
-            <InformationSection />
             <RecentDashboards />
           </Stack>
         </Grid>
