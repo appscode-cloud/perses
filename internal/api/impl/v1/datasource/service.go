@@ -103,11 +103,17 @@ func (s *service) Delete(_ echo.Context, parameters apiInterface.Parameters) err
 func (s *service) Get(parameters apiInterface.Parameters) (*v1.Datasource, error) {
 	return s.dao.Get(parameters.Project, parameters.Name)
 }
+
+func (s *service) GetByNameAndUser(parameters apiInterface.Parameters) (*v1.Datasource, error) {
+	return s.dao.Get(parameters.Project, parameters.Name)
+}
+
 func (s *service) List(q *datasource.Query, params apiInterface.Parameters) ([]*v1.Datasource, error) {
 	query, err := manageQuery(q, params)
 	if err != nil {
 		return nil, err
 	}
+	fmt.Printf("query: %+v\n", query)
 	dtsList, err := s.dao.List(query)
 	if err != nil {
 		return nil, err

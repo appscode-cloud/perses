@@ -17,14 +17,6 @@ import { PanelGroupId } from '@perses-dev/core';
 import { Middleware } from './common';
 import { PanelGroupSlice } from './panel-group-slice';
 
-/*
- * A reference to a Panel that can be repeated in a PanelGroup.
- */
-export interface VirtualPanelRef {
-  ref: string;
-  repeatVariable?: [string, string];
-}
-
 /**
  * Slice that handles viewing Panels in max size ("full screen").
  */
@@ -37,15 +29,15 @@ export interface ViewPanelSlice {
 export interface ViewPanelState {
   // Do not use directly, use `getViewPanel()` instead for getting the current viewed PanelGroupItemId!
   panelGroupItemId?: PanelGroupItemId;
-  panelRef?: VirtualPanelRef;
+  panelRef?: string;
 }
 
 /**
  * Curried function for viewing panel in max size ("full screen").
  */
 export function createViewPanelSlice(
-  viewPanelRef?: VirtualPanelRef,
-  setViewPanelRef?: (ref: VirtualPanelRef | undefined) => void
+  viewPanelRef?: string,
+  setViewPanelRef?: (ref: string | undefined) => void
 ): StateCreator<ViewPanelSlice & PanelGroupSlice, Middleware, [], ViewPanelSlice> {
   return (set, get) => ({
     viewPanel: {
@@ -75,7 +67,7 @@ export function createViewPanelSlice(
 function getViewPanelGroupId(
   panelGroups: Record<PanelGroupId, PanelGroupDefinition>,
   panelGroupItemId?: PanelGroupItemId,
-  panelRef?: VirtualPanelRef
+  panelRef?: string
 ): PanelGroupItemId | undefined {
   if (panelGroupItemId) {
     return panelGroupItemId;
@@ -91,16 +83,15 @@ function getViewPanelGroupId(
 // Find the PanelGroupItemId of a Panel from a PanelRef
 function findPanelGroupItemIdOfPanelRef(
   panelGroups: Record<PanelGroupId, PanelGroupDefinition>,
-  panelRef: VirtualPanelRef
+  panelRef?: string
 ): PanelGroupItemId | undefined {
   for (const panelGroup of Object.values(panelGroups)) {
-    const itemPanel = Object.entries(panelGroup.itemPanelKeys ?? []).find(([_, value]) => value === panelRef.ref);
+    const itemPanel = Object.entries(panelGroup.itemPanelKeys ?? []).find(([_, value]) => value === panelRef);
     if (itemPanel) {
       const [key] = itemPanel;
       return {
         panelGroupId: panelGroup.id,
         panelGroupItemLayoutId: key,
-        repeatVariable: panelRef.repeatVariable,
       };
     }
   }
@@ -111,16 +102,13 @@ function findPanelGroupItemIdOfPanelRef(
 function findPanelRefOfPanelGroupItemId(
   panelGroups: Record<PanelGroupId, PanelGroupDefinition>,
   panelGroupItemId?: PanelGroupItemId
-): VirtualPanelRef | undefined {
+): string | undefined {
   if (!panelGroupItemId) {
     return undefined;
   }
   const panelGroup = panelGroups[panelGroupItemId.panelGroupId];
   if (panelGroup) {
-    const panelRef = panelGroup.itemPanelKeys[panelGroupItemId.panelGroupItemLayoutId];
-    if (panelRef) {
-      return { ref: panelRef, repeatVariable: panelGroupItemId.repeatVariable };
-    }
+    return panelGroup.itemPanelKeys[panelGroupItemId.panelGroupItemLayoutId];
   }
   return undefined;
 }

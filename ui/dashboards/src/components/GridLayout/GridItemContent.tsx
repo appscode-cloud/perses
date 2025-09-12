@@ -11,10 +11,10 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { Box, Button, Dialog, DialogActions, DialogContent, DialogTitle, Divider } from '@mui/material';
+import { Box } from '@mui/material';
 import { useInView } from 'react-intersection-observer';
-import { DataQueriesProvider, PluginSpecEditor, usePlugin, useSuggestedStepMs } from '@perses-dev/plugin-system';
-import React, { ReactElement, useMemo, useState } from 'react';
+import { DataQueriesProvider, usePlugin, useSuggestedStepMs } from '@perses-dev/plugin-system';
+import { ReactElement } from 'react';
 import { PanelGroupItemId, useEditMode, usePanel, usePanelActions, useViewPanelGroup } from '../../context';
 import { Panel, PanelProps, PanelOptions } from '../Panel';
 import { isPanelGroupItemIdEqual } from '../../context/DashboardProvider/panel-group-slice';
@@ -31,11 +31,9 @@ export interface GridItemContentProps {
 export function GridItemContent(props: GridItemContentProps): ReactElement {
   const { panelGroupItemId, width } = props;
   const panelDefinition = usePanel(panelGroupItemId);
-
   const {
     spec: { queries },
   } = panelDefinition;
-
   const { isEditMode } = useEditMode();
   const { openEditPanel, openDeletePanelDialog, duplicatePanel, viewPanel } = usePanelActions(panelGroupItemId);
   const viewPanelGroupItemId = useViewPanelGroup();
@@ -44,18 +42,6 @@ export function GridItemContent(props: GridItemContentProps): ReactElement {
     initialInView: false,
     triggerOnce: true,
   });
-
-  const [openQueryViewer, setOpenQueryViewer] = useState(false);
-
-  const viewQueriesHandler = useMemo(() => {
-    return isEditMode || !queries?.length
-      ? undefined
-      : {
-          onClick: (): void => {
-            setOpenQueryViewer(true);
-          },
-        };
-  }, [isEditMode, queries]);
 
   const readHandlers = {
     isPanelViewed: isPanelGroupItemIdEqual(viewPanelGroupItemId, panelGroupItemId),
@@ -90,38 +76,10 @@ export function GridItemContent(props: GridItemContentProps): ReactElement {
       spec: query.spec.plugin.spec,
     };
   });
-
   const pluginQueryOptions =
     typeof plugin?.queryOptions === 'function'
       ? plugin?.queryOptions(panelDefinition.spec.plugin.spec)
       : plugin?.queryOptions;
-
-  const queryRows = useMemo(() => {
-    if (!queries?.length) return null;
-
-    const queryItems: ReactElement[] = [];
-    queries.forEach((query, index) => {
-      if (query?.spec?.plugin?.kind && query?.kind) {
-        queryItems.push(
-          <React.Fragment key={`query-${index}`}>
-            <PluginSpecEditor
-              value={query.spec.plugin.spec}
-              pluginSelection={{ kind: query.spec.plugin.kind, type: query.kind }}
-              onChange={(): void => {}}
-              isReadonly
-            />
-            {index < queries.length - 1 && <Divider sx={{ my: 2 }} />}
-          </React.Fragment>
-        );
-      }
-    });
-
-    return queryItems;
-  }, [queries]);
-
-  const onCloseHandler = (): void => {
-    setOpenQueryViewer(false);
-  };
 
   return (
     <Box
@@ -131,27 +89,6 @@ export function GridItemContent(props: GridItemContentProps): ReactElement {
         height: '100%',
       }}
     >
-      <Dialog
-        fullWidth
-        PaperProps={{
-          sx: {
-            margin: '10px',
-            width: 'calc(100% - 20px)',
-          },
-        }}
-        maxWidth="lg"
-        open={openQueryViewer}
-      >
-        <DialogTitle>Query Viewer</DialogTitle>
-        <DialogContent>
-          <Box sx={{ padding: '5px' }}>{queryRows}</Box>
-        </DialogContent>
-        <DialogActions>
-          <Button variant="outlined" onClick={onCloseHandler} color="primary">
-            Close
-          </Button>
-        </DialogActions>
-      </Dialog>
       <DataQueriesProvider
         definitions={definitions}
         options={{ suggestedStepMs, ...pluginQueryOptions }}
@@ -162,7 +99,6 @@ export function GridItemContent(props: GridItemContentProps): ReactElement {
             definition={panelDefinition}
             readHandlers={readHandlers}
             editHandlers={editHandlers}
-            viewQueriesHandler={viewQueriesHandler}
             panelOptions={props.panelOptions}
             panelGroupItemId={panelGroupItemId}
           />

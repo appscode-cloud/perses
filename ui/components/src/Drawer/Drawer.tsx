@@ -49,7 +49,6 @@ export const Drawer = ({
           PaperProps?.sx
         ),
       }}
-      aria-hidden={!isOpen} // Ensure the drawer is not focusable when closed + disable console.error about focusable elements
     >
       {children}
     </MuiDrawer>

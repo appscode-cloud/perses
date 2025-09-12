@@ -42,3 +42,13 @@ func New(name string, options ...Option) (Builder, error) {
 type Builder struct {
 	v1.Datasource `json:",inline" yaml:",inline"`
 }
+
+func (*Builder) SetUserType(userType string) {
+	//TODO implement me
+	panic("implement me")
+}
+
+func (*Builder) SetProjectID(id int64) {
+	//TODO implement me
+	panic("implement me")
+}

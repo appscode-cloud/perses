@@ -18,7 +18,6 @@ import { AppHomePage, DashboardPage } from '../pages';
 
 type DashboardTestOptions = {
   projectName: string;
-  ignoresConsoleErrors: string[];
 };
 
 type DashboardTestFixtures = {
@@ -95,12 +94,10 @@ const IGNORE_CONSOLE_ERRORS = [
   // See https://github.com/emotion-js/emotion/issues/1105
   'potentially unsafe when doing server-side rendering',
   'MUI X: useResizeContainer - The parent DOM element of the Data Grid has an empty height.',
-  'Blocked aria-hidden on an element because its descendant retained focus.',
-  'TypeError: Failed to fetch',
 ];
-function shouldIgnoreConsoleError(message: ConsoleMessage, additionalIgnoreErrors: string[] | undefined = []): boolean {
+function shouldIgnoreConsoleError(message: ConsoleMessage): boolean {
   const msgText = message.text();
-  return [...IGNORE_CONSOLE_ERRORS, ...additionalIgnoreErrors].some((ignoreErr) => msgText.includes(ignoreErr));
+  return IGNORE_CONSOLE_ERRORS.some((ignoreErr) => msgText.includes(ignoreErr));
 }
 
 /**
@@ -143,12 +140,7 @@ export const test = testBase.extend<DashboardTestOptions & DashboardTestFixtures
   dashboardName: '',
   modifiesDashboard: false,
   mockNow: 0,
-  ignoresConsoleErrors: [],
-  dashboardPage: async (
-    { page, projectName, dashboardName, modifiesDashboard, mockNow, ignoresConsoleErrors },
-    use,
-    testInfo
-  ) => {
+  dashboardPage: async ({ page, projectName, dashboardName, modifiesDashboard, mockNow }, use, testInfo) => {
     let testDashboardName: string = dashboardName;
 
     if (modifiesDashboard) {
@@ -165,7 +157,7 @@ export const test = testBase.extend<DashboardTestOptions & DashboardTestFixtures
 
     const consoleErrors: string[] = [];
     page.on('console', (msg) => {
-      if (msg.type() === 'error' && !shouldIgnoreConsoleError(msg, ignoresConsoleErrors)) {
+      if (msg.type() === 'error' && !shouldIgnoreConsoleError(msg)) {
         // Watch for console errors because they are often a sign that something
         // is wrong.
         consoleErrors.push(msg.text());

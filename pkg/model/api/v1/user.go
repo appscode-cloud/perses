@@ -47,6 +47,20 @@ type User struct {
 	Spec     UserSpec `json:"spec"`
 }
 
+func (u *User) SetUserType(userType string) {
+	u.Metadata.UserType = userType
+}
+
+func (u *User) SetProjectID(id int64) {
+	//TODO implement me
+	panic("implement me")
+}
+
+func (u *User) SetUserID(id int64) {
+	//TODO implement me
+	panic("implement me")
+}
+
 func (u *User) GetMetadata() modelAPI.Metadata {
 	return &u.Metadata
 }

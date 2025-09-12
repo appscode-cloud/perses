@@ -12,71 +12,51 @@
 // limitations under the License.
 
 import { FormEventHandler, ReactElement, useState } from 'react';
-import { FormControl, TextField, MenuItem, Typography } from '@mui/material';
+import { FormControl, InputLabel, TextField, Select, SelectProps, MenuItem } from '@mui/material';
 import { PanelGroupEditorValues } from '../../context';
+
+type CollapsedState = 'Open' | 'Closed';
 
 export interface PanelGroupEditorFormProps {
   initialValues: PanelGroupEditorValues;
-  variables?: string[];
   onSubmit: (next: PanelGroupEditorValues) => void;
 }
 
 export function PanelGroupEditorForm(props: PanelGroupEditorFormProps): ReactElement {
-  const { initialValues, variables, onSubmit } = props;
+  const { initialValues, onSubmit } = props;
 
   const [title, setTitle] = useState(initialValues.title);
   const [isCollapsed, setIsCollapsed] = useState(initialValues.isCollapsed);
-  const [repeatVariable, setRepeatVariable] = useState<string | undefined>(initialValues.repeatVariable);
+
+  const handleCollapsedChange: SelectProps<CollapsedState>['onChange'] = (e) => {
+    const next = e.target.value;
+    setIsCollapsed(next === 'Closed');
+  };
 
   const handleSubmit: FormEventHandler = (e) => {
     e.preventDefault();
-    onSubmit({ title, isCollapsed, repeatVariable });
+    onSubmit({ title, isCollapsed });
   };
 
   return (
     <form id={panelGroupEditorFormId} onSubmit={handleSubmit}>
       <FormControl fullWidth margin="normal">
-        <TextField
-          required
-          label="Name"
-          variant="outlined"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-          data-testid="panel-group-editor-name"
-        />
+        <TextField required label="Name" variant="outlined" value={title} onChange={(e) => setTitle(e.target.value)} />
       </FormControl>
       <FormControl fullWidth margin="normal">
-        <TextField
-          select
+        <InputLabel id="select-collapse-state">Collapse State</InputLabel>
+        <Select<CollapsedState>
           required
+          displayEmpty
+          labelId="select-collapse-state"
           label="Collapse State"
           size="small"
           value={isCollapsed ? 'Closed' : 'Open'}
-          onChange={(e) => setIsCollapsed(e.target.value === 'Closed')}
+          onChange={handleCollapsedChange}
         >
           <MenuItem value="Open">Open</MenuItem>
           <MenuItem value="Closed">Closed</MenuItem>
-        </TextField>
-        <FormControl fullWidth margin="normal">
-          <TextField
-            select
-            label="Repeat Variable"
-            variant="outlined"
-            value={repeatVariable ?? ''}
-            onChange={(e) => setRepeatVariable(e.target.value === '' ? undefined : e.target.value)}
-          >
-            <MenuItem value="">
-              <Typography sx={{ fontStyle: 'italic' }}>None</Typography>
-            </MenuItem>
-            {variables
-              ?.sort((a, b) => a.localeCompare(b))
-              .map((variable) => (
-                <MenuItem key={variable} value={variable}>
-                  {variable}
-                </MenuItem>
-              ))}
-          </TextField>
-        </FormControl>
+        </Select>
       </FormControl>
     </form>
   );

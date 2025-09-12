@@ -1,0 +1,153 @@
+{
+  "id": "StaticListVariable",
+  "name": "StaticListVariable",
+  "metaData": {
+    "name": "StaticListVariable",
+    "type": "app",
+    "buildInfo": {
+      "buildVersion": "0.4.0",
+      "buildName": "@perses-dev/static-list-variable-plugin"
+    },
+    "remoteEntry": {
+      "name": "__mf/js/StaticListVariable.489eaddf.js",
+      "path": "",
+      "type": "global"
+    },
+    "types": {
+      "path": "",
+      "name": "",
+      "zip": "",
+      "api": ""
+    },
+    "globalName": "StaticListVariable",
+    "pluginVersion": "0.11.2",
+    "prefetchInterface": false,
+    "publicPath": "/plugins/StaticListVariable/"
+  },
+  "shared": [
+    {
+      "singleton": true,
+      "requiredVersion": "^11.11.3",
+      "shareScope": "default",
+      "name": "@emotion/react",
+      "version": "11.14.0",
+      "eager": false,
+      "id": "StaticListVariable:@emotion/react",
+      "assets": {
+        "js": {
+          "async": [
+            "__mf/js/async/964.bd447903.js"
+          ],
+          "sync": [
+            "__mf/js/async/960.0611a6fe.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      },
+      "usedIn": []
+    },
+    {
+      "singleton": true,
+      "requiredVersion": "^11.14.0",
+      "shareScope": "default",
+      "name": "@emotion/styled",
+      "version": "11.14.0",
+      "eager": false,
+      "id": "StaticListVariable:@emotion/styled",
+      "assets": {
+        "js": {
+          "async": [
+            "__mf/js/async/964.bd447903.js",
+            "__mf/js/async/960.0611a6fe.js"
+          ],
+          "sync": [
+            "__mf/js/async/694.a815c78a.js",
+            "__mf/js/async/770.67f63e2f.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      },
+      "usedIn": []
+    },
+    {
+      "singleton": true,
+      "requiredVersion": "18.2.0",
+      "shareScope": "default",
+      "name": "react-dom",
+      "version": "18.3.1",
+      "eager": false,
+      "id": "StaticListVariable:react-dom",
+      "assets": {
+        "js": {
+          "async": [
+            "__mf/js/async/964.bd447903.js"
+          ],
+          "sync": [
+            "__mf/js/async/173.3da91d9a.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      },
+      "usedIn": []
+    },
+    {
+      "singleton": true,
+      "requiredVersion": "18.2.0",
+      "shareScope": "default",
+      "name": "react",
+      "version": "18.3.1",
+      "eager": false,
+      "id": "StaticListVariable:react",
+      "assets": {
+        "js": {
+          "async": [],
+          "sync": [
+            "__mf/js/async/964.bd447903.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      },
+      "usedIn": []
+    }
+  ],
+  "remotes": [],
+  "exposes": [
+    {
+      "path": "./StaticListVariable",
+      "id": "StaticListVariable:StaticListVariable",
+      "name": "StaticListVariable",
+      "requires": [],
+      "file": "src/StaticListVariable.tsx",
+      "assets": {
+        "js": {
+          "sync": [
+            "__mf/js/async/526.d5f99474.js",
+            "__mf/js/async/__federation_expose_StaticListVariable.ddb169f8.js"
+          ],
+          "async": [
+            "__mf/js/async/964.bd447903.js",
+            "__mf/js/async/173.3da91d9a.js",
+            "__mf/js/async/960.0611a6fe.js",
+            "__mf/js/async/694.a815c78a.js"
+          ]
+        },
+        "css": {
+          "sync": [],
+          "async": []
+        }
+      }
+    }
+  ]
+}

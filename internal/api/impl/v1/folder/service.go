@@ -94,6 +94,10 @@ func (s *service) Get(parameters apiInterface.Parameters) (*v1.Folder, error) {
 	return s.dao.Get(parameters.Project, parameters.Name)
 }
 
+func (s *service) GetByNameAndUser(parameters apiInterface.Parameters) (*v1.Folder, error) {
+	return s.dao.Get(parameters.Project, parameters.Name)
+}
+
 func (s *service) List(q *folder.Query, params apiInterface.Parameters) ([]*v1.Folder, error) {
 	query, err := manageQuery(q, params)
 	if err != nil {

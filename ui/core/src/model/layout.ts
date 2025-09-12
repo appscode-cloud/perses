@@ -25,7 +25,6 @@ export interface GridDefinition {
       };
     };
     items: GridItemDefinition[];
-    repeatVariable?: string;
   };
 }
 

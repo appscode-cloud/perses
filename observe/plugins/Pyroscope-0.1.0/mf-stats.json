@@ -1,0 +1,525 @@
+{
+  "id": "Pyroscope",
+  "name": "Pyroscope",
+  "metaData": {
+    "name": "Pyroscope",
+    "type": "app",
+    "buildInfo": {
+      "buildVersion": "0.1.0",
+      "buildName": "@perses-dev/pyroscope"
+    },
+    "remoteEntry": {
+      "name": "static/js/Pyroscope.43d934a7.js",
+      "path": "",
+      "type": "global"
+    },
+    "types": {
+      "path": "",
+      "name": "",
+      "zip": "",
+      "api": ""
+    },
+    "globalName": "Pyroscope",
+    "pluginVersion": "0.14.3",
+    "prefetchInterface": false,
+    "publicPath": "/plugins/Pyroscope/"
+  },
+  "shared": [
+    {
+      "singleton": true,
+      "requiredVersion": "^11.11.3",
+      "shareScope": "default",
+      "name": "@emotion/react",
+      "version": "11.14.0",
+      "eager": false,
+      "id": "Pyroscope:@emotion/react",
+      "assets": {
+        "js": {
+          "async": [],
+          "sync": [
+            "static/js/async/3960.78e48dde.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      },
+      "usedIn": []
+    },
+    {
+      "singleton": true,
+      "requiredVersion": "^11.14.0",
+      "shareScope": "default",
+      "name": "@emotion/styled",
+      "version": "11.14.0",
+      "eager": false,
+      "id": "Pyroscope:@emotion/styled",
+      "assets": {
+        "js": {
+          "async": [],
+          "sync": [
+            "static/js/async/5790.970528ab.js",
+            "static/js/async/6770.e15d841b.js",
+            "static/js/async/694.841fabcc.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      },
+      "usedIn": []
+    },
+    {
+      "singleton": true,
+      "requiredVersion": "^3.10.0",
+      "shareScope": "default",
+      "name": "@hookform/resolvers",
+      "version": "3.10.0",
+      "eager": false,
+      "id": "Pyroscope:@hookform/resolvers",
+      "assets": {
+        "js": {
+          "async": [],
+          "sync": [
+            "static/js/async/5214.3793074d.js",
+            "static/js/async/738.5bb06fe7.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      },
+      "usedIn": []
+    },
+    {
+      "singleton": true,
+      "requiredVersion": "^0.0.0-snapshot-profile-89b306f",
+      "shareScope": "default",
+      "name": "@perses-dev/components",
+      "version": "0.0.0-snapshot-profile-89b306f",
+      "eager": false,
+      "id": "Pyroscope:@perses-dev/components",
+      "assets": {
+        "js": {
+          "async": [],
+          "sync": [
+            "static/js/async/1534.cfc6342e.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      },
+      "usedIn": [
+        "./PyroscopeProfileQuery"
+      ]
+    },
+    {
+      "singleton": true,
+      "requiredVersion": "^0.0.0-snapshot-profile-89b306f",
+      "shareScope": "default",
+      "name": "@perses-dev/dashboards",
+      "version": "0.0.0-snapshot-profile-89b306f",
+      "eager": false,
+      "id": "Pyroscope:@perses-dev/dashboards",
+      "assets": {
+        "js": {
+          "async": [],
+          "sync": [
+            "static/js/async/3498.77c30da4.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      },
+      "usedIn": [
+        "./PyroscopeExplorer"
+      ]
+    },
+    {
+      "singleton": true,
+      "requiredVersion": "^0.0.0-snapshot-profile-89b306f",
+      "shareScope": "default",
+      "name": "@perses-dev/explore",
+      "version": "0.0.0-snapshot-profile-89b306f",
+      "eager": false,
+      "id": "Pyroscope:@perses-dev/explore",
+      "assets": {
+        "js": {
+          "async": [],
+          "sync": [
+            "static/js/async/3539.e2dda7ad.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      },
+      "usedIn": [
+        "./PyroscopeExplorer"
+      ]
+    },
+    {
+      "singleton": true,
+      "requiredVersion": "^0.0.0-snapshot-profile-89b306f",
+      "shareScope": "default",
+      "name": "@perses-dev/plugin-system",
+      "version": "0.0.0-snapshot-profile-89b306f",
+      "eager": false,
+      "id": "Pyroscope:@perses-dev/plugin-system",
+      "assets": {
+        "js": {
+          "async": [],
+          "sync": [
+            "static/js/async/3368.d0e7932e.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      },
+      "usedIn": [
+        "./PyroscopeExplorer",
+        "./PyroscopeDatasource",
+        "./PyroscopeProfileQuery"
+      ]
+    },
+    {
+      "singleton": true,
+      "requiredVersion": "^4.39.1",
+      "shareScope": "default",
+      "name": "@tanstack/react-query",
+      "version": "4.39.1",
+      "eager": false,
+      "id": "Pyroscope:@tanstack/react-query",
+      "assets": {
+        "js": {
+          "async": [],
+          "sync": [
+            "static/js/async/3980.9936c728.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      },
+      "usedIn": [
+        "./PyroscopeProfileQuery"
+      ]
+    },
+    {
+      "singleton": true,
+      "requiredVersion": "^4.1.0",
+      "shareScope": "default",
+      "name": "date-fns",
+      "version": "4.1.0",
+      "eager": false,
+      "id": "Pyroscope:date-fns",
+      "assets": {
+        "js": {
+          "async": [],
+          "sync": [
+            "static/js/async/4075.b27d2e80.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      },
+      "usedIn": [
+        "./PyroscopeProfileQuery"
+      ]
+    },
+    {
+      "singleton": true,
+      "requiredVersion": "^undefined",
+      "shareScope": "default",
+      "name": "echarts",
+      "version": "5.5.0",
+      "eager": false,
+      "id": "Pyroscope:echarts",
+      "assets": {
+        "js": {
+          "async": [],
+          "sync": [
+            "static/js/async/5409.97df162e.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      },
+      "usedIn": []
+    },
+    {
+      "singleton": true,
+      "requiredVersion": "^4.17.21",
+      "shareScope": "default",
+      "name": "lodash",
+      "version": "4.17.21",
+      "eager": false,
+      "id": "Pyroscope:lodash",
+      "assets": {
+        "js": {
+          "async": [],
+          "sync": [
+            "static/js/async/5981.cd8fff92.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      },
+      "usedIn": []
+    },
+    {
+      "singleton": true,
+      "requiredVersion": "18.2.0",
+      "shareScope": "default",
+      "name": "react-dom",
+      "version": "18.3.1",
+      "eager": false,
+      "id": "Pyroscope:react-dom",
+      "assets": {
+        "js": {
+          "async": [],
+          "sync": [
+            "static/js/async/lib-react.bae6d75c.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      },
+      "usedIn": []
+    },
+    {
+      "singleton": true,
+      "requiredVersion": "^7.54.2",
+      "shareScope": "default",
+      "name": "react-hook-form",
+      "version": "7.54.2",
+      "eager": false,
+      "id": "Pyroscope:react-hook-form",
+      "assets": {
+        "js": {
+          "async": [],
+          "sync": [
+            "static/js/async/6292.68a80135.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      },
+      "usedIn": []
+    },
+    {
+      "singleton": true,
+      "requiredVersion": "^6.30.0",
+      "shareScope": "default",
+      "name": "react-router-dom",
+      "version": "6.30.0",
+      "eager": false,
+      "id": "Pyroscope:react-router-dom",
+      "assets": {
+        "js": {
+          "async": [],
+          "sync": [
+            "static/js/async/lib-router.f9129261.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      },
+      "usedIn": []
+    },
+    {
+      "singleton": true,
+      "requiredVersion": "18.2.0",
+      "shareScope": "default",
+      "name": "react",
+      "version": "18.3.1",
+      "eager": false,
+      "id": "Pyroscope:react",
+      "assets": {
+        "js": {
+          "async": [],
+          "sync": [
+            "static/js/async/lib-react.bae6d75c.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      },
+      "usedIn": [
+        "./PyroscopeDatasource",
+        "./PyroscopeProfileQuery"
+      ]
+    },
+    {
+      "singleton": true,
+      "requiredVersion": "^3.2.0",
+      "shareScope": "default",
+      "name": "date-fns-tz",
+      "version": "3.2.0",
+      "eager": false,
+      "id": "Pyroscope:date-fns-tz",
+      "assets": {
+        "js": {
+          "async": [],
+          "sync": [
+            "static/js/async/7740.e593bc53.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      },
+      "usedIn": []
+    }
+  ],
+  "remotes": [],
+  "exposes": [
+    {
+      "path": "./PyroscopeDatasource",
+      "id": "Pyroscope:PyroscopeDatasource",
+      "name": "PyroscopeDatasource",
+      "requires": [
+        "react",
+        "@perses-dev/plugin-system"
+      ],
+      "file": "src/plugins/pyroscope-datasource.tsx",
+      "assets": {
+        "js": {
+          "sync": [
+            "static/js/async/__federation_expose_PyroscopeDatasource.ae8f2119.js"
+          ],
+          "async": [
+            "static/js/async/6885.73db96ed.js",
+            "static/js/async/3611.b32eba6f.js",
+            "static/js/async/5220.c3da3731.js",
+            "static/js/async/__federation_expose_PyroscopeProfileQuery.e49d6b83.js",
+            "static/js/async/__federation_expose_PyroscopeExplorer.97b3700a.js",
+            "static/js/async/3387.b82206ab.js",
+            "static/js/async/7376.53803805.js",
+            "static/js/async/1465.96b2d794.js",
+            "static/js/async/7786.6f56004c.js",
+            "static/js/async/4238.c239b14e.js",
+            "static/js/async/4811.fe9ba441.js",
+            "static/js/async/3224.1e189309.js",
+            "static/js/async/2292.40671f4b.js",
+            "static/js/async/8488.a191eb20.js"
+          ]
+        },
+        "css": {
+          "sync": [],
+          "async": [
+            "static/css/async/6759.16b136e5.css"
+          ]
+        }
+      }
+    },
+    {
+      "path": "./PyroscopeProfileQuery",
+      "id": "Pyroscope:PyroscopeProfileQuery",
+      "name": "PyroscopeProfileQuery",
+      "requires": [
+        "react",
+        "date-fns",
+        "@perses-dev/plugin-system",
+        "@perses-dev/components",
+        "@tanstack/react-query"
+      ],
+      "file": "src/plugins/pyroscope-profile-query/PyroscopeProfileQuery.ts",
+      "assets": {
+        "js": {
+          "sync": [
+            "static/js/async/6885.73db96ed.js",
+            "static/js/async/3611.b32eba6f.js",
+            "static/js/async/5220.c3da3731.js",
+            "static/js/async/__federation_expose_PyroscopeProfileQuery.e49d6b83.js"
+          ],
+          "async": [
+            "static/js/async/4238.c239b14e.js",
+            "static/js/async/3224.1e189309.js",
+            "static/js/async/3387.b82206ab.js",
+            "static/js/async/7376.53803805.js",
+            "static/js/async/4811.fe9ba441.js",
+            "static/js/async/7786.6f56004c.js",
+            "static/js/async/2292.40671f4b.js",
+            "static/js/async/1465.96b2d794.js",
+            "static/js/async/5220.c3da3731.js",
+            "static/js/async/__federation_expose_PyroscopeExplorer.97b3700a.js",
+            "static/js/async/8488.a191eb20.js"
+          ]
+        },
+        "css": {
+          "sync": [],
+          "async": [
+            "static/css/async/6759.16b136e5.css"
+          ]
+        }
+      }
+    },
+    {
+      "path": "./PyroscopeExplorer",
+      "id": "Pyroscope:PyroscopeExplorer",
+      "name": "PyroscopeExplorer",
+      "requires": [
+        "@perses-dev/plugin-system",
+        "@perses-dev/dashboards",
+        "@perses-dev/explore"
+      ],
+      "file": "src/explore/PyroscopeExplorer.tsx",
+      "assets": {
+        "js": {
+          "sync": [
+            "static/js/async/5220.c3da3731.js",
+            "static/js/async/__federation_expose_PyroscopeExplorer.97b3700a.js"
+          ],
+          "async": [
+            "static/js/async/6885.73db96ed.js",
+            "static/js/async/3611.b32eba6f.js",
+            "static/js/async/5220.c3da3731.js",
+            "static/js/async/__federation_expose_PyroscopeProfileQuery.e49d6b83.js",
+            "static/js/async/3387.b82206ab.js",
+            "static/js/async/7376.53803805.js",
+            "static/js/async/1465.96b2d794.js",
+            "static/js/async/7786.6f56004c.js",
+            "static/js/async/4238.c239b14e.js",
+            "static/js/async/4811.fe9ba441.js",
+            "static/js/async/3224.1e189309.js",
+            "static/js/async/2292.40671f4b.js",
+            "static/js/async/8488.a191eb20.js"
+          ]
+        },
+        "css": {
+          "sync": [],
+          "async": [
+            "static/css/async/6759.16b136e5.css"
+          ]
+        }
+      }
+    }
+  ]
+}

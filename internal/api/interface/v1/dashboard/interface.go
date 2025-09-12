@@ -31,6 +31,15 @@ type Query struct {
 	// The value can come from the path of the URL or from the query parameter
 	Project      string `param:"project" query:"project"`
 	MetadataOnly bool   `query:"metadata_only"`
+	Folder       string `param:"folder" query:"folder"`
+
+	UserID    int64 `param:"user" query:"user"`
+	FolderID  int64 `param:"folderID" query:"folderID"`
+	ProjectID int64 `param:"projectID" query:"projectID"`
+}
+
+func (q *Query) SetFolderID(folderID int64) {
+	q.FolderID = folderID
 }
 
 func (q *Query) GetMetadataOnlyQueryParam() bool {
@@ -43,6 +52,14 @@ func (q *Query) IsRawQueryAllowed() bool {
 
 func (q *Query) IsRawMetadataQueryAllowed() bool {
 	return true
+}
+
+func (q *Query) SetUserID(userID int64) {
+	q.UserID = userID
+}
+
+func (q *Query) SetProjectID(projectID int64) {
+	q.ProjectID = projectID
 }
 
 type DAO interface {

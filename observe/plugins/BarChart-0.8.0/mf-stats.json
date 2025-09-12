@@ -1,0 +1,457 @@
+{
+  "id": "BarChart",
+  "name": "BarChart",
+  "metaData": {
+    "name": "BarChart",
+    "type": "app",
+    "buildInfo": {
+      "buildVersion": "0.8.0",
+      "buildName": "@perses-dev/bar-chart-plugin"
+    },
+    "remoteEntry": {
+      "name": "__mf/js/BarChart.8e296a7f.js",
+      "path": "",
+      "type": "global"
+    },
+    "types": {
+      "path": "",
+      "name": "",
+      "zip": "",
+      "api": ""
+    },
+    "globalName": "BarChart",
+    "pluginVersion": "0.11.2",
+    "prefetchInterface": false,
+    "publicPath": "/plugins/BarChart/"
+  },
+  "shared": [
+    {
+      "singleton": true,
+      "requiredVersion": "^11.11.3",
+      "shareScope": "default",
+      "name": "@emotion/react",
+      "version": "11.14.0",
+      "eager": false,
+      "id": "BarChart:@emotion/react",
+      "assets": {
+        "js": {
+          "async": [
+            "__mf/js/async/964.d446c7a1.js"
+          ],
+          "sync": [
+            "__mf/js/async/960.07c2f8a6.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      },
+      "usedIn": []
+    },
+    {
+      "singleton": true,
+      "requiredVersion": "^11.14.0",
+      "shareScope": "default",
+      "name": "@emotion/styled",
+      "version": "11.14.0",
+      "eager": false,
+      "id": "BarChart:@emotion/styled",
+      "assets": {
+        "js": {
+          "async": [
+            "__mf/js/async/964.d446c7a1.js",
+            "__mf/js/async/960.07c2f8a6.js"
+          ],
+          "sync": [
+            "__mf/js/async/694.f18442c5.js",
+            "__mf/js/async/770.a4ed49b7.js",
+            "__mf/js/async/790.23e35958.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      },
+      "usedIn": []
+    },
+    {
+      "singleton": true,
+      "requiredVersion": "^3.10.0",
+      "shareScope": "default",
+      "name": "@hookform/resolvers",
+      "version": "3.10.0",
+      "eager": false,
+      "id": "BarChart:@hookform/resolvers",
+      "assets": {
+        "js": {
+          "async": [
+            "__mf/js/async/964.d446c7a1.js"
+          ],
+          "sync": [
+            "__mf/js/async/214.39425df9.js",
+            "__mf/js/async/738.0b38462b.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      },
+      "usedIn": []
+    },
+    {
+      "singleton": true,
+      "requiredVersion": "^0.51.0-rc.1",
+      "shareScope": "default",
+      "name": "@perses-dev/components",
+      "version": "0.51.0-rc.1",
+      "eager": false,
+      "id": "BarChart:@perses-dev/components",
+      "assets": {
+        "js": {
+          "async": [
+            "__mf/js/async/964.d446c7a1.js",
+            "__mf/js/async/173.de56afb5.js",
+            "__mf/js/async/960.07c2f8a6.js",
+            "__mf/js/async/790.23e35958.js",
+            "__mf/js/async/75.602a691f.js",
+            "__mf/js/async/740.bd4a2dd3.js",
+            "__mf/js/async/774.6d4b81a0.js",
+            "__mf/js/async/623.a42c5576.js"
+          ],
+          "sync": [
+            "__mf/js/async/530.cf128e42.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      },
+      "usedIn": [
+        "./BarChart"
+      ]
+    },
+    {
+      "singleton": true,
+      "requiredVersion": "^0.51.0-rc.1",
+      "shareScope": "default",
+      "name": "@perses-dev/plugin-system",
+      "version": "0.51.0-rc.1",
+      "eager": false,
+      "id": "BarChart:@perses-dev/plugin-system",
+      "assets": {
+        "js": {
+          "async": [
+            "__mf/js/async/964.d446c7a1.js",
+            "__mf/js/async/173.de56afb5.js",
+            "__mf/js/async/960.07c2f8a6.js",
+            "__mf/js/async/790.23e35958.js",
+            "__mf/js/async/238.2c28749b.js",
+            "__mf/js/async/224.02bf0727.js",
+            "__mf/js/async/75.602a691f.js",
+            "__mf/js/async/740.bd4a2dd3.js",
+            "__mf/js/async/623.a42c5576.js",
+            "__mf/js/async/243.3cf97a29.js",
+            "__mf/js/async/922.599a817c.js",
+            "__mf/js/async/530.cf128e42.js",
+            "__mf/js/async/331.23bb9dc0.js",
+            "__mf/js/async/774.6d4b81a0.js",
+            "__mf/js/async/738.0b38462b.js",
+            "__mf/js/async/223.2a63471a.js",
+            "__mf/js/async/409.fca0580b.js",
+            "__mf/js/async/981.d5ccd920.js",
+            "__mf/js/async/770.a4ed49b7.js",
+            "__mf/js/async/296.4e6e1192.js"
+          ],
+          "sync": [
+            "__mf/js/async/845.7d81dd14.js"
+          ]
+        },
+        "css": {
+          "async": [
+            "__mf/css/async/263.1f61a808.css"
+          ],
+          "sync": []
+        }
+      },
+      "usedIn": [
+        "./BarChart"
+      ]
+    },
+    {
+      "singleton": true,
+      "requiredVersion": "^4.1.0",
+      "shareScope": "default",
+      "name": "date-fns",
+      "version": "4.1.0",
+      "eager": false,
+      "id": "BarChart:date-fns",
+      "assets": {
+        "js": {
+          "async": [],
+          "sync": [
+            "__mf/js/async/75.602a691f.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      },
+      "usedIn": []
+    },
+    {
+      "singleton": true,
+      "requiredVersion": "^undefined",
+      "shareScope": "default",
+      "name": "echarts",
+      "version": "5.5.0",
+      "eager": false,
+      "id": "BarChart:echarts",
+      "assets": {
+        "js": {
+          "async": [],
+          "sync": [
+            "__mf/js/async/409.fca0580b.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      },
+      "usedIn": []
+    },
+    {
+      "singleton": true,
+      "requiredVersion": "^10.1.1",
+      "shareScope": "default",
+      "name": "immer",
+      "version": "10.1.1",
+      "eager": false,
+      "id": "BarChart:immer",
+      "assets": {
+        "js": {
+          "async": [],
+          "sync": [
+            "__mf/js/async/774.6d4b81a0.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      },
+      "usedIn": [
+        "./BarChart"
+      ]
+    },
+    {
+      "singleton": true,
+      "requiredVersion": "^4.17.21",
+      "shareScope": "default",
+      "name": "lodash",
+      "version": "4.17.21",
+      "eager": false,
+      "id": "BarChart:lodash",
+      "assets": {
+        "js": {
+          "async": [],
+          "sync": [
+            "__mf/js/async/981.d5ccd920.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      },
+      "usedIn": []
+    },
+    {
+      "singleton": true,
+      "requiredVersion": "^7.4.0",
+      "shareScope": "default",
+      "name": "mdi-material-ui",
+      "version": "7.9.3",
+      "eager": false,
+      "id": "BarChart:mdi-material-ui",
+      "assets": {
+        "js": {
+          "async": [
+            "__mf/js/async/964.d446c7a1.js",
+            "__mf/js/async/960.07c2f8a6.js",
+            "__mf/js/async/790.23e35958.js"
+          ],
+          "sync": [
+            "__mf/js/async/296.4e6e1192.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      },
+      "usedIn": []
+    },
+    {
+      "singleton": true,
+      "requiredVersion": "^18.2.0",
+      "shareScope": "default",
+      "name": "react-dom",
+      "version": "18.3.1",
+      "eager": false,
+      "id": "BarChart:react-dom",
+      "assets": {
+        "js": {
+          "async": [
+            "__mf/js/async/964.d446c7a1.js"
+          ],
+          "sync": [
+            "__mf/js/async/173.de56afb5.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      },
+      "usedIn": []
+    },
+    {
+      "singleton": true,
+      "requiredVersion": "^18.2.0",
+      "shareScope": "default",
+      "name": "react",
+      "version": "18.3.1",
+      "eager": false,
+      "id": "BarChart:react",
+      "assets": {
+        "js": {
+          "async": [],
+          "sync": [
+            "__mf/js/async/964.d446c7a1.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      },
+      "usedIn": [
+        "./BarChart"
+      ]
+    },
+    {
+      "singleton": true,
+      "requiredVersion": "^9.1.0",
+      "shareScope": "default",
+      "name": "use-resize-observer",
+      "version": "9.1.0",
+      "eager": false,
+      "id": "BarChart:use-resize-observer",
+      "assets": {
+        "js": {
+          "async": [
+            "__mf/js/async/964.d446c7a1.js"
+          ],
+          "sync": [
+            "__mf/js/async/553.cebe1061.js",
+            "__mf/js/async/623.a42c5576.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      },
+      "usedIn": []
+    },
+    {
+      "singleton": true,
+      "requiredVersion": "^3.2.0",
+      "shareScope": "default",
+      "name": "date-fns-tz",
+      "version": "3.2.0",
+      "eager": false,
+      "id": "BarChart:date-fns-tz",
+      "assets": {
+        "js": {
+          "async": [
+            "__mf/js/async/238.2c28749b.js",
+            "__mf/js/async/75.602a691f.js"
+          ],
+          "sync": [
+            "__mf/js/async/740.bd4a2dd3.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      },
+      "usedIn": []
+    }
+  ],
+  "remotes": [],
+  "exposes": [
+    {
+      "path": "./BarChart",
+      "id": "BarChart:BarChart",
+      "name": "BarChart",
+      "requires": [
+        "react",
+        "@perses-dev/components",
+        "@perses-dev/plugin-system",
+        "immer"
+      ],
+      "file": "src/BarChart.ts",
+      "assets": {
+        "js": {
+          "sync": [
+            "__mf/js/async/243.3cf97a29.js",
+            "__mf/js/async/69.5f20cd9b.js",
+            "__mf/js/async/331.23bb9dc0.js",
+            "__mf/js/async/762.0d4292e6.js",
+            "__mf/js/async/223.2a63471a.js",
+            "__mf/js/async/__federation_expose_BarChart.fe8a77fb.js"
+          ],
+          "async": [
+            "__mf/js/async/964.d446c7a1.js",
+            "__mf/js/async/960.07c2f8a6.js",
+            "__mf/js/async/790.23e35958.js",
+            "__mf/js/async/774.6d4b81a0.js",
+            "__mf/js/async/238.2c28749b.js",
+            "__mf/js/async/224.02bf0727.js",
+            "__mf/js/async/292.fc25f0b4.js",
+            "__mf/js/async/922.599a817c.js",
+            "__mf/js/async/640.968c5b1b.js",
+            "__mf/js/async/530.cf128e42.js",
+            "__mf/js/async/173.de56afb5.js",
+            "__mf/js/async/75.602a691f.js",
+            "__mf/js/async/740.bd4a2dd3.js",
+            "__mf/js/async/623.a42c5576.js",
+            "__mf/js/async/lib-router.c524d5f3.js",
+            "__mf/js/async/845.7d81dd14.js",
+            "__mf/js/async/488.64e4ab62.js",
+            "__mf/js/async/738.0b38462b.js",
+            "__mf/js/async/409.fca0580b.js",
+            "__mf/js/async/981.d5ccd920.js",
+            "__mf/js/async/770.a4ed49b7.js",
+            "__mf/js/async/296.4e6e1192.js"
+          ]
+        },
+        "css": {
+          "sync": [],
+          "async": [
+            "__mf/css/async/341.1f61a808.css",
+            "__mf/css/async/263.1f61a808.css"
+          ]
+        }
+      }
+    }
+  ]
+}

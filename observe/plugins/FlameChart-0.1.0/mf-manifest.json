@@ -1,0 +1,279 @@
+{
+  "id": "FlameChart",
+  "name": "FlameChart",
+  "metaData": {
+    "name": "FlameChart",
+    "type": "app",
+    "buildInfo": {
+      "buildVersion": "0.1.0",
+      "buildName": "@perses-dev/flame-chart"
+    },
+    "remoteEntry": {
+      "name": "static/js/FlameChart.ae147ab0.js",
+      "path": "",
+      "type": "global"
+    },
+    "types": {
+      "path": "",
+      "name": "",
+      "zip": "",
+      "api": ""
+    },
+    "globalName": "FlameChart",
+    "pluginVersion": "0.14.3",
+    "prefetchInterface": false,
+    "publicPath": "/plugins/FlameChart/"
+  },
+  "shared": [
+    {
+      "id": "FlameChart:@emotion/react",
+      "name": "@emotion/react",
+      "version": "11.14.0",
+      "singleton": true,
+      "requiredVersion": "^11.11.3",
+      "assets": {
+        "js": {
+          "async": [],
+          "sync": [
+            "static/js/async/960.4a50315e.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      }
+    },
+    {
+      "id": "FlameChart:@emotion/styled",
+      "name": "@emotion/styled",
+      "version": "11.14.0",
+      "singleton": true,
+      "requiredVersion": "^11.14.0",
+      "assets": {
+        "js": {
+          "async": [],
+          "sync": [
+            "static/js/async/694.0c413cba.js",
+            "static/js/async/770.5a197c5b.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      }
+    },
+    {
+      "id": "FlameChart:@hookform/resolvers",
+      "name": "@hookform/resolvers",
+      "version": "3.10.0",
+      "singleton": true,
+      "requiredVersion": "^3.10.0",
+      "assets": {
+        "js": {
+          "async": [],
+          "sync": [
+            "static/js/async/214.bd7e404f.js",
+            "static/js/async/738.dab8b56c.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      }
+    },
+    {
+      "id": "FlameChart:@perses-dev/components",
+      "name": "@perses-dev/components",
+      "version": "0.0.0-snapshot-profile-89b306f",
+      "singleton": true,
+      "requiredVersion": "^0.0.0-snapshot-profile-89b306f",
+      "assets": {
+        "js": {
+          "async": [],
+          "sync": [
+            "static/js/async/953.e494550c.js",
+            "static/js/async/809.5624ad8a.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      }
+    },
+    {
+      "id": "FlameChart:@perses-dev/plugin-system",
+      "name": "@perses-dev/plugin-system",
+      "version": "0.0.0-snapshot-profile-89b306f",
+      "singleton": true,
+      "requiredVersion": "^0.0.0-snapshot-profile-89b306f",
+      "assets": {
+        "js": {
+          "async": [],
+          "sync": [
+            "static/js/async/708.506aaf7e.js",
+            "static/js/async/611.b5aeef20.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      }
+    },
+    {
+      "id": "FlameChart:date-fns",
+      "name": "date-fns",
+      "version": "4.1.0",
+      "singleton": true,
+      "requiredVersion": "^4.1.0",
+      "assets": {
+        "js": {
+          "async": [],
+          "sync": [
+            "static/js/async/75.b20b6ce3.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      }
+    },
+    {
+      "id": "FlameChart:echarts",
+      "name": "echarts",
+      "version": "5.5.0",
+      "singleton": true,
+      "requiredVersion": "^undefined",
+      "assets": {
+        "js": {
+          "async": [],
+          "sync": [
+            "static/js/async/409.7ef9b139.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      }
+    },
+    {
+      "id": "FlameChart:lodash",
+      "name": "lodash",
+      "version": "4.17.21",
+      "singleton": true,
+      "requiredVersion": "^4.17.21",
+      "assets": {
+        "js": {
+          "async": [],
+          "sync": [
+            "static/js/async/981.240dae65.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      }
+    },
+    {
+      "id": "FlameChart:react-dom",
+      "name": "react-dom",
+      "version": "18.3.1",
+      "singleton": true,
+      "requiredVersion": "18.2.0",
+      "assets": {
+        "js": {
+          "async": [],
+          "sync": [
+            "static/js/async/lib-react.960cdf8b.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      }
+    },
+    {
+      "id": "FlameChart:react",
+      "name": "react",
+      "version": "18.3.1",
+      "singleton": true,
+      "requiredVersion": "18.2.0",
+      "assets": {
+        "js": {
+          "async": [],
+          "sync": [
+            "static/js/async/lib-react.960cdf8b.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      }
+    },
+    {
+      "id": "FlameChart:date-fns-tz",
+      "name": "date-fns-tz",
+      "version": "3.2.0",
+      "singleton": true,
+      "requiredVersion": "^3.2.0",
+      "assets": {
+        "js": {
+          "async": [],
+          "sync": [
+            "static/js/async/740.ad4f8ef9.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      }
+    }
+  ],
+  "remotes": [],
+  "exposes": [
+    {
+      "id": "FlameChart:FlameChart",
+      "name": "FlameChart",
+      "assets": {
+        "js": {
+          "sync": [
+            "static/js/async/303.cec430a5.js",
+            "static/js/async/241.25e2c8df.js",
+            "static/js/async/922.a3af00a7.js",
+            "static/js/async/__federation_expose_FlameChart.ef4e8cce.js"
+          ],
+          "async": [
+            "static/js/async/238.f3d536eb.js",
+            "static/js/async/224.4106db9b.js",
+            "static/js/async/292.7ce4f6b4.js",
+            "static/js/async/244.86be376a.js",
+            "static/js/async/90.926c6f9b.js",
+            "static/js/async/506.fe83c8ba.js",
+            "static/js/async/223.78fae839.js",
+            "static/js/async/lib-router.4d489293.js",
+            "static/js/async/501.9ddac017.js",
+            "static/js/async/488.416feea8.js"
+          ]
+        },
+        "css": {
+          "sync": [],
+          "async": [
+            "static/css/async/341.be38d90d.css",
+            "static/css/async/759.be38d90d.css"
+          ]
+        }
+      },
+      "path": "./FlameChart"
+    }
+  ]
+}

@@ -15,7 +15,6 @@ import { Stack, Box, Popover, CircularProgress, styled, PopoverPosition } from '
 import { isValidElement, PropsWithChildren, ReactNode, useMemo, useState } from 'react';
 import { InfoTooltip } from '@perses-dev/components';
 import { QueryData } from '@perses-dev/plugin-system';
-import DatabaseSearch from 'mdi-material-ui/DatabaseSearch';
 import ArrowCollapseIcon from 'mdi-material-ui/ArrowCollapse';
 import ArrowExpandIcon from 'mdi-material-ui/ArrowExpand';
 import PencilIcon from 'mdi-material-ui/PencilOutline';
@@ -35,7 +34,6 @@ import {
 } from '../../constants';
 import { HeaderIconButton } from './HeaderIconButton';
 import { PanelLinks } from './PanelLinks';
-import { PanelOptions } from './Panel';
 
 export interface PanelActionsProps {
   title: string;
@@ -52,12 +50,8 @@ export interface PanelActionsProps {
     isPanelViewed?: boolean;
     onViewPanelClick: () => void;
   };
-  viewQueriesHandler?: {
-    onClick: () => void;
-  };
   queryResults: QueryData[];
   pluginActions?: ReactNode[];
-  showIcons: PanelOptions['showIcons'];
 }
 
 const ConditionalBox = styled(Box)({
@@ -70,7 +64,6 @@ const ConditionalBox = styled(Box)({
 export const PanelActions: React.FC<PanelActionsProps> = ({
   editHandlers,
   readHandlers,
-  viewQueriesHandler,
   extra,
   title,
   description,
@@ -78,7 +71,6 @@ export const PanelActions: React.FC<PanelActionsProps> = ({
   links,
   queryResults,
   pluginActions = [],
-  showIcons,
 }) => {
   const descriptionAction = useMemo((): ReactNode | undefined => {
     if (description && description.trim().length > 0) {
@@ -145,21 +137,6 @@ export const PanelActions: React.FC<PanelActionsProps> = ({
     return undefined;
   }, [readHandlers, title]);
 
-  const viewQueryAction = useMemo(() => {
-    if (!viewQueriesHandler?.onClick) return null;
-    return (
-      <InfoTooltip description={TOOLTIP_TEXT.queryView}>
-        <HeaderIconButton
-          aria-label={ARIA_LABEL_TEXT.openQueryView(title)}
-          size="small"
-          onClick={viewQueriesHandler.onClick}
-        >
-          <DatabaseSearch fontSize="inherit" />
-        </HeaderIconButton>
-      </InfoTooltip>
-    );
-  }, [viewQueriesHandler, title]);
-
   const editActions = useMemo((): ReactNode | undefined => {
     if (editHandlers !== undefined) {
       // If there are edit handlers, always just show the edit buttons
@@ -220,9 +197,13 @@ export const PanelActions: React.FC<PanelActionsProps> = ({
 
   const divider = <Box sx={{ flexGrow: 1 }}></Box>;
 
-  // By default, the panel header shows certain icons only on hover if the panel is in non-editing, non-fullscreen mode
+  // if the panel is in non-editing, non-fullscreen mode, show certain icons only on hover
   const OnHover = ({ children }: PropsWithChildren): ReactNode =>
-    showIcons === 'hover' ? <Box sx={{ display: 'var(--panel-hover, none)' }}>{children}</Box> : <>{children}</>;
+    editHandlers === undefined && !readHandlers?.isPanelViewed ? (
+      <Box sx={{ display: 'var(--panel-hover, none)' }}>{children}</Box>
+    ) : (
+      <>{children}</>
+    );
 
   return (
     <>
@@ -235,8 +216,7 @@ export const PanelActions: React.FC<PanelActionsProps> = ({
         {divider}
         <OnHover>
           <OverflowMenu title={title}>
-            {descriptionAction} {linksAction} {queryStateIndicator} {extraActions} {viewQueryAction}
-            {readActions} {pluginActions}
+            {descriptionAction} {linksAction} {queryStateIndicator} {extraActions} {readActions} {pluginActions}
             {editActions}
           </OverflowMenu>
           {moveAction}
@@ -256,10 +236,9 @@ export const PanelActions: React.FC<PanelActionsProps> = ({
         </OnHover>
         {divider} {queryStateIndicator}
         <OnHover>
-          {extraActions}
-          {readActions}
+          {extraActions} {readActions}
           <OverflowMenu title={title}>
-            {editActions} {viewQueryAction} {pluginActions}
+            {editActions} {pluginActions}
           </OverflowMenu>
           {moveAction}
         </OnHover>
@@ -278,9 +257,7 @@ export const PanelActions: React.FC<PanelActionsProps> = ({
         </OnHover>
         {divider} {queryStateIndicator}
         <OnHover>
-          {extraActions}
-          {viewQueryAction}
-          {readActions} {editActions}
+          {extraActions} {readActions} {editActions}
           {/* Show plugin actions inside a menu if it gets crowded */}
           {pluginActions.length <= 1 ? pluginActions : <OverflowMenu title={title}>{pluginActions}</OverflowMenu>}
           {moveAction}
@@ -296,7 +273,7 @@ const OverflowMenu: React.FC<PropsWithChildren<{ title: string }>> = ({ children
   // do not show overflow menu if there is no content (for example, edit actions are hidden)
   const hasContent = isValidElement(children) || (Array.isArray(children) && children.some(isValidElement));
   if (!hasContent) {
-    return null;
+    return undefined;
   }
 
   const handleClick = (event: React.MouseEvent<HTMLElement>): void => {

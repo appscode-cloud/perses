@@ -122,6 +122,10 @@ func (s *service) Get(parameters apiInterface.Parameters) (*v1.Dashboard, error)
 	return s.dao.Get(parameters.Project, parameters.Name)
 }
 
+func (s *service) GetByNameAndUser(parameters apiInterface.Parameters) (*v1.Dashboard, error) {
+	return s.dao.Get(parameters.Project, parameters.Name)
+}
+
 func (s *service) List(q *dashboard.Query, params apiInterface.Parameters) ([]*v1.Dashboard, error) {
 	query, err := manageQuery(q, params)
 	if err != nil {

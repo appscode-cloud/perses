@@ -1,0 +1,1 @@
+{"version":3,"file":"SpanName.d.ts","sourceRoot":"","sources":["../../../../src/TracingGanttChart/GanttTable/SpanName.tsx"],"names":[],"mappings":"AAeA,OAAO,EAAE,YAAY,EAAE,MAAM,OAAO,CAAC;AAErC,OAAO,EAAE,IAAI,EAAE,MAAM,UAAU,CAAC;AAGhC,MAAM,WAAW,aAAa;IAC5B,IAAI,EAAE,IAAI,CAAC;IACX,eAAe,EAAE,MAAM,CAAC;CACzB;AAED;;GAEG;AACH,wBAAgB,QAAQ,CAAC,KAAK,EAAE,aAAa,GAAG,YAAY,CAY3D"}

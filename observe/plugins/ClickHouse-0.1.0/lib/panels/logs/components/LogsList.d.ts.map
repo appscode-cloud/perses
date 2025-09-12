@@ -1,0 +1,1 @@
+{"version":3,"file":"LogsList.d.ts","sourceRoot":"","sources":["../../../../../src/panels/logs/components/LogsList.tsx"],"names":[],"mappings":"AAaA,OAAO,KAAK,MAAM,OAAO,CAAC;AAC1B,OAAO,EAAE,QAAQ,EAAE,MAAM,uCAAuC,CAAC;AAKjE,UAAU,aAAa;IACrB,IAAI,EAAE,QAAQ,EAAE,CAAC;CAClB;AAED,QAAA,MAAM,QAAQ,EAAE,KAAK,CAAC,EAAE,CAAC,aAAa,CAQrC,CAAC;AAEF,eAAe,QAAQ,CAAC"}

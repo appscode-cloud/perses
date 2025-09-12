@@ -1,0 +1,1 @@
+{"version":3,"sources":["../../src/model.ts"],"sourcesContent":["import { PanelProps } from '@perses-dev/plugin-system';\n\n// eslint-disable-next-line @typescript-eslint/no-empty-object-type\ninterface TimeSeriesTableOptions {}\n\nexport type TimeSeriesTableProps = PanelProps<TimeSeriesTableOptions>;\n"],"names":[],"mappings":"AAKA,WAAsE"}

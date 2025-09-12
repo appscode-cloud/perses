@@ -119,11 +119,11 @@ function convertPanelGroupsToLayouts(
     if (group === undefined) {
       throw new Error('panel group not found');
     }
-    const { title, isCollapsed, repeatVariable, itemLayouts, itemPanelKeys } = group;
+    const { title, isCollapsed, itemLayouts, itemPanelKeys } = group;
     let display = undefined;
-    if (title || isCollapsed !== undefined) {
+    if (title) {
       display = {
-        title: title ?? '',
+        title,
         collapse: {
           open: !isCollapsed,
         },
@@ -146,7 +146,6 @@ function convertPanelGroupsToLayouts(
             content: createPanelRef(panelKey),
           };
         }),
-        repeatVariable: repeatVariable,
       },
     };
     layouts.push(layout);

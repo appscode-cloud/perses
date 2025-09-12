@@ -11,7 +11,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import React, { ReactElement, useMemo, useState } from 'react';
+import React, { ReactElement, useState } from 'react';
 import { Alert, Box, Card, Chip, CircularProgress, IconButton, Stack, Typography } from '@mui/material';
 import { InfoTooltip, useSnackbar } from '@perses-dev/components';
 import Refresh from 'mdi-material-ui/Refresh';
@@ -90,21 +90,16 @@ interface VariableListPreviewProps {
 }
 
 export function VariableListPreview(props: VariableListPreviewProps): ReactElement {
-  const { onRefresh, definition } = props;
+  const { definition, onRefresh } = props;
   const { data, isFetching, error } = useListVariablePluginValues(definition);
   const errorMessage = (error as Error)?.message;
 
-  const variablePreview = useMemo(
-    () => (
-      <VariablePreview
-        values={data?.map((val) => val.value) || []}
-        onRefresh={onRefresh}
-        isLoading={isFetching}
-        error={errorMessage}
-      />
-    ),
-    [errorMessage, isFetching, onRefresh, data]
+  return (
+    <VariablePreview
+      values={data?.map((val) => val.value) || []}
+      onRefresh={onRefresh}
+      isLoading={isFetching}
+      error={errorMessage}
+    />
   );
-
-  return variablePreview;
 }

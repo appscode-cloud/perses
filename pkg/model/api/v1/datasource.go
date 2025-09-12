@@ -55,6 +55,21 @@ type GlobalDatasource struct {
 	Spec     DatasourceSpec `json:"spec" yaml:"spec"`
 }
 
+func (d *GlobalDatasource) SetUserType(userType string) {
+	//TODO implement me
+	panic("implement me")
+}
+
+func (d *GlobalDatasource) SetProjectID(id int64) {
+	//TODO implement me
+	panic("implement me")
+}
+
+func (d *GlobalDatasource) SetUserID(id int64) {
+	//TODO implement me
+	panic("implement me")
+}
+
 func (d *GlobalDatasource) UnmarshalJSON(data []byte) error {
 	var tmp GlobalDatasource
 	type plain GlobalDatasource
@@ -116,6 +131,11 @@ type Datasource struct {
 	Spec     DatasourceSpec  `json:"spec" yaml:"spec"`
 }
 
+func (d *Datasource) SetUserType(userType string) {
+	//TODO implement me
+	panic("implement me")
+}
+
 func (d *Datasource) UnmarshalJSON(data []byte) error {
 	var tmp Datasource
 	type plain Datasource
@@ -154,6 +174,14 @@ func (d *Datasource) validate() error {
 
 func (d *Datasource) GetMetadata() modelAPI.Metadata {
 	return &d.Metadata
+}
+
+func (d *Datasource) SetUserID(id int64) {
+	d.Metadata.UserID = id
+}
+
+func (d *Datasource) SetProjectID(id int64) {
+	d.Metadata.ProjectID = id
 }
 
 func (d *Datasource) GetKind() string {

@@ -38,6 +38,16 @@ type GlobalRole struct {
 	Spec     RoleSpec `json:"spec" yaml:"spec"`
 }
 
+func (g *GlobalRole) SetUserType(userType string) {
+	//TODO implement me
+	panic("implement me")
+}
+
+func (g *GlobalRole) SetProjectID(id int64) {
+	//TODO implement me
+	panic("implement me")
+}
+
 func (g *GlobalRole) UnmarshalJSON(data []byte) error {
 	var tmp GlobalRole
 	type plain GlobalRole
@@ -78,6 +88,10 @@ func (g *GlobalRole) GetMetadata() modelAPI.Metadata {
 	return &g.Metadata
 }
 
+func (g *GlobalRole) SetUserID(id int64) {
+	g.Metadata.UserID = id
+}
+
 func (g *GlobalRole) GetKind() string {
 	return string(g.Kind)
 }
@@ -96,6 +110,20 @@ type Role struct {
 	Kind     Kind            `json:"kind" yaml:"kind"`
 	Metadata ProjectMetadata `json:"metadata" yaml:"metadata"`
 	Spec     RoleSpec        `json:"spec" yaml:"spec"`
+}
+
+func (r *Role) SetUserType(userType string) {
+	//TODO implement me
+	panic("implement me")
+}
+
+func (r *Role) SetUserID(id int64) {
+	//TODO implement me
+	panic("implement me")
+}
+
+func (r *Role) SetProjectID(id int64) {
+	r.Metadata.ProjectID = id
 }
 
 func (r *Role) UnmarshalJSON(data []byte) error {

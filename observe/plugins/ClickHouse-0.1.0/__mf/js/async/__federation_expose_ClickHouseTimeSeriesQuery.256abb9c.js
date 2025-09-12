@@ -1,0 +1,19 @@
+"use strict";(self.chunk_ClickHouse=self.chunk_ClickHouse||[]).push([["441"],{85806:function(e,t,r){r.r(t),r.d(t,{ClickHouseTimeSeriesQuery:()=>x,ClickHouseTimeSeriesQueryEditor:()=>h,DATASOURCE_KIND:()=>i,DEFAULT_DATASOURCE:()=>a,getTimeSeriesData:()=>s});let i="ClickHouseDatasource",a={kind:i};var o=r(86499);let s=async(e,t)=>{if(void 0===e.query||null===e.query||""===e.query)return{series:[]};let r=(0,o.replaceVariables)(e.query,t.variableState),i=await t.datasourceStore.getDatasourceClient(e.datasource??a),{start:s,end:n}=t.timeRange,l=await i.query({start:s.getTime().toString(),end:n.getTime().toString(),query:r});return{series:l&&l.data&&0!==l.data.length?[{name:"log_count",values:l.data.map(e=>[new Date(e.time).getTime(),Number(e.log_count)])}]:[],timeRange:{start:s,end:n},stepMs:3e4,logs:function(e){let t=e.map(e=>{let t=function e(t){let r=arguments.length>1&&void 0!==arguments[1]?arguments[1]:"",i=arguments.length>2&&void 0!==arguments[2]?arguments[2]:{};for(let[a,o]of Object.entries(t)){let t=r?`${r}.${a}`:a;o&&"object"==typeof o&&!Array.isArray(o)?e(o,t,i):i[t]=o}return i}(e);!t.Timestamp&&t.log_time&&(t.Timestamp=t.log_time);let r={};Object.keys(t).sort((e,t)=>e.localeCompare(t)).forEach(e=>{r[e]=t[e]});let i=Object.entries(r).filter(e=>{let[t]=e;return"Timestamp"!==t}).map(e=>{let[t,r]=e;return`<${t}> ${""===r||null==r?"--":r}`}).join(" ");return{timestamp:null==r?void 0:r.Timestamp,labels:r,line:i}});return{entries:t,totalCount:t.length}}(l.data),metadata:{executedQueryString:r}}};var n=r(24246),l=r(95554),u=r(97313),c=r(69485),m=r(94776),p=r(25283),d=r(68808);function g(e){let t=(0,m.Z)(),r="dark"===t.palette.mode;return(0,n.jsxs)(p.Z,{position:"relative",children:[(0,n.jsx)(d.Z,{sx:{fontWeight:500,marginBottom:"4px",color:t.palette.text.primary},children:"ClickHouse Query"}),(0,n.jsx)(u.ZP,{...e,style:{border:`1px solid ${t.palette.divider}`},theme:r?"dark":"light",basicSetup:{highlightActiveLine:!1,highlightActiveLineGutter:!1,foldGutter:!1,syntaxHighlighting:!0},extensions:[c.tk.lineWrapping,c.tk.theme({".cm-content":{paddingTop:"8px",paddingBottom:"8px",paddingRight:"40px"}})],placeholder:"Write ClickHouse Query Here..."})]})}let y=`-- Time Series Query
+SELECT 
+  toStartOfMinute(timestamp) as time,
+  avg(cpu_usage) as avg_cpu,
+  max(memory_usage) as max_memory
+FROM system_metrics 
+WHERE timestamp BETWEEN '{start}' AND '{end}'
+GROUP BY time ORDER BY time
+-- Logs Query  
+SELECT 
+  Timestamp as log_time,
+  Body,
+  ServiceName,
+  ResourceAttributes,
+  SeverityNumber,
+  SeverityText
+FROM application_logs 
+WHERE timestamp >= '{start}' 
+ORDER BY time DESC LIMIT 1000`;function h(e){let{onChange:t,value:r}=e,{datasource:s}=r,[u,c]=(0,l.useState)(r.query||""),m=(0,l.useCallback)(e=>{c(e)},[]),d=(0,l.useCallback)(e=>{t({...r,query:e})},[t,r]);return(0,l.useEffect)(()=>{c(r.query||"")},[r.query]),(0,n.jsxs)(p.Z,{spacing:1.5,children:[(0,n.jsx)(o.DatasourceSelect,{datasourcePluginKind:i,value:s??a,onChange:e=>{if(!(0,o.isVariableDatasource)(e)&&e.kind===i)return void t({...r,datasource:e});throw Error("Got unexpected non ClickHouse datasource selection")},label:"ClickHouse Datasource",notched:!0}),(0,n.jsx)(g,{value:u,onChange:m,onBlur:()=>d(u),onKeyDown:e=>{"Enter"===e.key&&(e.ctrlKey||e.metaKey)&&(e.preventDefault(),d(u))},placeholder:"Enter ClickHouse SQL query"}),(0,n.jsxs)("details",{children:[(0,n.jsx)("summary",{style:{cursor:"pointer",fontSize:"12px",color:"#666",marginBottom:"8px"},children:"Query Examples"}),(0,n.jsx)("div",{style:{fontSize:"11px",color:"#777",backgroundColor:"#f5f5f5",padding:"8px",borderRadius:"4px",fontFamily:'Monaco, Menlo, "Ubuntu Mono", monospace',whiteSpace:"pre-wrap",lineHeight:"1.3"},children:y})]})]})}let x={getTimeSeriesData:s,OptionsEditorComponent:h,createInitialOptions:()=>({query:""}),dependsOn:e=>({variables:[...new Set([...(0,o.parseVariables)(e.query)])]})}}}]);

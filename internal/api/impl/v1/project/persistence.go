@@ -48,6 +48,18 @@ func (d *dao) Get(name string) (*v1.Project, error) {
 	return entity, d.client.Get(d.kind, v1.NewMetadata(name), entity)
 }
 
+func (d *dao) GetByNameAndUser(name string, userName string) (*v1.Project, error) {
+	entity := &v1.Project{}
+	metadata := v1.NewMetadata(name)
+
+	userID, _, err := d.client.GetIDAndType(v1.KindUser, v1.NewMetadata(userName))
+	if err != nil {
+		return nil, err
+	}
+	metadata.UserID = userID
+	return entity, d.client.Get(d.kind, metadata, entity)
+}
+
 func (d *dao) Delete(name string) error {
 	return d.client.Delete(d.kind, v1.NewMetadata(name))
 }

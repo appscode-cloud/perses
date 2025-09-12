@@ -31,6 +31,7 @@ test.describe('Dashboard: Markdown Panel', () => {
     test(`displays ${panelName} as expected`, async ({ page, dashboardPage }) => {
       await dashboardPage.forEachTheme(async (themeName) => {
         const markdownPanel = dashboardPage.getPanelByName(panelName);
+        await markdownPanel.container.scrollIntoViewIfNeeded();
         await markdownPanel.isLoaded();
 
         await happoPlaywright.screenshot(page, markdownPanel.parent, {

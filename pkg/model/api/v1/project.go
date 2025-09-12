@@ -31,8 +31,22 @@ type Project struct {
 	Spec     ProjectSpec `json:"spec,omitempty" yaml:"spec,omitempty"`
 }
 
+func (p *Project) SetUserType(userType string) {
+	//TODO implement me
+	panic("implement me")
+}
+
+func (p *Project) SetProjectID(id int64) {
+	//TODO implement me
+	panic("implement me")
+}
+
 func (p *Project) GetMetadata() modelAPI.Metadata {
 	return &p.Metadata
+}
+
+func (p *Project) SetUserID(id int64) {
+	p.Metadata.UserID = id
 }
 
 func (p *Project) GetKind() string {

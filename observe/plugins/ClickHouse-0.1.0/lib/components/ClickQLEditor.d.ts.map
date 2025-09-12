@@ -1,0 +1,1 @@
+{"version":3,"file":"ClickQLEditor.d.ts","sourceRoot":"","sources":["../../../src/components/ClickQLEditor.tsx"],"names":[],"mappings":"AAaA,OAAmB,EAAE,oBAAoB,EAAE,MAAM,uBAAuB,CAAC;AAGzE,OAAO,EAAE,YAAY,EAAE,MAAM,OAAO,CAAC;AAErC,MAAM,MAAM,kBAAkB,GAAG,IAAI,CAAC,oBAAoB,EAAE,OAAO,GAAG,YAAY,CAAC,CAAC;AAEpF,wBAAgB,aAAa,CAAC,KAAK,EAAE,kBAAkB,GAAG,YAAY,CAuCrE"}

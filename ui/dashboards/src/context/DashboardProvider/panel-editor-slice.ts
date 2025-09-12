@@ -56,11 +56,6 @@ export interface PanelEditorState {
    */
   mode: Action;
 
-  /*
-   * Original item in a PanelGroup edited
-   */
-  panelGroupItemId?: PanelGroupItemId;
-
   /**
    * Initial values for the things that can be edited about a panel.
    */
@@ -109,7 +104,6 @@ export function createPanelEditorSlice(): StateCreator<
 
       const editorState: PanelEditorState = {
         mode: 'update',
-        panelGroupItemId: panelGroupItemId,
         initialValues: {
           groupId: panelGroupItemId.panelGroupId,
           panelDefinition: panelToEdit,

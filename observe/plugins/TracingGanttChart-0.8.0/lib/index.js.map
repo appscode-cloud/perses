@@ -1,0 +1,1 @@
+{"version":3,"sources":["../../src/index.ts"],"sourcesContent":["export * from './gantt-chart-model';\nexport { getPluginModule } from './getPluginModule';\nexport * from './TracingGanttChart';\nexport * from './TracingGanttChartPanel';\n"],"names":["getPluginModule"],"mappings":"AAAA,cAAc,sBAAsB;AACpC,SAASA,eAAe,QAAQ,oBAAoB;AACpD,cAAc,sBAAsB;AACpC,cAAc,2BAA2B"}

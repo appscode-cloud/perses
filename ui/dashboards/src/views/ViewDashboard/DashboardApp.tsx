@@ -11,7 +11,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { ReactElement, ReactNode, useState } from 'react';
+import { ReactElement, useState } from 'react';
 import { Box } from '@mui/material';
 import { ChartsProvider, ErrorAlert, ErrorBoundary, useChartsTheme } from '@perses-dev/components';
 import { DashboardResource, EphemeralDashboardResource } from '@perses-dev/core';
@@ -27,38 +27,34 @@ import {
   EmptyDashboardProps,
   EditJsonDialog,
   SaveChangesConfirmationDialog,
-  LeaveDialog,
 } from '../../components';
 import { OnSaveDashboard, useDashboard, useDiscardChangesConfirmationDialog, useEditMode } from '../../context';
 
 export interface DashboardAppProps {
-  dashboardResource: DashboardResource | EphemeralDashboardResource;
   emptyDashboardProps?: Partial<EmptyDashboardProps>;
+  dashboardResource: DashboardResource | EphemeralDashboardResource;
+  dashboardTitleComponent?: JSX.Element;
+  onSave?: OnSaveDashboard;
+  onDiscard?: (entity: DashboardResource) => void;
+  initialVariableIsSticky?: boolean;
   isReadonly: boolean;
   isVariableEnabled: boolean;
   isDatasourceEnabled: boolean;
   isCreating?: boolean;
-  isInitialVariableSticky?: boolean;
-  // If true, browser confirmation dialog will be shown when navigating away with unsaved changes (closing tab, ...).
-  isLeavingConfirmDialogEnabled?: boolean;
-  dashboardTitleComponent?: ReactNode;
-  onSave?: OnSaveDashboard;
-  onDiscard?: (entity: DashboardResource) => void;
 }
 
 export const DashboardApp = (props: DashboardAppProps): ReactElement => {
   const {
     dashboardResource,
+    dashboardTitleComponent,
     emptyDashboardProps,
+    onSave,
+    onDiscard,
+    initialVariableIsSticky,
     isReadonly,
     isVariableEnabled,
     isDatasourceEnabled,
     isCreating,
-    isInitialVariableSticky,
-    isLeavingConfirmDialogEnabled,
-    dashboardTitleComponent,
-    onSave,
-    onDiscard,
   } = props;
 
   const chartsTheme = useChartsTheme();
@@ -120,7 +116,7 @@ export const DashboardApp = (props: DashboardAppProps): ReactElement => {
       <DashboardToolbar
         dashboardName={dashboardResource.metadata.name}
         dashboardTitleComponent={dashboardTitleComponent}
-        initialVariableIsSticky={isInitialVariableSticky}
+        initialVariableIsSticky={initialVariableIsSticky}
         onSave={onSave}
         isReadonly={isReadonly}
         isVariableEnabled={isVariableEnabled}
@@ -146,9 +142,6 @@ export const DashboardApp = (props: DashboardAppProps): ReactElement => {
         <DashboardDiscardChangesConfirmationDialog />
         <EditJsonDialog isReadonly={!isEditMode} disableMetadataEdition={!isCreating} />
         <SaveChangesConfirmationDialog />
-        {isLeavingConfirmDialogEnabled && isEditMode && (
-          <LeaveDialog original={originalDashboard} current={dashboard} />
-        )}
       </Box>
     </Box>
   );

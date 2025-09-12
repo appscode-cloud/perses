@@ -1,0 +1,1 @@
+{"version":3,"file":"ClickHouseDatasource.d.ts","sourceRoot":"","sources":["../../../../src/datasources/click-house-datasource/ClickHouseDatasource.tsx"],"names":[],"mappings":"AAaA,OAAO,EAAE,gBAAgB,EAAE,MAAM,2BAA2B,CAAC;AAC7D,OAAO,EAAE,wBAAwB,EAAE,0BAA0B,EAAE,MAAM,gCAAgC,CAAC;AA4BtG,eAAO,MAAM,oBAAoB,EAAE,gBAAgB,CAAC,wBAAwB,EAAE,0BAA0B,CAIvG,CAAC"}

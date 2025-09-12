@@ -104,13 +104,12 @@ export function HelperDashboardView(props: GenericDashboardViewProps): ReactElem
                   }}
                   onSave={onSave}
                   onDiscard={onDiscard}
-                  isInitialVariableSticky={true}
+                  initialVariableIsSticky={true}
                   isReadonly={isReadonly}
                   isVariableEnabled={isLocalVariableEnabled}
                   isDatasourceEnabled={isLocalDatasourceEnabled}
                   isEditing={isEditing}
                   isCreating={isCreating}
-                  isLeavingConfirmDialogEnabled={true}
                 />
               </UsageMetricsProvider>
             </ErrorBoundary>

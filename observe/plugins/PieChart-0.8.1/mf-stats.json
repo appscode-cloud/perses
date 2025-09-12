@@ -1,0 +1,368 @@
+{
+  "id": "PieChart",
+  "name": "PieChart",
+  "metaData": {
+    "name": "PieChart",
+    "type": "app",
+    "buildInfo": {
+      "buildVersion": "0.8.1",
+      "buildName": "@perses-dev/pie-chart-plugin"
+    },
+    "remoteEntry": {
+      "name": "__mf/js/PieChart.a1d90662.js",
+      "path": "",
+      "type": "global"
+    },
+    "types": {
+      "path": "",
+      "name": "",
+      "zip": "",
+      "api": ""
+    },
+    "globalName": "PieChart",
+    "pluginVersion": "0.11.2",
+    "prefetchInterface": false,
+    "publicPath": "/plugins/PieChart/"
+  },
+  "shared": [
+    {
+      "singleton": true,
+      "requiredVersion": "^11.11.3",
+      "shareScope": "default",
+      "name": "@emotion/react",
+      "version": "11.14.0",
+      "eager": false,
+      "id": "PieChart:@emotion/react",
+      "assets": {
+        "js": {
+          "async": [
+            "__mf/js/async/964.6df60c3e.js"
+          ],
+          "sync": [
+            "__mf/js/async/960.208437e1.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      },
+      "usedIn": []
+    },
+    {
+      "singleton": true,
+      "requiredVersion": "^11.14.0",
+      "shareScope": "default",
+      "name": "@emotion/styled",
+      "version": "11.14.0",
+      "eager": false,
+      "id": "PieChart:@emotion/styled",
+      "assets": {
+        "js": {
+          "async": [
+            "__mf/js/async/964.6df60c3e.js",
+            "__mf/js/async/960.208437e1.js"
+          ],
+          "sync": [
+            "__mf/js/async/694.b227b636.js",
+            "__mf/js/async/770.93415255.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      },
+      "usedIn": []
+    },
+    {
+      "singleton": true,
+      "requiredVersion": "^3.10.0",
+      "shareScope": "default",
+      "name": "@hookform/resolvers",
+      "version": "3.10.0",
+      "eager": false,
+      "id": "PieChart:@hookform/resolvers",
+      "assets": {
+        "js": {
+          "async": [
+            "__mf/js/async/964.6df60c3e.js"
+          ],
+          "sync": [
+            "__mf/js/async/214.df2e7807.js",
+            "__mf/js/async/738.4ac98841.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      },
+      "usedIn": []
+    },
+    {
+      "singleton": true,
+      "requiredVersion": "^0.51.0-rc.1",
+      "shareScope": "default",
+      "name": "@perses-dev/components",
+      "version": "0.51.0-rc.1",
+      "eager": false,
+      "id": "PieChart:@perses-dev/components",
+      "assets": {
+        "js": {
+          "async": [
+            "__mf/js/async/964.6df60c3e.js",
+            "__mf/js/async/173.ee70b493.js",
+            "__mf/js/async/960.208437e1.js",
+            "__mf/js/async/770.93415255.js",
+            "__mf/js/async/75.905151a5.js",
+            "__mf/js/async/740.b86dfa00.js"
+          ],
+          "sync": [
+            "__mf/js/async/530.f071fc6b.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      },
+      "usedIn": [
+        "./PieChart"
+      ]
+    },
+    {
+      "singleton": true,
+      "requiredVersion": "^0.51.0-rc.1",
+      "shareScope": "default",
+      "name": "@perses-dev/plugin-system",
+      "version": "0.51.0-rc.1",
+      "eager": false,
+      "id": "PieChart:@perses-dev/plugin-system",
+      "assets": {
+        "js": {
+          "async": [
+            "__mf/js/async/964.6df60c3e.js",
+            "__mf/js/async/173.ee70b493.js",
+            "__mf/js/async/960.208437e1.js",
+            "__mf/js/async/770.93415255.js",
+            "__mf/js/async/238.5287310b.js",
+            "__mf/js/async/224.dbeed4db.js",
+            "__mf/js/async/75.905151a5.js",
+            "__mf/js/async/740.b86dfa00.js",
+            "__mf/js/async/470.be19e17e.js",
+            "__mf/js/async/105.7a85ee04.js",
+            "__mf/js/async/530.f071fc6b.js",
+            "__mf/js/async/331.067ac3da.js",
+            "__mf/js/async/738.4ac98841.js",
+            "__mf/js/async/503.28e7e4f1.js",
+            "__mf/js/async/981.3ecbf5ea.js"
+          ],
+          "sync": [
+            "__mf/js/async/845.1b2e72ed.js"
+          ]
+        },
+        "css": {
+          "async": [
+            "__mf/css/async/263.80005a4a.css"
+          ],
+          "sync": []
+        }
+      },
+      "usedIn": [
+        "./PieChart"
+      ]
+    },
+    {
+      "singleton": true,
+      "requiredVersion": "^4.1.0",
+      "shareScope": "default",
+      "name": "date-fns",
+      "version": "4.1.0",
+      "eager": false,
+      "id": "PieChart:date-fns",
+      "assets": {
+        "js": {
+          "async": [],
+          "sync": [
+            "__mf/js/async/75.905151a5.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      },
+      "usedIn": []
+    },
+    {
+      "singleton": true,
+      "requiredVersion": "^undefined",
+      "shareScope": "default",
+      "name": "echarts",
+      "version": "5.5.0",
+      "eager": false,
+      "id": "PieChart:echarts",
+      "assets": {
+        "js": {
+          "async": [],
+          "sync": [
+            "__mf/js/async/503.28e7e4f1.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      },
+      "usedIn": []
+    },
+    {
+      "singleton": true,
+      "requiredVersion": "^4.17.21",
+      "shareScope": "default",
+      "name": "lodash",
+      "version": "4.17.21",
+      "eager": false,
+      "id": "PieChart:lodash",
+      "assets": {
+        "js": {
+          "async": [],
+          "sync": [
+            "__mf/js/async/981.3ecbf5ea.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      },
+      "usedIn": []
+    },
+    {
+      "singleton": true,
+      "requiredVersion": "18.2.0",
+      "shareScope": "default",
+      "name": "react-dom",
+      "version": "18.3.1",
+      "eager": false,
+      "id": "PieChart:react-dom",
+      "assets": {
+        "js": {
+          "async": [
+            "__mf/js/async/964.6df60c3e.js"
+          ],
+          "sync": [
+            "__mf/js/async/173.ee70b493.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      },
+      "usedIn": []
+    },
+    {
+      "singleton": true,
+      "requiredVersion": "18.2.0",
+      "shareScope": "default",
+      "name": "react",
+      "version": "18.3.1",
+      "eager": false,
+      "id": "PieChart:react",
+      "assets": {
+        "js": {
+          "async": [],
+          "sync": [
+            "__mf/js/async/964.6df60c3e.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      },
+      "usedIn": [
+        "./PieChart"
+      ]
+    },
+    {
+      "singleton": true,
+      "requiredVersion": "^3.2.0",
+      "shareScope": "default",
+      "name": "date-fns-tz",
+      "version": "3.2.0",
+      "eager": false,
+      "id": "PieChart:date-fns-tz",
+      "assets": {
+        "js": {
+          "async": [
+            "__mf/js/async/238.5287310b.js",
+            "__mf/js/async/75.905151a5.js"
+          ],
+          "sync": [
+            "__mf/js/async/740.b86dfa00.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      },
+      "usedIn": []
+    }
+  ],
+  "remotes": [],
+  "exposes": [
+    {
+      "path": "./PieChart",
+      "id": "PieChart:PieChart",
+      "name": "PieChart",
+      "requires": [
+        "react",
+        "@perses-dev/plugin-system",
+        "@perses-dev/components"
+      ],
+      "file": "src/PieChart.ts",
+      "assets": {
+        "js": {
+          "sync": [
+            "__mf/js/async/470.be19e17e.js",
+            "__mf/js/async/973.74031340.js",
+            "__mf/js/async/331.067ac3da.js",
+            "__mf/js/async/707.55fda5d1.js",
+            "__mf/js/async/__federation_expose_PieChart.869001bb.js"
+          ],
+          "async": [
+            "__mf/js/async/964.6df60c3e.js",
+            "__mf/js/async/960.208437e1.js",
+            "__mf/js/async/770.93415255.js",
+            "__mf/js/async/lib-router.d29f3ef0.js",
+            "__mf/js/async/292.f278784e.js",
+            "__mf/js/async/925.92a059f1.js",
+            "__mf/js/async/845.1b2e72ed.js",
+            "__mf/js/async/488.0fc5dcbb.js",
+            "__mf/js/async/238.5287310b.js",
+            "__mf/js/async/224.dbeed4db.js",
+            "__mf/js/async/105.7a85ee04.js",
+            "__mf/js/async/530.f071fc6b.js",
+            "__mf/js/async/738.4ac98841.js",
+            "__mf/js/async/173.ee70b493.js",
+            "__mf/js/async/75.905151a5.js",
+            "__mf/js/async/503.28e7e4f1.js",
+            "__mf/js/async/740.b86dfa00.js",
+            "__mf/js/async/981.3ecbf5ea.js"
+          ]
+        },
+        "css": {
+          "sync": [],
+          "async": [
+            "__mf/css/async/263.80005a4a.css",
+            "__mf/css/async/341.80005a4a.css"
+          ]
+        }
+      }
+    }
+  ]
+}

@@ -110,6 +110,21 @@ func (d *DAO) Get(kind modelV1.Kind, metadata modelAPI.Metadata, entity modelAPI
 	return nil
 }
 
+func (d *DAO) GetIDAndType(kind modelV1.Kind, metadata modelAPI.Metadata) (int64, string, error) {
+
+	return 0, "", nil
+}
+
+func (d *DAO) GetProjectID(metadata modelAPI.Metadata) (int64, error) {
+
+	return 0, nil
+}
+
+func (d *DAO) GetFolderID(metadata modelAPI.Metadata) (int64, error) {
+
+	return 0, nil
+}
+
 func (d *DAO) RawMetadataQuery(_ databaseModel.Query, _ modelV1.Kind) ([]json.RawMessage, error) {
 	return nil, fmt.Errorf("raw metadata query not implemented")
 }

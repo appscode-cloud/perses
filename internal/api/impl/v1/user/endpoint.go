@@ -19,6 +19,8 @@ import (
 	"fmt"
 	"net/http"
 
+	databaseModel "github.com/perses/perses/internal/api/database/model"
+
 	"github.com/labstack/echo/v4"
 	"github.com/perses/perses/internal/api/authorization"
 	"github.com/perses/perses/internal/api/interface"
@@ -37,9 +39,9 @@ type endpoint struct {
 	caseSensitive bool
 }
 
-func NewEndpoint(service user.Service, authz authorization.Authorization, disableSignUp bool, readonly bool, caseSensitive bool) route.Endpoint {
+func NewEndpoint(service user.Service, authz authorization.Authorization, disableSignUp bool, readonly bool, caseSensitive bool, dao databaseModel.DAO) route.Endpoint {
 	return &endpoint{
-		toolbox:       toolbox.New[*v1.User, *v1.PublicUser, *user.Query](service, authz, v1.KindUser, caseSensitive),
+		toolbox:       toolbox.New[*v1.User, *v1.PublicUser, *user.Query](service, authz, v1.KindUser, caseSensitive, dao),
 		authz:         authz,
 		readonly:      readonly,
 		disableSignUp: disableSignUp,
@@ -48,6 +50,8 @@ func NewEndpoint(service user.Service, authz authorization.Authorization, disabl
 }
 
 func (e *endpoint) CollectRoutes(g *route.Group) {
+	// Define the prefix with owner parameter
+	//ownerPrefix := fmt.Sprintf("/%s/:%s", utils.PathOwner, utils.ParamOwner)
 	group := g.Group(fmt.Sprintf("/%s", utils.PathUser))
 
 	if !e.readonly {
@@ -60,6 +64,8 @@ func (e *endpoint) CollectRoutes(g *route.Group) {
 	group.GET("", e.List, false)
 	group.GET(fmt.Sprintf("/:%s", utils.ParamName), e.Get, false)
 	group.GET(fmt.Sprintf("/:%s/permissions", utils.ParamName), e.GetPermissions, false)
+
+	group.GET(fmt.Sprintf("/:%s/orgs", utils.ParamName), e.GetOrgs, false)
 }
 
 func (e *endpoint) Create(ctx echo.Context) error {
@@ -102,4 +108,9 @@ func (e *endpoint) GetPermissions(ctx echo.Context) error {
 		return err
 	}
 	return ctx.JSON(http.StatusOK, permissions)
+}
+
+func (e *endpoint) GetOrgs(ctx echo.Context) error {
+	q := &user.Query{}
+	return e.toolbox.List(ctx, q)
 }

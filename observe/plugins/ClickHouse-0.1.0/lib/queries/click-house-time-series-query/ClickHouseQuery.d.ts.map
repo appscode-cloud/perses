@@ -1,0 +1,1 @@
+{"version":3,"file":"ClickHouseQuery.d.ts","sourceRoot":"","sources":["../../../../src/queries/click-house-time-series-query/ClickHouseQuery.tsx"],"names":[],"mappings":"AAaA,OAAO,EAAE,qBAAqB,EAAkB,MAAM,2BAA2B,CAAC;AAGlF,OAAO,EAAE,6BAA6B,EAAE,MAAM,2BAA2B,CAAC;AAE1E,eAAO,MAAM,yBAAyB,EAAE,qBAAqB,CAAC,6BAA6B,CAW1F,CAAC"}

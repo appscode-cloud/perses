@@ -110,6 +110,14 @@ func (s *service) Get(parameters apiInterface.Parameters) (*v1.PublicSecret, err
 	return v1.NewPublicSecret(scrt), nil
 }
 
+func (s *service) GetByNameAndUser(parameters apiInterface.Parameters) (*v1.PublicSecret, error) {
+	scrt, err := s.dao.Get(parameters.Project, parameters.Name)
+	if err != nil {
+		return nil, err
+	}
+	return v1.NewPublicSecret(scrt), nil
+}
+
 func (s *service) List(q *secret.Query, params apiInterface.Parameters) ([]*v1.PublicSecret, error) {
 	query, err := manageQuery(q, params)
 	if err != nil {

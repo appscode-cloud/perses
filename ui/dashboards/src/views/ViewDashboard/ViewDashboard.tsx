@@ -45,17 +45,16 @@ export function ViewDashboard(props: ViewDashboardProps): ReactElement {
     dashboardResource,
     datasourceApi,
     externalVariableDefinitions,
+    dashboardTitleComponent,
     emptyDashboardProps,
+    onSave,
+    onDiscard,
+    initialVariableIsSticky,
     isReadonly,
     isVariableEnabled,
     isDatasourceEnabled,
     isEditing,
     isCreating,
-    isInitialVariableSticky,
-    isLeavingConfirmDialogEnabled,
-    dashboardTitleComponent,
-    onSave,
-    onDiscard,
     sx,
     ...others
   } = props;
@@ -105,8 +104,8 @@ export function ViewDashboard(props: ViewDashboardProps): ReactElement {
     <DatasourceStoreProvider dashboardResource={dashboardResource} datasourceApi={datasourceApi}>
       <DashboardProviderWithQueryParams
         initialState={{
-          isEditMode: !!isEditing,
           dashboardResource,
+          isEditMode: !!isEditing,
         }}
       >
         <TimeRangeProviderWithQueryParams
@@ -134,16 +133,15 @@ export function ViewDashboard(props: ViewDashboardProps): ReactElement {
               <ErrorBoundary FallbackComponent={ErrorAlert}>
                 <DashboardApp
                   dashboardResource={dashboardResource}
+                  dashboardTitleComponent={dashboardTitleComponent}
                   emptyDashboardProps={emptyDashboardProps}
+                  onSave={onSave}
+                  onDiscard={onDiscard}
+                  initialVariableIsSticky={initialVariableIsSticky}
                   isReadonly={isReadonly}
                   isVariableEnabled={isVariableEnabled}
                   isDatasourceEnabled={isDatasourceEnabled}
                   isCreating={isCreating}
-                  isInitialVariableSticky={isInitialVariableSticky}
-                  isLeavingConfirmDialogEnabled={isLeavingConfirmDialogEnabled}
-                  dashboardTitleComponent={dashboardTitleComponent}
-                  onSave={onSave}
-                  onDiscard={onDiscard}
                 />
               </ErrorBoundary>
             </Box>

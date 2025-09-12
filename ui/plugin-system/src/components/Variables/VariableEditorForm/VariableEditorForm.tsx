@@ -11,17 +11,27 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { DispatchWithoutAction, ReactElement, useState } from 'react';
-import { Box, Typography, Switch, TextField, Grid, FormControlLabel, MenuItem, Stack, Divider } from '@mui/material';
+import React, { DispatchWithoutAction, ReactElement, useState } from 'react';
+import {
+  Box,
+  Typography,
+  Switch,
+  TextField,
+  Grid,
+  FormControlLabel,
+  MenuItem,
+  Stack,
+  ClickAwayListener,
+  Divider,
+} from '@mui/material';
 import { VariableDefinition, ListVariableDefinition, Action } from '@perses-dev/core';
 import { DiscardChangesConfirmationDialog, ErrorAlert, ErrorBoundary, FormActions } from '@perses-dev/components';
 import { Control, Controller, FormProvider, SubmitHandler, useForm, useFormContext, useWatch } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { getSubmitText, getTitleAction } from '../../../utils';
+import { VARIABLE_TYPES } from '../variable-model';
 import { PluginEditor } from '../../PluginEditor';
 import { useValidationSchemas } from '../../../context';
-import { VARIABLE_TYPES } from '../variable-model';
-import { useTimeRange } from '../../../runtime';
 import { VariableListPreview, VariablePreview } from './VariablePreview';
 
 function FallbackPreview(): ReactElement {
@@ -98,9 +108,7 @@ function ListVariableEditorForm({ action, control }: KindVariableEditorFormProps
    * having to re-fetch the values when the user is still editing the spec.
    */
   const [previewSpec, setPreviewSpec] = useState<ListVariableDefinition>(form.getValues() as ListVariableDefinition);
-  const { refresh } = useTimeRange();
   const refreshPreview = (): void => {
-    refresh();
     setPreviewSpec(form.getValues() as ListVariableDefinition);
   };
 
@@ -141,6 +149,11 @@ function ListVariableEditorForm({ action, control }: KindVariableEditorFormProps
         )}
 
         <Stack>
+          {/** Hack?: Cool technique to refresh the preview to simulate onBlur event */}
+          <ClickAwayListener onClickAway={() => refreshPreview()}>
+            <Box />
+          </ClickAwayListener>
+          {/** **/}
           <ErrorBoundary FallbackComponent={ErrorAlert}>
             <Controller
               control={control}

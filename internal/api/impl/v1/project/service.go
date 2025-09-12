@@ -78,11 +78,11 @@ func (s *service) create(ctx echo.Context, entity *v1.Project) (*v1.Project, err
 	}
 
 	// If authorization is enabled, permissions to the creator need to be given
-	if s.authz.IsEnabled() {
-		if err := s.createProjectRoleAndRoleBinding(ctx, entity.Metadata.Name); err != nil {
-			return nil, err
-		}
-	}
+	//if s.authz.IsEnabled() {
+	//	if err := s.createProjectRoleAndRoleBinding(ctx, entity.Metadata.Name); err != nil {
+	//		return nil, err
+	//	}
+	//}
 	return entity, nil
 }
 
@@ -170,16 +170,20 @@ func (s *service) Delete(_ echo.Context, parameters apiInterface.Parameters) err
 		logrus.WithError(err).Error("unable to delete all roles")
 		return err
 	}
-	if s.authz.IsEnabled() {
-		if err := s.authz.RefreshPermissions(); err != nil {
-			return err
-		}
-	}
+	//if s.authz.IsEnabled() {
+	//	if err := s.authz.RefreshPermissions(); err != nil {
+	//		return err
+	//	}
+	//}
 	return s.dao.Delete(parameters.Name)
 }
 
 func (s *service) Get(parameters apiInterface.Parameters) (*v1.Project, error) {
 	return s.dao.Get(parameters.Name)
+}
+
+func (s *service) GetByNameAndUser(parameters apiInterface.Parameters) (*v1.Project, error) {
+	return s.dao.GetByNameAndUser(parameters.Name, parameters.UserName)
 }
 
 func (s *service) List(q *project.Query, _ apiInterface.Parameters) ([]*v1.Project, error) {
