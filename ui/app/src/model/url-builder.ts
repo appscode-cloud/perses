@@ -22,11 +22,16 @@ export type URLParams = {
   pathSuffix?: string[];
   queryParams?: URLSearchParams;
   apiPrefix?: string;
+  owner?: string;
 };
 
 export default function buildURL(params: URLParams): string {
   const basePath = getBasePathName();
   let url = params.apiPrefix === undefined ? apiPrefix : params.apiPrefix;
+
+  if (params.owner !== undefined && params.owner.length > 0) {
+    url = `${url}/owners/${encodeURIComponent(params.owner)}`;
+  }
   if (params.project !== undefined && params.project.length > 0) {
     url = `${url}/projects/${encodeURIComponent(params.project)}`;
   }
