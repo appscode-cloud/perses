@@ -40,6 +40,22 @@ type Metadata struct {
 	// +kubebuilder:validation:Optional
 	UpdatedAt time.Time `json:"updatedAt" yaml:"updatedAt"`
 	Version   uint64    `json:"version" yaml:"version"`
+
+	UserID     int64  `json:"userID" yaml:"userID"`
+	ProjectID  int64  `json:"projectID" yaml:"projectID"`
+	FolderID   int64  `json:"folderID" yaml:"folderID"`
+	FolderName string `json:"folderName,omitempty" yaml:"folderName"`
+
+	// types: [user, org]
+	UserType string `json:"userType,omitempty" yaml:"userType"`
+}
+
+func (m *Metadata) GetUserType() string {
+	return m.UserType
+}
+
+func (m *Metadata) GetProjectID() int64 {
+	return m.ProjectID
 }
 
 func (m *Metadata) CreateNow() {
@@ -61,10 +77,22 @@ func (m *Metadata) GetName() string {
 	return m.Name
 }
 
+func (m *Metadata) GetUserID() int64 {
+	return m.UserID
+}
+
 func (m *Metadata) Flatten(sensitive bool) {
 	if !sensitive {
 		m.Name = strings.ToLower(m.Name)
 	}
+}
+
+func (m *Metadata) GetProject() string {
+	return ""
+}
+
+func (m *Metadata) GetFolderID() int64 {
+	return m.FolderID
 }
 
 func NewProjectMetadata(project string, name string) *ProjectMetadata {
@@ -141,6 +169,14 @@ type ProjectMetadata struct {
 	ProjectMetadataWrapper `json:",inline" yaml:",inline"`
 }
 
+func (pm *ProjectMetadata) GetUserType() string {
+	return pm.UserType
+}
+
+func (pm *ProjectMetadata) GetProjectID() int64 {
+	return pm.ProjectID
+}
+
 // This method is needed in the case of JSON otherwise parts of the fields are missed when unmarshalling
 func (pm *ProjectMetadata) UnmarshalJSON(data []byte) error {
 	// Call UnmarshalJSON methods of the embedded structs
@@ -183,11 +219,23 @@ func (pm *ProjectMetadata) GetName() string {
 	return pm.Name
 }
 
+func (pm *ProjectMetadata) GetUserID() int64 {
+	return 0
+}
+
+func (pm *ProjectMetadata) GetFolderID() int64 {
+	return pm.FolderID
+}
+
 func (pm *ProjectMetadata) Flatten(sensitive bool) {
 	if !sensitive {
 		pm.Name = strings.ToLower(pm.Name)
 		pm.Project = strings.ToLower(pm.Project)
 	}
+}
+
+func (pm *ProjectMetadata) GetProject() string {
+	return pm.Project
 }
 
 func (pm *ProjectMetadata) Update(previous ProjectMetadata) {

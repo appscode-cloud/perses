@@ -27,9 +27,9 @@ import (
 
 func (e *endpoint) proxyDashboardDatasource(ctx echo.Context, projectName, dtsName string, spec v1.DatasourceSpec) error {
 	path := ctx.Param("*")
-
+	ownerName := ctx.Param(utils.ParamOwner)
 	pr, err := newProxy(dtsName, projectName, spec, path, e.crypto, func(name string) (*v1.SecretSpec, error) {
-		return e.getProjectSecret(projectName, dtsName, name)
+		return e.getProjectSecret(ownerName, projectName, dtsName, name)
 	})
 	if err != nil {
 		return err
@@ -76,7 +76,8 @@ func (e *endpoint) proxySavedDashboardDatasource(ctx echo.Context) error {
 }
 
 func (e *endpoint) getDashboardDatasource(projectName string, dashboardName string, name string) (v1.DatasourceSpec, error) {
-	db, err := e.dashboard.Get(projectName, dashboardName)
+	// Fix me: use ProjectID, folderID
+	db, err := e.dashboard.Get(0, 0, dashboardName)
 	if err != nil {
 		if databaseModel.IsKeyNotFound(err) {
 			logrus.Debugf("unable to find the Dashboard %q in project %q", dashboardName, projectName)

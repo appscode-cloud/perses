@@ -1,0 +1,66 @@
+security:
+  readonly: false
+  encryption_key: "=tW$56zytgB&3jN2E%7-+qrGZE?v6LCc"
+  enable_auth: true
+  authorization:
+    guest_permissions:
+      - actions:
+          - "*"
+        scopes:
+          - "*"
+      - actions:
+          - create
+        scopes:
+          - Project
+          - Dashboard
+  authentication:
+    providers:
+      enable_native: true
+    access_token_ttl: 24h
+    refresh_token_ttl: 48h
+database:
+  sql:
+    driver: "pg"
+    user: "postgres"
+    password: "postgres"
+    db_name: "bb"
+    addr: "localhost:5432"
+    allow_native_passwords: true
+
+api_prefix: "/observe"
+#provisioning:
+#  folders:
+#    - "dev/data"
+
+schemas:
+  panels_path: "cue/schemas/panels"
+  queries_path: "cue/schemas/queries"
+  datasources_path: "cue/schemas/datasources"
+  variables_path: "cue/schemas/variables"
+  interval: "5m"
+
+ephemeral_dashboard:
+  enable: true
+  cleanup_interval: 1h
+
+frontend:
+  explorer:
+    enable: true
+
+  important_dashboards:
+    - project: "perses"
+      dashboard: "Demo"
+    - project: "perses"
+      dashboard: "NodeExporter"
+    - project: "perses"
+      dashboard: "Benchmark"
+    - project: "testing"
+      dashboard: "Defaults"
+    - project: "testing"
+      dashboard: "StatChartPanel"
+    - project: "testing"
+      dashboard: "MarkdownPanel"
+
+  information: |-
+    # Hello World
+    ## File Database setup

@@ -84,7 +84,7 @@ func (s *service) update(entity *v1.Datasource, parameters apiInterface.Paramete
 		return nil, apiInterface.HandleBadRequestError("metadata.project and the project name in the http path request don't match")
 	}
 	// find the previous version of the Datasource
-	oldEntity, err := s.dao.Get(parameters.Project, parameters.Name)
+	oldEntity, err := s.dao.Get(entity.Metadata.ProjectID, parameters.Name)
 	if err != nil {
 		return nil, err
 	}
@@ -97,17 +97,26 @@ func (s *service) update(entity *v1.Datasource, parameters apiInterface.Paramete
 }
 
 func (s *service) Delete(_ echo.Context, parameters apiInterface.Parameters) error {
-	return s.dao.Delete(parameters.Project, parameters.Name)
+	return s.dao.Delete(parameters.ProjectID, parameters.Name)
 }
 
 func (s *service) Get(parameters apiInterface.Parameters) (*v1.Datasource, error) {
-	return s.dao.Get(parameters.Project, parameters.Name)
+	return s.dao.Get(parameters.ProjectID, parameters.Name)
 }
+
+func (s *service) GetByNameAndUser(parameters apiInterface.Parameters) (*v1.Datasource, error) {
+	return s.dao.Get(parameters.ProjectID, parameters.Name)
+}
+
 func (s *service) List(q *datasource.Query, params apiInterface.Parameters) ([]*v1.Datasource, error) {
 	query, err := manageQuery(q, params)
 	if err != nil {
 		return nil, err
 	}
+	if params.ProjectID == 0 {
+		return nil, fmt.Errorf("project is missing")
+	}
+	query.ProjectID = params.ProjectID
 	dtsList, err := s.dao.List(query)
 	if err != nil {
 		return nil, err

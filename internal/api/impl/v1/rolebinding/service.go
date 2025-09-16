@@ -129,6 +129,10 @@ func (s *service) Get(parameters apiInterface.Parameters) (*v1.RoleBinding, erro
 	return s.dao.Get(parameters.Project, parameters.Name)
 }
 
+func (s *service) GetByNameAndUser(parameters apiInterface.Parameters) (*v1.RoleBinding, error) {
+	return s.dao.Get(parameters.Project, parameters.Name)
+}
+
 func (s *service) List(q *rolebinding.Query, params apiInterface.Parameters) ([]*v1.RoleBinding, error) {
 	query, err := manageQuery(q, params)
 	if err != nil {

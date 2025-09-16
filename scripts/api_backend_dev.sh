@@ -10,7 +10,7 @@ make build-api
 if [[ $1 == "--e2e" ]]; then
   # deactivate the permission because e2e tests doesn't support yet the JWT cookies
   previous_file="./dev/config.previous.yaml"
-  config_file="./dev/config.yaml"
+  config_file="./dev/config-pg.yaml"
   cp ${config_file} ${previous_file}
   sed 's/enable_auth: true/enable_auth: false/g' ${previous_file} >${config_file}
   rm ${previous_file}
@@ -19,4 +19,4 @@ fi
 # Run backend server
 echo ">> start the api server"
 echo '>> Log in with user: `admin` and password: `password`'
-./bin/perses --config ./dev/config.yaml --log.level=debug
+./bin/perses --config ./dev/config-pg.yaml --log.level=debug
