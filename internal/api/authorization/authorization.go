@@ -17,6 +17,7 @@ import (
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
 	"github.com/perses/perses/internal/api/authorization/native"
+	"github.com/perses/perses/internal/api/interface/v1/accesstoken"
 	"github.com/perses/perses/internal/api/interface/v1/globalrole"
 	"github.com/perses/perses/internal/api/interface/v1/globalrolebinding"
 	"github.com/perses/perses/internal/api/interface/v1/role"
@@ -63,10 +64,10 @@ type Authorization interface {
 	RefreshPermissions() error
 }
 
-func New(userDAO user.DAO, roleDAO role.DAO, roleBindingDAO rolebinding.DAO,
+func New(userDAO user.DAO, accessTokenDAO accesstoken.DAO, roleDAO role.DAO, roleBindingDAO rolebinding.DAO,
 	globalRoleDAO globalrole.DAO, globalRoleBindingDAO globalrolebinding.DAO, conf config.Config) (Authorization, error) {
 	if !conf.Security.EnableAuth {
 		return &disabledImpl{}, nil
 	}
-	return native.New(userDAO, roleDAO, roleBindingDAO, globalRoleDAO, globalRoleBindingDAO, conf)
+	return native.New(userDAO, accessTokenDAO, roleDAO, roleBindingDAO, globalRoleDAO, globalRoleBindingDAO, conf)
 }
