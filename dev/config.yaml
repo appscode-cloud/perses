@@ -5,7 +5,7 @@ security:
   authorization:
     guest_permissions:
       - actions:
-          - read
+          - "*"
         scopes:
           - "*"
       - actions:
@@ -15,6 +15,8 @@ security:
   authentication:
     providers:
       enable_native: true
+
+#api_prefix: "/observe"
 
 database:
   file:
@@ -53,4 +55,5 @@ frontend:
     ## File Database setup
 
 plugin:
-  enable_dev: true
+  enable_dev: false
+#  path: observe/plugins
