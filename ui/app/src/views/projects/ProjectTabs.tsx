@@ -11,11 +11,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { Box, BoxProps, Stack } from '@mui/material';
+import { AccordionDetails, AccordionSummary, Box, BoxProps, Link, Stack } from '@mui/material';
 import { ReactElement, SyntheticEvent, useCallback, useMemo, useState } from 'react';
 import ViewDashboardIcon from 'mdi-material-ui/ViewDashboard';
 import CodeJsonIcon from 'mdi-material-ui/CodeJson';
 import DatabaseIcon from 'mdi-material-ui/Database';
+import FolderIcon from 'mdi-material-ui/Folder';
 import ShieldIcon from 'mdi-material-ui/Shield';
 import ShieldAccountIcon from 'mdi-material-ui/ShieldAccount';
 import KeyIcon from 'mdi-material-ui/Key';
@@ -28,8 +29,10 @@ import {
   RoleResource,
   RoleBindingResource,
   SecretResource,
+  DashboardResource,
+  DashboardSpec,
 } from '@perses-dev/core';
-import { useNavigate, useParams } from 'react-router-dom';
+import { Link as RouterLink, useNavigate, useParams } from 'react-router-dom';
 import { useSnackbar } from '@perses-dev/components';
 import { CRUDButton, CRUDButtonProps } from '../../components/CRUDButton/CRUDButton';
 import { CreateDashboardDialog } from '../../components/dialogs';
@@ -61,7 +64,11 @@ import { ProjectDatasources } from './tabs/ProjectDatasources';
 import { ProjectSecrets } from './tabs/ProjectSecrets';
 import { ProjectRoles } from './tabs/ProjectRoles';
 import { ProjectRoleBindings } from './tabs/ProjectRoleBindings';
+import { Accordion } from '@mui/material';
+import { ChevronDown } from 'mdi-material-ui';
+import { DashboardList } from '../../components/DashboardList/DashboardList';
 
+const foldersTabIndex = 'folders';
 const dashboardsTabIndex = 'dashboards';
 const ephemeralDashboardsTabIndex = 'ephemeraldashboards';
 const datasourcesTabIndex = 'datasources';
@@ -408,6 +415,39 @@ function a11yProps(index: string): Record<string, unknown> {
   };
 }
 
+interface FolderAccordionProps {
+  folderName: string;
+  dashboards: DashboardResource[];
+}
+
+export function FolderAccordion({ folderName, dashboards }: FolderAccordionProps): ReactElement {
+  const isEphemeralDashboardEnabled = useIsEphemeralDashboardEnabled();
+
+  return (
+    <Accordion TransitionProps={{ unmountOnExit: true }}>
+      <AccordionSummary expandIcon={<ChevronDown />}>
+        <Stack direction="row" alignItems="center" gap={1}>
+          <FolderIcon sx={{ margin: 1 }} />
+          <Link component={RouterLink} to={`/folders/${folderName}`} variant="h3" underline="hover">
+            {folderName}
+          </Link>
+        </Stack>
+      </AccordionSummary>
+      <AccordionDetails sx={{ padding: 0 }}>
+        <DashboardList
+          dashboardList={dashboards}
+          hideToolbar={true}
+          initialState={{
+            pagination: { paginationModel: { pageSize: 25, page: 0 } },
+            columns: { columnVisibilityModel: { id: false, project: false, version: false } },
+          }}
+          isEphemeralDashboardEnabled={isEphemeralDashboardEnabled}
+        />
+      </AccordionDetails>
+    </Accordion>
+  );
+}
+
 interface DashboardVariableTabsProps {
   projectName: string;
   initialTab?: string;
@@ -426,7 +466,7 @@ export function ProjectTabs(props: DashboardVariableTabsProps): ReactElement {
   const { data } = useEphemeralDashboardList(projectName);
   const hasEphemeralDashboards = (data ?? []).length > 0;
 
-  const [value, setValue] = useState((initialTab ?? dashboardsTabIndex).toLowerCase());
+  const [value, setValue] = useState((initialTab ?? foldersTabIndex).toLowerCase());
 
   const hasDashboardReadPermission = useHasPermission('read', projectName, 'Dashboard');
   const hasDatasourceReadPermission = useHasPermission('read', projectName, 'Datasource');
@@ -435,6 +475,42 @@ export function ProjectTabs(props: DashboardVariableTabsProps): ReactElement {
   const hasRoleBindingReadPermission = useHasPermission('read', projectName, 'RoleBinding');
   const hasSecretReadPermission = useHasPermission('read', projectName, 'Secret');
   const hasVariableReadPermission = useHasPermission('read', projectName, 'Variable');
+
+  // Temporary dummy folder data
+  const folders: FolderAccordionProps[] = [
+    {
+      folderName: 'Monitoring',
+      dashboards: [
+        {
+          kind: 'Dashboard',
+          metadata: {
+            name: 'r',
+            createdAt: '2025-07-29T04:17:20.048160094Z',
+            updatedAt: '2025-07-29T05:10:57.783015516Z',
+            version: 7,
+            project: 'd1',
+          },
+          spec: {} as DashboardSpec,
+        },
+      ],
+    },
+    {
+      folderName: 'Business Metrics',
+      dashboards: [
+        {
+          kind: 'Dashboard',
+          metadata: {
+            name: 'r',
+            createdAt: '2025-07-29T04:17:20.048160094Z',
+            updatedAt: '2025-07-29T05:10:57.783015516Z',
+            version: 7,
+            project: 'd1',
+          },
+          spec: {} as DashboardSpec,
+        },
+      ],
+    },
+  ];
 
   const handleChange = (event: SyntheticEvent, newTabIndex: string): void => {
     setValue(newTabIndex);
@@ -457,6 +533,14 @@ export function ProjectTabs(props: DashboardVariableTabsProps): ReactElement {
           allowScrollButtonsMobile
           aria-label="Project tabs"
         >
+          <MenuTab
+            label="Folders"
+            icon={<FolderIcon />}
+            iconPosition="start"
+            {...a11yProps(foldersTabIndex)}
+            value={foldersTabIndex}
+            disabled={!hasDashboardReadPermission}
+          />
           <MenuTab
             label="Dashboards"
             icon={<ViewDashboardIcon />}
@@ -503,29 +587,18 @@ export function ProjectTabs(props: DashboardVariableTabsProps): ReactElement {
             value={secretsTabIndex}
             disabled={!hasSecretReadPermission}
           />
-          {isAuthEnabled && (
-            <MenuTab
-              label="Roles"
-              icon={<ShieldIcon />}
-              iconPosition="start"
-              {...a11yProps(rolesTabIndex)}
-              value={rolesTabIndex}
-              disabled={!hasRoleReadPermission}
-            />
-          )}
-          {isAuthEnabled && (
-            <MenuTab
-              label="Role Bindings"
-              icon={<ShieldAccountIcon />}
-              iconPosition="start"
-              {...a11yProps(roleBindingsTabIndex)}
-              value={roleBindingsTabIndex}
-              disabled={!hasRoleBindingReadPermission}
-            />
-          )}
         </MenuTabs>
         {!isMobileSize && <TabButton index={value} projectName={projectName} />}
       </Stack>
+      <TabPanel value={value} index={foldersTabIndex} sx={{ marginTop: isMobileSize ? 1 : 2 }}>
+        {/* Instead of ProjectDashboards, render folder accordion list */}
+        <Box>
+          {folders.map((folder) => (
+            <FolderAccordion key={folder.folderName} folderName={folder.folderName} dashboards={folder.dashboards} />
+          ))}
+        </Box>
+      </TabPanel>
+
       {isMobileSize && <TabButton index={value} projectName={projectName} fullWidth sx={{ marginTop: 0.5 }} />}
       <TabPanel value={value} index={dashboardsTabIndex} sx={{ marginTop: isMobileSize ? 1 : 2 }}>
         <ProjectDashboards projectName={projectName} id="main-dashboard-list" />
