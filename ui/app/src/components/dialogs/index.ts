@@ -13,6 +13,7 @@
 
 export * from './CreateDashboardDialog';
 export * from './CreateProjectDialog';
+export * from './CreateFolderDialog';
 export * from './DeleteResourceDialog';
 export * from './RenameDashboardDialog';
 export * from './RenameResourceDialog';
