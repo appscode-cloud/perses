@@ -31,11 +31,12 @@ import {
   SecretResource,
   DashboardResource,
   DashboardSpec,
+  FolderResource,
 } from '@perses-dev/core';
 import { Link as RouterLink, useNavigate, useParams } from 'react-router-dom';
 import { useSnackbar } from '@perses-dev/components';
 import { CRUDButton, CRUDButtonProps } from '../../components/CRUDButton/CRUDButton';
-import { CreateDashboardDialog } from '../../components/dialogs';
+import { CreateDashboardDialog, CreateFolderDialog } from '../../components/dialogs';
 import { VariableDrawer } from '../../components/variable/VariableDrawer';
 import { DatasourceDrawer } from '../../components/datasource/DatasourceDrawer';
 import { useCreateDatasourceMutation } from '../../model/datasource-client';
@@ -67,6 +68,7 @@ import { ProjectRoleBindings } from './tabs/ProjectRoleBindings';
 import { Accordion } from '@mui/material';
 import { ChevronDown } from 'mdi-material-ui';
 import { DashboardList } from '../../components/DashboardList/DashboardList';
+import { useCreateFolderMutation } from '../../model/folder-client';
 
 const foldersTabIndex = 'folders';
 const dashboardsTabIndex = 'dashboards';
@@ -93,6 +95,7 @@ function TabButton({ index, projectName, ...props }: TabButtonProps): ReactEleme
   const createVariableMutation = useCreateVariableMutation(projectName);
 
   const [isCreateDashboardDialogOpened, setCreateDashboardDialogOpened] = useState(false);
+  const [isCreateFolderDialogOpened, setCreateFolderDialogOpened] = useState(false);
   const [isDatasourceDrawerOpened, setDatasourceDrawerOpened] = useState(false);
   const [isRoleDrawerOpened, setRoleDrawerOpened] = useState(false);
   const [isRoleBindingDrawerOpened, setRoleBindingDrawerOpened] = useState(false);
@@ -104,6 +107,26 @@ function TabButton({ index, projectName, ...props }: TabButtonProps): ReactEleme
 
   const handleDashboardCreation = (dashboardSelector: DashboardSelector): void => {
     navigate(`/projects/${dashboardSelector.project}/dashboard/new`, { state: { name: dashboardSelector.dashboard } });
+  };
+
+  const { mutate: createFolder } = useCreateFolderMutation((data) => {
+    console.log('Folder created!', data);
+    setCreateFolderDialogOpened(false);
+  });
+
+  const handleFolderCreation = (folderInfo: { project: string; folder: string }) => {
+    const folder: FolderResource = {
+      kind: 'Folder',
+      metadata: {
+        project: folderInfo.project,
+        name: folderInfo.folder,
+      },
+      spec: {
+        description: '',
+      },
+    };
+
+    createFolder(folder);
   };
 
   const { data } = useRoleList(projectName);
@@ -192,6 +215,28 @@ function TabButton({ index, projectName, ...props }: TabButtonProps): ReactEleme
   );
 
   switch (index) {
+    case foldersTabIndex:
+      return (
+        <>
+          <CRUDButton
+            action="create"
+            scope="Folder"
+            project={projectName}
+            variant="contained"
+            onClick={() => setCreateFolderDialogOpened(true)}
+            {...props}
+          >
+            Add Folder
+          </CRUDButton>
+          <CreateFolderDialog
+            open={isCreateFolderDialogOpened}
+            projects={[{ kind: 'Project', metadata: { name: projectName }, spec: {} }]}
+            hideProjectSelect={true}
+            onClose={() => setCreateFolderDialogOpened(false)}
+            onSuccess={handleFolderCreation}
+          />
+        </>
+      );
     case dashboardsTabIndex:
       return (
         <>
