@@ -1,24 +1,47 @@
-// Copyright 2023 The Perses Authors
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
-//
-// http://www.apache.org/licenses/LICENSE-2.0
-//
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
-
-import { useMutation, UseMutationResult, useQueryClient } from '@tanstack/react-query';
-import { HTTPMethodPOST, HTTPHeader } from './http';
+import { useMutation, UseMutationResult, useQuery, useQueryClient, UseQueryResult } from '@tanstack/react-query';
+import { HTTPMethodPOST, HTTPHeader, HTTPMethodGET } from './http';
 import buildURL from './url-builder';
-import { fetchJson, FolderResource, StatusError } from '@perses-dev/core';
+import { fetchJson, FolderResource, DashboardResource, StatusError } from '@perses-dev/core';
 import { useAuthToken } from './auth-client';
+
+export interface FolderWithDashboards extends FolderResource {
+  dashboards: DashboardResource[];
+}
 
 // change this if Perses uses a different resource name for folders
 const folderResource = 'folders';
+
+export function createFolder(owner: string | undefined, entity: FolderResource): Promise<FolderResource> {
+  const url = buildURL({ resource: folderResource, project: entity.metadata.project, owner });
+  return fetchJson<FolderResource>(url, {
+    method: HTTPMethodPOST,
+    headers: HTTPHeader,
+    body: JSON.stringify(entity),
+  });
+}
+
+export function getFolders(owner: string | undefined, project?: string): Promise<FolderWithDashboards[]> {
+  const url = buildURL({ resource: folderResource, project, owner });
+  return fetchJson<FolderWithDashboards[]>(url, {
+    method: HTTPMethodGET,
+    headers: HTTPHeader,
+  });
+}
+
+export interface FolderListOptions {
+  project?: string;
+}
+
+export function useFolderList(options: FolderListOptions): UseQueryResult<FolderWithDashboards[], StatusError> {
+  const { data: decodedToken } = useAuthToken();
+  const owner = decodedToken?.sub;
+
+  return useQuery<FolderWithDashboards[], StatusError>({
+    queryKey: [folderResource, options.project],
+    queryFn: () => getFolders(owner, options.project),
+    ...options,
+  });
+}
 
 export function useCreateFolderMutation(
   onSuccess?: (data: FolderResource, variables: FolderResource) => Promise<unknown> | unknown
@@ -29,21 +52,8 @@ export function useCreateFolderMutation(
 
   return useMutation<FolderResource, StatusError, FolderResource>({
     mutationKey: [folderResource],
-    mutationFn: (folder) => {
-      return createFolder(owner, folder);
-    },
-    onSuccess: onSuccess,
-    onSettled: () => {
-      return queryClient.invalidateQueries({ queryKey: [folderResource] });
-    },
-  });
-}
-
-export function createFolder(owner: string | undefined, entity: FolderResource): Promise<FolderResource> {
-  const url = buildURL({ resource: folderResource, project: entity.metadata.project, owner });
-  return fetchJson<FolderResource>(url, {
-    method: HTTPMethodPOST,
-    headers: HTTPHeader,
-    body: JSON.stringify(entity),
+    mutationFn: (folder) => createFolder(owner, folder),
+    onSuccess,
+    onSettled: () => queryClient.invalidateQueries({ queryKey: [folderResource] }),
   });
 }
