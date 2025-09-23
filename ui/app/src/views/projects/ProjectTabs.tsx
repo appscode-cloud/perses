@@ -121,9 +121,6 @@ function TabButton({ index, projectName, ...props }: TabButtonProps): ReactEleme
         project: folderInfo.project,
         name: folderInfo.folder,
       },
-      spec: {
-        description: '',
-      },
     };
 
     createFolder(folder);
