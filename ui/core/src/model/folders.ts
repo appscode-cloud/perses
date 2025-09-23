@@ -8,11 +8,6 @@ import { ProjectMetadata } from './resource';
 export interface FolderResource {
   kind: 'Folder';
   metadata: ProjectMetadata;
-  spec: FolderSpec;
-}
-
-export interface FolderSpec {
-  description?: string;
 }
 
 export interface FolderSelector {
