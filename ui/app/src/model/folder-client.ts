@@ -15,6 +15,7 @@ import { useMutation, UseMutationResult, useQueryClient } from '@tanstack/react-
 import { HTTPMethodPOST, HTTPHeader } from './http';
 import buildURL from './url-builder';
 import { fetchJson, FolderResource, StatusError } from '@perses-dev/core';
+import { useAuthToken } from './auth-client';
 
 // change this if Perses uses a different resource name for folders
 const folderResource = 'folders';
@@ -23,11 +24,13 @@ export function useCreateFolderMutation(
   onSuccess?: (data: FolderResource, variables: FolderResource) => Promise<unknown> | unknown
 ): UseMutationResult<FolderResource, StatusError, FolderResource> {
   const queryClient = useQueryClient();
+  const { data: decodedToken } = useAuthToken();
+  const owner = decodedToken?.sub;
 
   return useMutation<FolderResource, StatusError, FolderResource>({
     mutationKey: [folderResource],
     mutationFn: (folder) => {
-      return createFolder(folder);
+      return createFolder(owner, folder);
     },
     onSuccess: onSuccess,
     onSettled: () => {
@@ -36,8 +39,8 @@ export function useCreateFolderMutation(
   });
 }
 
-export function createFolder(entity: FolderResource): Promise<FolderResource> {
-  const url = buildURL({ resource: folderResource, project: entity.metadata.project });
+export function createFolder(owner: string | undefined, entity: FolderResource): Promise<FolderResource> {
+  const url = buildURL({ resource: folderResource, project: entity.metadata.project, owner });
   return fetchJson<FolderResource>(url, {
     method: HTTPMethodPOST,
     headers: HTTPHeader,
