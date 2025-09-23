@@ -65,10 +65,9 @@ import { ProjectDatasources } from './tabs/ProjectDatasources';
 import { ProjectSecrets } from './tabs/ProjectSecrets';
 import { ProjectRoles } from './tabs/ProjectRoles';
 import { ProjectRoleBindings } from './tabs/ProjectRoleBindings';
-import { Accordion } from '@mui/material';
-import { ChevronDown } from 'mdi-material-ui';
-import { DashboardList } from '../../components/DashboardList/DashboardList';
+
 import { useCreateFolderMutation } from '../../model/folder-client';
+import { ProjectFolders } from './tabs/ProjectFolders';
 
 const foldersTabIndex = 'folders';
 const dashboardsTabIndex = 'dashboards';
@@ -457,39 +456,6 @@ function a11yProps(index: string): Record<string, unknown> {
   };
 }
 
-interface FolderAccordionProps {
-  folderName: string;
-  dashboards: DashboardResource[];
-}
-
-export function FolderAccordion({ folderName, dashboards }: FolderAccordionProps): ReactElement {
-  const isEphemeralDashboardEnabled = useIsEphemeralDashboardEnabled();
-
-  return (
-    <Accordion TransitionProps={{ unmountOnExit: true }}>
-      <AccordionSummary expandIcon={<ChevronDown />}>
-        <Stack direction="row" alignItems="center" gap={1}>
-          <FolderIcon sx={{ margin: 1 }} />
-          <Link component={RouterLink} to={`/folders/${folderName}`} variant="h3" underline="hover">
-            {folderName}
-          </Link>
-        </Stack>
-      </AccordionSummary>
-      <AccordionDetails sx={{ padding: 0 }}>
-        <DashboardList
-          dashboardList={dashboards}
-          hideToolbar={true}
-          initialState={{
-            pagination: { paginationModel: { pageSize: 25, page: 0 } },
-            columns: { columnVisibilityModel: { id: false, project: false, version: false } },
-          }}
-          isEphemeralDashboardEnabled={isEphemeralDashboardEnabled}
-        />
-      </AccordionDetails>
-    </Accordion>
-  );
-}
-
 interface DashboardVariableTabsProps {
   projectName: string;
   initialTab?: string;
@@ -513,46 +479,8 @@ export function ProjectTabs(props: DashboardVariableTabsProps): ReactElement {
   const hasDashboardReadPermission = useHasPermission('read', projectName, 'Dashboard');
   const hasDatasourceReadPermission = useHasPermission('read', projectName, 'Datasource');
   const hasEphemeralDashboardReadPermission = useHasPermission('read', projectName, 'EphemeralDashboard');
-  const hasRoleReadPermission = useHasPermission('read', projectName, 'Role');
-  const hasRoleBindingReadPermission = useHasPermission('read', projectName, 'RoleBinding');
   const hasSecretReadPermission = useHasPermission('read', projectName, 'Secret');
   const hasVariableReadPermission = useHasPermission('read', projectName, 'Variable');
-
-  // Temporary dummy folder data
-  const folders: FolderAccordionProps[] = [
-    {
-      folderName: 'Monitoring',
-      dashboards: [
-        {
-          kind: 'Dashboard',
-          metadata: {
-            name: 'r',
-            createdAt: '2025-07-29T04:17:20.048160094Z',
-            updatedAt: '2025-07-29T05:10:57.783015516Z',
-            version: 7,
-            project: 'd1',
-          },
-          spec: {} as DashboardSpec,
-        },
-      ],
-    },
-    {
-      folderName: 'Business Metrics',
-      dashboards: [
-        {
-          kind: 'Dashboard',
-          metadata: {
-            name: 'r',
-            createdAt: '2025-07-29T04:17:20.048160094Z',
-            updatedAt: '2025-07-29T05:10:57.783015516Z',
-            version: 7,
-            project: 'd1',
-          },
-          spec: {} as DashboardSpec,
-        },
-      ],
-    },
-  ];
 
   const handleChange = (event: SyntheticEvent, newTabIndex: string): void => {
     setValue(newTabIndex);
@@ -633,12 +561,7 @@ export function ProjectTabs(props: DashboardVariableTabsProps): ReactElement {
         {!isMobileSize && <TabButton index={value} projectName={projectName} />}
       </Stack>
       <TabPanel value={value} index={foldersTabIndex} sx={{ marginTop: isMobileSize ? 1 : 2 }}>
-        {/* Instead of ProjectDashboards, render folder accordion list */}
-        <Box>
-          {folders.map((folder) => (
-            <FolderAccordion key={folder.folderName} folderName={folder.folderName} dashboards={folder.dashboards} />
-          ))}
-        </Box>
+        <ProjectFolders projectName={projectName} id="project-folder-list" />
       </TabPanel>
 
       {isMobileSize && <TabButton index={value} projectName={projectName} fullWidth sx={{ marginTop: 0.5 }} />}
