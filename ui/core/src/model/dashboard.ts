@@ -37,5 +37,6 @@ export interface DashboardSpec {
 
 export interface DashboardSelector {
   project: string;
+  folder: string;
   dashboard: string;
 }

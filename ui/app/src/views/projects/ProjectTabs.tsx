@@ -66,7 +66,7 @@ import { ProjectSecrets } from './tabs/ProjectSecrets';
 import { ProjectRoles } from './tabs/ProjectRoles';
 import { ProjectRoleBindings } from './tabs/ProjectRoleBindings';
 
-import { useCreateFolderMutation } from '../../model/folder-client';
+import { useCreateFolderMutation, useFolderList } from '../../model/folder-client';
 import { ProjectFolders } from './tabs/ProjectFolders';
 
 const foldersTabIndex = 'folders';
@@ -103,13 +103,15 @@ function TabButton({ index, projectName, ...props }: TabButtonProps): ReactEleme
 
   const isReadonly = useIsReadonly();
   const isEphemeralDashboardEnabled = useIsEphemeralDashboardEnabled();
+  const { data: folders = [], isLoading } = useFolderList({ project: projectName });
 
   const handleDashboardCreation = (dashboardSelector: DashboardSelector): void => {
-    navigate(`/projects/${dashboardSelector.project}/dashboard/new`, { state: { name: dashboardSelector.dashboard } });
+    navigate(`/projects/${dashboardSelector.project}/folders/${dashboardSelector.folder}/dashboard/new`, {
+      state: { name: dashboardSelector.dashboard },
+    });
   };
 
   const { mutate: createFolder } = useCreateFolderMutation((data) => {
-    console.log('Folder created!', data);
     setCreateFolderDialogOpened(false);
   });
 
@@ -249,6 +251,7 @@ function TabButton({ index, projectName, ...props }: TabButtonProps): ReactEleme
           <CreateDashboardDialog
             open={isCreateDashboardDialogOpened}
             projects={[{ kind: 'Project', metadata: { name: projectName }, spec: {} }]}
+            folders={folders}
             hideProjectSelect={true}
             onClose={() => setCreateDashboardDialogOpened(false)}
             onSuccess={handleDashboardCreation}

@@ -19,6 +19,7 @@ export type URLParams = {
   resource: string;
   name?: string;
   project?: string;
+  folder?: string;
   pathSuffix?: string[];
   queryParams?: URLSearchParams;
   apiPrefix?: string;
@@ -36,6 +37,10 @@ export default function buildURL(params: URLParams): string {
   if (params.project !== undefined && params.project.length > 0) {
     url = `${url}/projects/${encodeURIComponent(params.project)}`;
   }
+  if (params.folder !== undefined && params.folder.length > 0) {
+    url = `${url}/folders/${encodeURIComponent(params.folder)}`;
+  }
+
   url = `${url}/${params.resource}`;
   if (params.name !== undefined && params.name.length > 0) {
     url = `${url}/${encodeURIComponent(params.name)}`;
