@@ -16,7 +16,13 @@ import { Button, CircularProgress, FormControlLabel, MenuItem, Stack, Switch, Te
 import { Dialog } from '@perses-dev/components';
 import { Controller, FormProvider, SubmitHandler, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { DashboardSelector, EphemeralDashboardInfo, getResourceDisplayName, ProjectResource } from '@perses-dev/core';
+import {
+  DashboardSelector,
+  EphemeralDashboardInfo,
+  FolderResource,
+  getResourceDisplayName,
+  ProjectResource,
+} from '@perses-dev/core';
 import {
   CreateDashboardValidationType,
   CreateEphemeralDashboardValidationType,
@@ -27,6 +33,7 @@ import {
 interface CreateDashboardProps {
   open: boolean;
   projects: ProjectResource[];
+  folders: FolderResource[];
   hideProjectSelect?: boolean;
   mode?: 'create' | 'duplicate';
   name?: string;
@@ -45,7 +52,8 @@ interface CreateDashboardProps {
  * @param props.isEphemeralDashboardEnabled Display switch button if ephemeral dashboards are enabled in copy dialog.
  */
 export const CreateDashboardDialog = (props: CreateDashboardProps): ReactElement => {
-  const { open, projects, hideProjectSelect, mode, name, onClose, onSuccess, isEphemeralDashboardEnabled } = props;
+  const { open, projects, folders, hideProjectSelect, mode, name, onClose, onSuccess, isEphemeralDashboardEnabled } =
+    props;
 
   const [isTempCopyChecked, setTempCopyChecked] = useState<boolean>(false);
   const action = mode === 'duplicate' ? 'Duplicate' : 'Create';
@@ -77,9 +85,11 @@ export const CreateDashboardDialog = (props: CreateDashboardProps): ReactElement
         </Dialog.Content>
       )}
       {isTempCopyChecked ? (
-        <EphemeralDashboardDuplicationForm {...{ projects: projects, hideProjectSelect, onClose, onSuccess }} />
+        <EphemeralDashboardDuplicationForm
+          {...{ projects: projects, folders, hideProjectSelect, onClose, onSuccess }}
+        />
       ) : (
-        <DashboardDuplicationForm {...{ projects: projects, hideProjectSelect, onClose, onSuccess }} />
+        <DashboardDuplicationForm {...{ projects: projects, folders, hideProjectSelect, onClose, onSuccess }} />
       )}
     </Dialog>
   );
@@ -87,6 +97,7 @@ export const CreateDashboardDialog = (props: CreateDashboardProps): ReactElement
 
 interface DuplicationFormProps {
   projects: ProjectResource[];
+  folders: FolderResource[];
   hideProjectSelect?: boolean;
   onClose: DispatchWithoutAction;
   onSuccess?: Dispatch<DashboardSelector | EphemeralDashboardInfo>;
@@ -107,9 +118,15 @@ const DashboardDuplicationForm = (props: DuplicationFormProps): ReactElement => 
 
   const handleProcessDashboardForm = useCallback((): SubmitHandler<CreateDashboardValidationType> => {
     return (data) => {
+      console.log({ data });
+
       onClose();
       if (onSuccess) {
-        onSuccess({ project: data.projectName, dashboard: data.dashboardName } as DashboardSelector);
+        onSuccess({
+          project: data.projectName,
+          folder: data.folderName,
+          dashboard: data.dashboardName,
+        } as DashboardSelector);
       }
     };
   }, [onClose, onSuccess]);
@@ -182,6 +199,29 @@ const DashboardDuplicationForm = (props: DuplicationFormProps): ReactElement => 
                   error={!!fieldState.error}
                   helperText={fieldState.error?.message}
                 />
+              )}
+            />
+            <Controller
+              control={dashboardForm.control}
+              name="folderName"
+              render={({ field, fieldState }) => (
+                <TextField
+                  select
+                  {...field}
+                  required
+                  id="folder"
+                  label="Folder"
+                  type="text"
+                  fullWidth
+                  error={!!fieldState.error}
+                  helperText={fieldState.error?.message}
+                >
+                  {props.folders.map((option) => (
+                    <MenuItem key={option.metadata.name} value={option.metadata.name}>
+                      {option.metadata.name}
+                    </MenuItem>
+                  ))}
+                </TextField>
               )}
             />
           </Stack>

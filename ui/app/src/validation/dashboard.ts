@@ -24,6 +24,7 @@ export const dashboardDisplayNameValidationSchema = z
 
 export const createDashboardDialogValidationSchema = z.object({
   projectName: nameSchema,
+  folderName: nameSchema,
   dashboardName: dashboardDisplayNameValidationSchema,
 });
 export type CreateDashboardValidationType = z.infer<typeof createDashboardDialogValidationSchema>;
