@@ -26,7 +26,8 @@ export interface Metadata {
 
 export interface ProjectMetadata extends Metadata {
   project: string;
-  folder?: string
+  folder?: string;
+  folderName?: string;
 }
 
 export interface Resource {
