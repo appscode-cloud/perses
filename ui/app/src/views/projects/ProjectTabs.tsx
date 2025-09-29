@@ -11,14 +11,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { AccordionDetails, AccordionSummary, Box, BoxProps, Link, Stack } from '@mui/material';
+import { Box, BoxProps, Link, Stack } from '@mui/material';
 import { ReactElement, SyntheticEvent, useCallback, useMemo, useState } from 'react';
 import ViewDashboardIcon from 'mdi-material-ui/ViewDashboard';
 import CodeJsonIcon from 'mdi-material-ui/CodeJson';
 import DatabaseIcon from 'mdi-material-ui/Database';
 import FolderIcon from 'mdi-material-ui/Folder';
-import ShieldIcon from 'mdi-material-ui/Shield';
-import ShieldAccountIcon from 'mdi-material-ui/ShieldAccount';
 import KeyIcon from 'mdi-material-ui/Key';
 import {
   getResourceDisplayName,
@@ -26,11 +24,7 @@ import {
   DashboardSelector,
   DatasourceResource,
   VariableResource,
-  RoleResource,
-  RoleBindingResource,
   SecretResource,
-  DashboardResource,
-  DashboardSpec,
   FolderResource,
 } from '@perses-dev/core';
 import { Link as RouterLink, useNavigate, useParams } from 'react-router-dom';
@@ -41,40 +35,23 @@ import { VariableDrawer } from '../../components/variable/VariableDrawer';
 import { DatasourceDrawer } from '../../components/datasource/DatasourceDrawer';
 import { useCreateDatasourceMutation } from '../../model/datasource-client';
 import { useCreateVariableMutation } from '../../model/variable-client';
-import {
-  useIsAuthEnabled,
-  useIsEphemeralDashboardEnabled,
-  useIsProjectDatasourceEnabled,
-  useIsProjectVariableEnabled,
-  useIsReadonly,
-} from '../../context/Config';
+import { useIsProjectDatasourceEnabled, useIsProjectVariableEnabled, useIsReadonly } from '../../context/Config';
 import { MenuTab, MenuTabs } from '../../components/tabs';
-import { useCreateRoleBindingMutation } from '../../model/rolebinding-client';
-import { useCreateRoleMutation, useRoleList } from '../../model/role-client';
-import { RoleDrawer } from '../../components/roles/RoleDrawer';
-import { RoleBindingDrawer } from '../../components/rolebindings/RoleBindingDrawer';
 import { useIsMobileSize } from '../../utils/browser-size';
 import { SecretDrawer } from '../../components/secrets/SecretDrawer';
 import { useCreateSecretMutation } from '../../model/secret-client';
-import { useEphemeralDashboardList } from '../../model/ephemeral-dashboard-client';
 import { useHasPermission } from '../../context/Authorization';
 import { ProjectDashboards } from './tabs/ProjectDashboards';
-import { ProjectEphemeralDashboards } from './tabs/ProjectEphemeralDashboards';
 import { ProjectVariables } from './tabs/ProjectVariables';
 import { ProjectDatasources } from './tabs/ProjectDatasources';
 import { ProjectSecrets } from './tabs/ProjectSecrets';
-import { ProjectRoles } from './tabs/ProjectRoles';
-import { ProjectRoleBindings } from './tabs/ProjectRoleBindings';
 
 import { useCreateFolderMutation, useFolderList } from '../../model/folder-client';
 import { ProjectFolders } from './tabs/ProjectFolders';
 
 const foldersTabIndex = 'folders';
 const dashboardsTabIndex = 'dashboards';
-const ephemeralDashboardsTabIndex = 'ephemeraldashboards';
 const datasourcesTabIndex = 'datasources';
-const rolesTabIndex = 'roles';
-const roleBindingsTabIndex = 'rolesbindings';
 const secretsTabIndex = 'secrets';
 const variablesTabIndex = 'variables';
 
@@ -88,21 +65,16 @@ function TabButton({ index, projectName, ...props }: TabButtonProps): ReactEleme
   const { successSnackbar, exceptionSnackbar } = useSnackbar();
 
   const createDatasourceMutation = useCreateDatasourceMutation(projectName);
-  const createRoleMutation = useCreateRoleMutation(projectName);
-  const createRoleBindingMutation = useCreateRoleBindingMutation(projectName);
   const createSecretMutation = useCreateSecretMutation(projectName);
   const createVariableMutation = useCreateVariableMutation(projectName);
 
   const [isCreateDashboardDialogOpened, setCreateDashboardDialogOpened] = useState(false);
   const [isCreateFolderDialogOpened, setCreateFolderDialogOpened] = useState(false);
   const [isDatasourceDrawerOpened, setDatasourceDrawerOpened] = useState(false);
-  const [isRoleDrawerOpened, setRoleDrawerOpened] = useState(false);
-  const [isRoleBindingDrawerOpened, setRoleBindingDrawerOpened] = useState(false);
   const [isSecretDrawerOpened, setSecretDrawerOpened] = useState(false);
   const [isVariableDrawerOpened, setVariableDrawerOpened] = useState(false);
 
   const isReadonly = useIsReadonly();
-  const isEphemeralDashboardEnabled = useIsEphemeralDashboardEnabled();
   const { data: folders = [], isLoading } = useFolderList({ project: projectName });
 
   const handleDashboardCreation = (dashboardSelector: DashboardSelector): void => {
@@ -127,11 +99,6 @@ function TabButton({ index, projectName, ...props }: TabButtonProps): ReactEleme
     createFolder(folder);
   };
 
-  const { data } = useRoleList(projectName);
-  const roleSuggestions = useMemo(() => {
-    return (data ?? []).map((role) => role.metadata.name);
-  }, [data]);
-
   const handleDatasourceCreation = useCallback(
     (datasource: DatasourceResource) => {
       createDatasourceMutation.mutate(datasource, {
@@ -146,38 +113,6 @@ function TabButton({ index, projectName, ...props }: TabButtonProps): ReactEleme
       });
     },
     [exceptionSnackbar, successSnackbar, createDatasourceMutation]
-  );
-
-  const handleRoleCreation = useCallback(
-    (role: RoleResource) => {
-      createRoleMutation.mutate(role, {
-        onSuccess: (createdRole: RoleResource) => {
-          successSnackbar(`Role ${createdRole.metadata.name} has been successfully created`);
-          setRoleDrawerOpened(false);
-        },
-        onError: (err) => {
-          exceptionSnackbar(err);
-          throw err;
-        },
-      });
-    },
-    [exceptionSnackbar, successSnackbar, createRoleMutation]
-  );
-
-  const handleRoleBindingCreation = useCallback(
-    (roleBinding: RoleBindingResource) => {
-      createRoleBindingMutation.mutate(roleBinding, {
-        onSuccess: (createdRoleBinding: RoleBindingResource) => {
-          successSnackbar(`RoleBinding ${createdRoleBinding.metadata.name} has been successfully created`);
-          setRoleBindingDrawerOpened(false);
-        },
-        onError: (err) => {
-          exceptionSnackbar(err);
-          throw err;
-        },
-      });
-    },
-    [exceptionSnackbar, successSnackbar, createRoleBindingMutation]
   );
 
   const handleSecretCreation = useCallback(
@@ -255,7 +190,6 @@ function TabButton({ index, projectName, ...props }: TabButtonProps): ReactEleme
             hideProjectSelect={true}
             onClose={() => setCreateDashboardDialogOpened(false)}
             onSuccess={handleDashboardCreation}
-            isEphemeralDashboardEnabled={isEphemeralDashboardEnabled}
           />
         </>
       );
@@ -293,72 +227,6 @@ function TabButton({ index, projectName, ...props }: TabButtonProps): ReactEleme
             isReadonly={isReadonly}
             onSave={handleDatasourceCreation}
             onClose={() => setDatasourceDrawerOpened(false)}
-          />
-        </>
-      );
-    case rolesTabIndex:
-      return (
-        <>
-          <CRUDButton
-            action="create"
-            scope="Role"
-            project={projectName}
-            variant="contained"
-            onClick={() => setRoleDrawerOpened(true)}
-            {...props}
-          >
-            Add Role
-          </CRUDButton>
-          <RoleDrawer
-            role={{
-              kind: 'Role',
-              metadata: {
-                name: 'NewRole',
-                project: projectName,
-              },
-              spec: {
-                permissions: [],
-              },
-            }}
-            isOpen={isRoleDrawerOpened}
-            action="create"
-            isReadonly={isReadonly}
-            onSave={handleRoleCreation}
-            onClose={() => setRoleDrawerOpened(false)}
-          />
-        </>
-      );
-    case roleBindingsTabIndex:
-      return (
-        <>
-          <CRUDButton
-            action="create"
-            scope="RoleBinding"
-            project={projectName}
-            variant="contained"
-            onClick={() => setRoleBindingDrawerOpened(true)}
-            {...props}
-          >
-            Add Role Binding
-          </CRUDButton>
-          <RoleBindingDrawer
-            roleBinding={{
-              kind: 'RoleBinding',
-              metadata: {
-                name: 'NewRoleBinding',
-                project: projectName,
-              },
-              spec: {
-                role: '',
-                subjects: [],
-              },
-            }}
-            roleSuggestions={roleSuggestions}
-            isOpen={isRoleBindingDrawerOpened}
-            action="create"
-            isReadonly={isReadonly}
-            onSave={handleRoleBindingCreation}
-            onClose={() => setRoleBindingDrawerOpened(false)}
           />
         </>
       );
@@ -467,21 +335,16 @@ interface DashboardVariableTabsProps {
 export function ProjectTabs(props: DashboardVariableTabsProps): ReactElement {
   const { projectName, initialTab } = props;
   const { tab } = useParams();
-  const isAuthEnabled = useIsAuthEnabled();
   const isProjectDatasourceEnabled = useIsProjectDatasourceEnabled();
   const isProjectVariableEnabled = useIsProjectVariableEnabled();
 
   const navigate = useNavigate();
   const isMobileSize = useIsMobileSize();
-  const isEphemeralDashboardEnabled = useIsEphemeralDashboardEnabled();
-  const { data } = useEphemeralDashboardList(projectName);
-  const hasEphemeralDashboards = (data ?? []).length > 0;
 
   const [value, setValue] = useState((initialTab ?? foldersTabIndex).toLowerCase());
 
   const hasDashboardReadPermission = useHasPermission('read', projectName, 'Dashboard');
   const hasDatasourceReadPermission = useHasPermission('read', projectName, 'Datasource');
-  const hasEphemeralDashboardReadPermission = useHasPermission('read', projectName, 'EphemeralDashboard');
   const hasSecretReadPermission = useHasPermission('read', projectName, 'Secret');
   const hasVariableReadPermission = useHasPermission('read', projectName, 'Variable');
 
@@ -522,16 +385,6 @@ export function ProjectTabs(props: DashboardVariableTabsProps): ReactElement {
             value={dashboardsTabIndex}
             disabled={!hasDashboardReadPermission}
           />
-          {(hasEphemeralDashboards || tab === ephemeralDashboardsTabIndex) && (
-            <MenuTab
-              label="Ephemeral Dashboards"
-              icon={<ViewDashboardIcon />}
-              iconPosition="start"
-              {...a11yProps(ephemeralDashboardsTabIndex)}
-              value={ephemeralDashboardsTabIndex}
-              disabled={!hasEphemeralDashboardReadPermission}
-            />
-          )}
           {isProjectVariableEnabled && (
             <MenuTab
               label="Variables"
@@ -571,11 +424,6 @@ export function ProjectTabs(props: DashboardVariableTabsProps): ReactElement {
       <TabPanel value={value} index={dashboardsTabIndex} sx={{ marginTop: isMobileSize ? 1 : 2 }}>
         <ProjectDashboards projectName={projectName} id="main-dashboard-list" />
       </TabPanel>
-      {isEphemeralDashboardEnabled && hasEphemeralDashboards && (
-        <TabPanel value={value} index={ephemeralDashboardsTabIndex} sx={{ marginTop: isMobileSize ? 1 : 2 }}>
-          <ProjectEphemeralDashboards projectName={projectName} id="project-ephemeral-dashboard-list" />
-        </TabPanel>
-      )}
       {isProjectVariableEnabled && (
         <TabPanel value={value} index={variablesTabIndex} sx={{ marginTop: isMobileSize ? 1 : 2 }}>
           <ProjectVariables projectName={projectName} id="project-variable-list" />
@@ -589,16 +437,6 @@ export function ProjectTabs(props: DashboardVariableTabsProps): ReactElement {
       <TabPanel value={value} index={secretsTabIndex} sx={{ marginTop: isMobileSize ? 1 : 2 }}>
         <ProjectSecrets projectName={projectName} id="project-secret-list" />
       </TabPanel>
-      {isAuthEnabled && (
-        <>
-          <TabPanel value={value} index={rolesTabIndex} sx={{ marginTop: isMobileSize ? 1 : 2 }}>
-            <ProjectRoles projectName={projectName} id="project-role-list" />
-          </TabPanel>
-          <TabPanel value={value} index={roleBindingsTabIndex} sx={{ marginTop: isMobileSize ? 1 : 2 }}>
-            <ProjectRoleBindings projectName={projectName} id="project-rolebinding-list" />
-          </TabPanel>
-        </>
-      )}
     </Box>
   );
 }

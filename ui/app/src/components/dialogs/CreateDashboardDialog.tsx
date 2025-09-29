@@ -39,7 +39,7 @@ interface CreateDashboardProps {
   name?: string;
   onClose: DispatchWithoutAction;
   onSuccess?: Dispatch<DashboardSelector | EphemeralDashboardInfo>;
-  isEphemeralDashboardEnabled: boolean;
+  isEphemeralDashboardEnabled?: boolean;
 }
 
 /**
