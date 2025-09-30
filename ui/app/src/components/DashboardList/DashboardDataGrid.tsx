@@ -32,6 +32,7 @@ const MemoizedColumnHeaders = memo(GridColumnHeaders);
 export interface Row extends CommonRow {
   index: number;
   project: string;
+  folder?: string | undefined;
   displayName: string;
   viewedAt?: string;
 }
@@ -56,7 +57,9 @@ export function DashboardDataGrid(props: DataGridProperties<Row>): ReactElement 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', width: '100%', height: '100%' }}>
       <DataGrid
-        onRowClick={(params) => navigate(`/projects/${params.row.project}/dashboards/${params.row.name}`)}
+        onRowClick={(params) =>
+          navigate(`/projects/${params.row.project}/folders/${params.row.folder}/dashboards/${params.row.name}`)
+        }
         rows={rows}
         columns={columns}
         getRowId={(row) => `${row.project}/${row.name}-${row.index}`}

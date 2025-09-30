@@ -71,6 +71,7 @@ export function DashboardList(props: DashboardListProperties): ReactElement {
     return dashboardList.map<Row>((dashboard, index) => ({
       index,
       project: dashboard.metadata.project,
+      folder: dashboard.metadata.folderName,
       name: dashboard.metadata.name,
       displayName: getResourceDisplayName(dashboard),
       version: dashboard.metadata.version ?? 0,
@@ -132,7 +133,6 @@ export function DashboardList(props: DashboardListProperties): ReactElement {
     },
     [navigate, targetedDashboard]
   );
-  console.log(targetedDashboard);
 
   const handleDuplicateButtonClick = useCallback(
     (project: string, name: string) => (): void => {
