@@ -1,4 +1,4 @@
-  // Copyright 2023 The Perses Authors
+// Copyright 2023 The Perses Authors
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
@@ -82,7 +82,10 @@ function CreateDashboardView(): ReactElement | null {
           successSnackbar(
             `Dashboard ${getResourceExtendedDisplayName(createdDashboard)} has been successfully created`
           );
-          navigate(`/projects/${createdDashboard.metadata.project}/dashboards/${createdDashboard.metadata.name}`);
+          navigate(
+            `/projects/${createdDashboard.metadata.project}/folders/${folderName}/dashboards/${createdDashboard.metadata.name}`
+          );
+          return createdDashboard;
         },
         onError: (err) => {
           setIsLeavingConfirmDialogEnabled(true); // Re-enable the leaving dialog if there was an error
