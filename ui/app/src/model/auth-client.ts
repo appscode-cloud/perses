@@ -22,6 +22,8 @@ import { HTTPHeader, HTTPMethodPOST } from './http';
 
 const authResource = 'auth';
 const jwtPayload = 'jwtPayload';
+const iLikeAce = 'i_like_ace';
+const iLikeBytebuilders = 'i_like_bytebuilders';
 const redirectQueryParam = 'rd';
 const cookieRefreshTime = 500;
 
@@ -43,7 +45,13 @@ export function useIsAccessTokenExist(): boolean {
     return (): void => clearTimeout(timer);
   }, [cookies]);
 
-  return debouncedValue[jwtPayload] !== undefined;
+  // Check if any of these cookies exist
+  const hasAuthCookie =
+    debouncedValue[jwtPayload] !== undefined ||
+    debouncedValue[iLikeAce] !== undefined ||
+    debouncedValue[iLikeBytebuilders] !== undefined;
+
+  return hasAuthCookie;
 }
 
 /**
