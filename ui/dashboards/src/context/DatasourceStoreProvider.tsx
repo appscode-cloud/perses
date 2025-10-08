@@ -31,7 +31,7 @@ import {
   DatasourceClient,
   DatasourceSelectItem,
 } from '@perses-dev/plugin-system';
-import { useDecodedUser } from './useDecodedUser';
+import { useDecodedActiveUser } from './useDecodedUser';
 
 export interface DatasourceStoreProviderProps {
   dashboardResource?: DashboardResource | EphemeralDashboardResource;
@@ -54,8 +54,7 @@ export function DatasourceStoreProvider(props: DatasourceStoreProviderProps): Re
   const project = projectName ?? dashboardResource?.metadata.project;
 
   const { getPlugin, listPluginMetadata } = usePluginRegistry();
-  const { data: decodedToken } = useDecodedUser();
-  const owner = decodedToken?.sub;
+  const owner = useDecodedActiveUser();
 
   const findDatasource = useEvent(async (selector: DatasourceSelector) => {
     // Try to find it in dashboard spec

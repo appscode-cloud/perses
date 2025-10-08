@@ -17,12 +17,12 @@ import AccountCircle from 'mdi-material-ui/AccountCircle';
 import AccountBox from 'mdi-material-ui/AccountBox';
 import Logout from 'mdi-material-ui/Logout';
 import { Link as RouterLink } from 'react-router-dom';
-import { useAuthToken } from '../../model/auth-client';
+import { useActiveUser } from '../../model/auth-client';
 import { ProfileRoute } from '../../model/route';
 import { ThemeSwitch } from './ThemeSwitch';
 
 export function AccountMenu(): ReactElement {
-  const { data: decodedToken } = useAuthToken();
+  const owner = useActiveUser();
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
 
   const handleMenu = (event: MouseEvent<HTMLElement>): void => {
@@ -57,7 +57,7 @@ export function AccountMenu(): ReactElement {
           <ListItemIcon>
             <AccountCircle />
           </ListItemIcon>
-          {decodedToken?.sub}
+          {owner}
         </MenuItem>
         <Divider />
         <ThemeSwitch isAuthEnabled />
