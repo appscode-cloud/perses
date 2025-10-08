@@ -13,7 +13,7 @@
 
 import React, { createContext, ReactElement, ReactNode, useContext, useMemo } from 'react';
 import { Action, Permission, ProjectResource, Scope } from '@perses-dev/core';
-import { useAuthToken } from '../model/auth-client';
+import { useActiveUser } from '../model/auth-client';
 import { useUserPermissions } from '../model/user-client';
 import { useProjectList } from '../model/project-client';
 import { enableRefreshFetch } from '../model/fetch';
@@ -38,8 +38,8 @@ export function AuthorizationProvider(props: { children: ReactNode }): ReactElem
     enableRefreshFetch();
   }
 
-  const { data: decodedToken } = useAuthToken();
-  const username = decodedToken?.sub ?? '';
+  const owner = useActiveUser();
+  const username = owner || '';
   const { data } = useUserPermissions(username);
   const userPermissions: Record<string, Permission[]> = useMemo(() => {
     if (!data) {
