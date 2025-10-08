@@ -19,6 +19,7 @@ import { useEffect, useState } from 'react';
 import { useQueryParam } from 'use-query-params';
 import buildURL from './url-builder';
 import { HTTPHeader, HTTPMethodPOST } from './http';
+import { activeAccount } from '../constants/auth-token';
 
 const authResource = 'auth';
 const jwtPayload = 'jwtPayload';
@@ -79,6 +80,11 @@ interface Payload {
   nbf?: Date;
   iat?: Date;
   jti?: string;
+}
+
+export function useActiveUser(): string | undefined {
+  const [cookies] = useCookies([activeAccount]);
+  return cookies[activeAccount] || undefined;
 }
 
 export function useAuthToken(): UseQueryResult<Payload | null> {
