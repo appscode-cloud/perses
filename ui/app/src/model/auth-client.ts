@@ -19,7 +19,7 @@ import { useEffect, useState } from 'react';
 import { useQueryParam } from 'use-query-params';
 import buildURL from './url-builder';
 import { HTTPHeader, HTTPMethodPOST } from './http';
-import { activeAccount } from '../constants/auth-token';
+import { activeOrganization } from '../constants/auth-token';
 
 const authResource = 'auth';
 const jwtPayload = 'jwtPayload';
@@ -48,7 +48,7 @@ export function useIsAccessTokenExist(): boolean {
 
   // Check if any of these cookies exist
   const hasAuthCookie =
-    debouncedValue[jwtPayload] !== undefined ||
+    debouncedValue[activeOrganization] !== undefined ||
     debouncedValue[iLikeAce] !== undefined ||
     debouncedValue[iLikeBytebuilders] !== undefined;
 
@@ -83,8 +83,8 @@ interface Payload {
 }
 
 export function useActiveUser(): string | undefined {
-  const [cookies] = useCookies([activeAccount]);
-  return cookies[activeAccount] || undefined;
+  const [cookies] = useCookies([activeOrganization]);
+  return cookies[activeOrganization] || undefined;
 }
 
 export function useAuthToken(): UseQueryResult<Payload | null> {

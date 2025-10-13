@@ -1,1 +1,1 @@
-export const activeAccount = 'active_account';
+export const activeOrganization = 'activeOrganization';
