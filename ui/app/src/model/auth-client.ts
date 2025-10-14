@@ -18,7 +18,7 @@ import { decodeToken } from 'react-jwt';
 import { useEffect, useState } from 'react';
 import { useQueryParam } from 'use-query-params';
 import buildURL from './url-builder';
-import { HTTPHeader, HTTPMethodPOST } from './http';
+import { HTTPHeader, HTTPMethodGET, HTTPMethodPOST } from './http';
 import { activeOrganization } from '../constants/auth-token';
 
 const authResource = 'auth';
@@ -31,6 +31,19 @@ const cookieRefreshTime = 500;
 export interface NativeAuthBody {
   login: string;
   password: string;
+}
+
+export interface Organization {
+  id: number;
+  username: string;
+  full_name: string;
+  avatar_url: string;
+  description: string;
+  website: string;
+  location: string;
+  rancherManagementClusterEndPoint: string;
+  visibility: string;
+  orgType: number;
 }
 
 export function useIsAccessTokenExist(): boolean {
@@ -87,6 +100,23 @@ export function useActiveUser(): string | undefined {
   return cookies[activeOrganization] || undefined;
 }
 
+export function useOrganizationList(): UseQueryResult<Organization[] | null> {
+  const user = useActiveUser();
+
+  return useQuery<Organization[] | null>({
+    queryKey: [user],
+    queryFn: async () => {
+      if (!user) return null;
+      const response = await getOrganizations(user);
+      if (!response.ok) {
+        throw new Error(`Failed to fetch organizations: ${response.statusText}`);
+      }
+      return response.json();
+    },
+    enabled: !!user,
+  });
+}
+
 export function useAuthToken(): UseQueryResult<Payload | null> {
   const [cookies] = useCookies();
   const partialToken = cookies[jwtPayload];
@@ -127,6 +157,14 @@ export function refreshToken(): Promise<Response> {
   const url = buildURL({ resource: `${authResource}/refresh`, apiURL: '/api' });
   return fetch(url, {
     method: HTTPMethodPOST,
+    headers: HTTPHeader,
+  });
+}
+
+export function getOrganizations(user: string): Promise<Response> {
+  const url = buildURL({ resource: `users/${user}/orgs` });
+  return fetch(url, {
+    method: HTTPMethodGET,
     headers: HTTPHeader,
   });
 }
