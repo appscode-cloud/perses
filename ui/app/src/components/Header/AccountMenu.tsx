@@ -31,7 +31,7 @@ import ExpandLess from 'mdi-material-ui/ChevronUp';
 import ExpandMore from 'mdi-material-ui/ChevronDown';
 import { Link as RouterLink } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
-import { useActiveUser, useOrganizationList } from '../../model/auth-client';
+import { useActiveUser, useOrganizationList, useUserApi } from '../../model/auth-client';
 import { ProfileRoute } from '../../model/route';
 import { ThemeSwitch } from './ThemeSwitch';
 import { activeOrganization } from '../../constants/auth-token';
@@ -50,6 +50,7 @@ export function AccountMenu(): ReactElement {
   ];
 
   const { data: orgs, isLoading } = useOrganizationList();
+  const { data: user, isLoading: loadingUser } = useUserApi();
 
   const handleMenu = (event: MouseEvent<HTMLElement>): void => {
     setAnchorEl(event.currentTarget);

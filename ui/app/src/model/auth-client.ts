@@ -46,6 +46,13 @@ export interface Organization {
   orgType: number;
 }
 
+export interface User {
+  id: number;
+  username: string;
+  email: string;
+  full_name: string;
+}
+
 export function useIsAccessTokenExist(): boolean {
   const [cookies] = useCookies();
 
@@ -98,6 +105,23 @@ interface Payload {
 export function useActiveUser(): string | undefined {
   const [cookies] = useCookies([activeOrganization]);
   return cookies[activeOrganization] || undefined;
+}
+
+export function useUserApi(): UseQueryResult<User | null> {
+  const user = useActiveUser();
+
+  return useQuery<User | null>({
+    queryKey: [],
+    queryFn: async () => {
+      if (!user) return null;
+      const response = await getUser();
+      if (!response.ok) {
+        throw new Error(`Failed to fetch user: ${response.statusText}`);
+      }
+      return response.json();
+    },
+    enabled: !!user,
+  });
 }
 
 export function useOrganizationList(): UseQueryResult<Organization[] | null> {
@@ -163,6 +187,14 @@ export function refreshToken(): Promise<Response> {
 
 export function getOrganizations(user: string): Promise<Response> {
   const url = buildURL({ resource: `users/${user}/orgs` });
+  return fetch(url, {
+    method: HTTPMethodGET,
+    headers: HTTPHeader,
+  });
+}
+
+export function getUser(): Promise<Response> {
+  const url = buildURL({ resource: `user` });
   return fetch(url, {
     method: HTTPMethodGET,
     headers: HTTPHeader,
