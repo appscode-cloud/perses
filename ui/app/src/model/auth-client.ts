@@ -33,25 +33,39 @@ export interface NativeAuthBody {
   password: string;
 }
 
-export interface Organization {
-  id: number;
-  username: string;
-  full_name: string;
-  avatar_url: string;
-  description: string;
-  website: string;
-  location: string;
-  rancherManagementClusterEndPoint: string;
-  visibility: string;
-  orgType: number;
+export interface Metadata {
+  name: string;
+  createdAt: string;
+  updatedAt: string;
+  version: number;
+  userID: number;
+  projectID: number;
+  folderID: number;
 }
 
-export interface User {
-  id: number;
-  username: string;
+export interface OAuthProvider {
   email: string;
-  full_name: string;
 }
+
+export interface NativeProvider {
+  password?: string;
+}
+
+export interface Spec {
+  firstName?: string;
+  nativeProvider: NativeProvider;
+  oauthProviders: OAuthProvider[];
+}
+
+export interface BaseUser {
+  kind: string;
+  metadata: Metadata;
+  spec: Spec;
+  user_type?: 'user' | 'org';
+}
+
+export type User = BaseUser;
+export type Organization = BaseUser;
 
 export function useIsAccessTokenExist(): boolean {
   const [cookies] = useCookies();
@@ -124,9 +138,7 @@ export function useUserApi(): UseQueryResult<User | null> {
   });
 }
 
-export function useOrganizationList(): UseQueryResult<Organization[] | null> {
-  const user = useActiveUser();
-
+export function useOrganizationList(user: string | undefined): UseQueryResult<Organization[] | null> {
   return useQuery<Organization[] | null>({
     queryKey: [user],
     queryFn: async () => {
