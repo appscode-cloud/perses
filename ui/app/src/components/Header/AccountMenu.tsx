@@ -29,7 +29,7 @@ import AccountBox from 'mdi-material-ui/AccountBox';
 import Logout from 'mdi-material-ui/Logout';
 import ExpandLess from 'mdi-material-ui/ChevronUp';
 import ExpandMore from 'mdi-material-ui/ChevronDown';
-import { Link as RouterLink } from 'react-router-dom';
+import { Link as RouterLink, useLocation, useNavigate } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
 import { useActiveUser, useOrganizationList, useUserApi } from '../../model/auth-client';
 import { ProfileRoute } from '../../model/route';
@@ -37,14 +37,19 @@ import { ThemeSwitch } from './ThemeSwitch';
 import { activeOrganization } from '../../constants/auth-token';
 import { Typography } from '@mui/material';
 import CheckIcon from 'mdi-material-ui/Check';
+import { PERSES_APP_CONFIG } from '../../config';
 
 export function AccountMenu(): ReactElement {
   const owner = useActiveUser();
+  const { pathname } = useLocation();
+  const navigate = useNavigate();
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const [openSwitch, setOpenSwitch] = useState(false);
   const [cookies, setCookie] = useCookies([activeOrganization]);
   const { data: user } = useUserApi();
   const { data: orgs } = useOrganizationList(user?.metadata?.name);
+
+  const basePath = PERSES_APP_CONFIG.api_prefix;
 
   const accounts = useMemo(() => {
     if (!user && !orgs) return [];
@@ -79,6 +84,9 @@ export function AccountMenu(): ReactElement {
   const handleSwitchAccount = (accountId: string): void => {
     setCookie(activeOrganization, accountId, { path: '/' });
     setAnchorEl(null);
+    if (pathname !== basePath) {
+      navigate('/');
+    }
   };
   const currentAccount = accounts.find((acc) => acc.metadata?.name === owner);
 
