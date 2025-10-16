@@ -23,7 +23,7 @@ import {
   TextField,
   Typography,
 } from '@mui/material';
-import { ChangeEvent, MouseEvent, ReactElement, useCallback, useMemo, useState } from 'react';
+import { ChangeEvent, MouseEvent, ReactElement, useCallback, useEffect, useMemo, useState } from 'react';
 import { getResourceDisplayName, ProjectResource } from '@perses-dev/core';
 import { ErrorAlert, ErrorBoundary, useSnackbar } from '@perses-dev/components';
 import ChevronDown from 'mdi-material-ui/ChevronDown';
@@ -37,6 +37,7 @@ import { useIsEphemeralDashboardEnabled, useIsReadonly } from '../../context/Con
 import { useHasPermission } from '../../context/Authorization';
 import { DeleteResourceDialog } from '../../components/dialogs';
 import { ProjectWithDashboards, useProjectsWithDashboards, useDeleteProjectMutation } from '../../model/project-client';
+import { useActiveUser } from '../../model/auth-client';
 
 interface ProjectAccordionProps {
   row: ProjectWithDashboards;
@@ -153,6 +154,7 @@ interface SearchableDashboardsProps {
 }
 
 export function SearchableDashboards(props: SearchableDashboardsProps): ReactElement {
+  const owner = useActiveUser();
   const kvSearch = useMemo(
     () =>
       new KVSearch<ProjectWithDashboards>({
@@ -167,7 +169,13 @@ export function SearchableDashboards(props: SearchableDashboardsProps): ReactEle
     []
   );
 
-  const { data: projectRows, isLoading } = useProjectsWithDashboards();
+  const { data: projectRows, isLoading, refetch } = useProjectsWithDashboards();
+
+  useEffect(() => {
+    if (owner) {
+      refetch();
+    }
+  }, [owner, refetch]);
 
   const [search, setSearch] = useState<string>('');
 
