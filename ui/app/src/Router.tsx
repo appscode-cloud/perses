@@ -199,7 +199,8 @@ function RequireAuth(): ReactElement | null {
 
 function RequireAuthEnabled(): ReactElement {
   const isAuthEnabled = useIsAuthEnabled();
-  if (!isAuthEnabled) {
+  const isAccessTokenExist = useIsAccessTokenExist();
+  if (!isAuthEnabled || isAccessTokenExist) {
     return <Navigate to="/" replace />;
   }
   return <Outlet />;
