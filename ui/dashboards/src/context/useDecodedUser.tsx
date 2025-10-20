@@ -1,7 +1,7 @@
 import { useCookies } from 'react-cookie';
-const activeAccount = 'active_account';
+const activeOrganization = 'activeOrganization';
 
 export function useDecodedActiveUser(): string | undefined {
-  const [cookies] = useCookies([activeAccount]);
-  return cookies[activeAccount] || undefined;
+  const [cookies] = useCookies([activeOrganization]);
+  return cookies[activeOrganization] || undefined;
 }
