@@ -20,6 +20,7 @@ export interface BuildDatasourceProxyUrlParams {
   project?: string;
   dashboard?: string;
   name: string;
+  owner?: string | undefined;
 }
 
 /**
