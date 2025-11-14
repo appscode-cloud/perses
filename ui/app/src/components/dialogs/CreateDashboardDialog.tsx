@@ -11,7 +11,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { Dispatch, DispatchWithoutAction, ReactElement, useCallback, useState } from 'react';
+import { Dispatch, DispatchWithoutAction, ReactElement, useCallback, useEffect, useState } from 'react';
 import { Button, CircularProgress, FormControlLabel, MenuItem, Stack, Switch, TextField } from '@mui/material';
 import { Dialog } from '@perses-dev/components';
 import { Controller, FormProvider, SubmitHandler, useForm } from 'react-hook-form';
@@ -29,6 +29,8 @@ import {
   useDashboardValidationSchema,
   useEphemeralDashboardValidationSchema,
 } from '../../validation';
+import { generateMetadataName } from '../../utils/metadata';
+import { useFolderBasedDashboardList } from '../../model/dashboard-client';
 
 interface CreateDashboardProps {
   open: boolean;
@@ -91,38 +93,65 @@ interface DuplicationFormProps {
 
 /* TODO: Why does it receive an array of projects and not a single project?! */
 const DashboardDuplicationForm = (props: DuplicationFormProps): ReactElement => {
-  const { projects, hideProjectSelect, onClose, onSuccess } = props;
-
-  const { schema: dashboardSchemaValidation, isSchemaLoading: isDashboardSchemaValidationLoading } =
-    useDashboardValidationSchema(projects[0]?.metadata.name);
+  const { projects, folders, hideProjectSelect, onClose, onSuccess } = props;
 
   const dashboardForm = useForm<CreateDashboardValidationType>({
-    resolver: dashboardSchemaValidation ? zodResolver(dashboardSchemaValidation) : undefined,
-    mode: 'onBlur',
-    defaultValues: { dashboardName: '', projectName: projects[0]?.metadata.name ?? '' },
+    mode: 'onChange',
+    defaultValues: {
+      dashboardName: '',
+      projectName: projects[0]?.metadata.name ?? '',
+      folderName: folders[0]?.metadata.name ?? '',
+    },
   });
 
-  const handleProcessDashboardForm = useCallback((): SubmitHandler<CreateDashboardValidationType> => {
-    return (data) => {
-      console.log({ data });
+  const projectName = dashboardForm.watch('projectName');
+  const folderName = dashboardForm.watch('folderName');
+  const dashboardName = dashboardForm.watch('dashboardName');
 
-      onClose();
-      if (onSuccess) {
-        onSuccess({
-          project: data.projectName,
-          folder: data.folderName,
-          dashboard: data.dashboardName,
-        } as DashboardSelector);
-      }
-    };
-  }, [onClose, onSuccess]);
+  const { data: dashboards, isLoading: isDashboardsLoading } = useFolderBasedDashboardList(projectName, folderName);
+  const [isFormValid, setIsFormValid] = useState(false);
+
+  useEffect(() => {
+    if (!dashboardName) {
+      setIsFormValid(false);
+      return;
+    }
+
+    const exists = dashboards?.some(
+      (d) =>
+        d.metadata.project.toLowerCase() === projectName.toLowerCase() &&
+        d.metadata.name.toLowerCase() === generateMetadataName(dashboardName).toLowerCase()
+    );
+
+    if (exists) {
+      dashboardForm.setError('dashboardName', {
+        type: 'manual',
+        message: `Dashboard name '${dashboardName}' already exists in '${projectName}'!`,
+      });
+      setIsFormValid(false);
+    } else {
+      dashboardForm.clearErrors('dashboardName');
+      setIsFormValid(true);
+    }
+  }, [dashboards, dashboardName, projectName, folderName]);
+
+  const handleProcessDashboardForm: SubmitHandler<CreateDashboardValidationType> = (data) => {
+    onClose();
+    if (onSuccess) {
+      onSuccess({
+        project: data.projectName,
+        folder: data.folderName,
+        dashboard: data.dashboardName,
+      } as DashboardSelector);
+    }
+  };
 
   const handleClose = (): void => {
     onClose();
     dashboardForm.reset();
   };
 
-  if (!isDashboardSchemaValidationLoading)
+  if (isDashboardsLoading)
     return (
       <Stack
         sx={{
@@ -140,7 +169,7 @@ const DashboardDuplicationForm = (props: DuplicationFormProps): ReactElement => 
 
   return (
     <FormProvider {...dashboardForm}>
-      <form onSubmit={dashboardForm.handleSubmit(handleProcessDashboardForm())}>
+      <form onSubmit={dashboardForm.handleSubmit(handleProcessDashboardForm)}>
         <Dialog.Content sx={{ width: '100%' }}>
           <Stack gap={1}>
             {!hideProjectSelect && (
@@ -152,20 +181,16 @@ const DashboardDuplicationForm = (props: DuplicationFormProps): ReactElement => 
                     select
                     {...field}
                     required
-                    id="project"
                     label="Project name"
-                    type="text"
                     fullWidth
                     error={!!fieldState.error}
                     helperText={fieldState.error?.message}
                   >
-                    {projects.map((option) => {
-                      return (
-                        <MenuItem key={option.metadata.name} value={option.metadata.name}>
-                          {getResourceDisplayName(option)}
-                        </MenuItem>
-                      );
-                    })}
+                    {projects.map((option) => (
+                      <MenuItem key={option.metadata.name} value={option.metadata.name}>
+                        {getResourceDisplayName(option)}
+                      </MenuItem>
+                    ))}
                   </TextField>
                 )}
               />
@@ -178,9 +203,7 @@ const DashboardDuplicationForm = (props: DuplicationFormProps): ReactElement => 
                   {...field}
                   required
                   margin="dense"
-                  id="name"
                   label="Dashboard Name"
-                  type="text"
                   fullWidth
                   error={!!fieldState.error}
                   helperText={fieldState.error?.message}
@@ -195,14 +218,12 @@ const DashboardDuplicationForm = (props: DuplicationFormProps): ReactElement => 
                   select
                   {...field}
                   required
-                  id="folder"
                   label="Folder"
-                  type="text"
                   fullWidth
                   error={!!fieldState.error}
                   helperText={fieldState.error?.message}
                 >
-                  {props.folders.map((option) => (
+                  {folders.map((option) => (
                     <MenuItem key={option.metadata.name} value={option.metadata.name}>
                       {option.metadata.name}
                     </MenuItem>
@@ -213,7 +234,7 @@ const DashboardDuplicationForm = (props: DuplicationFormProps): ReactElement => 
           </Stack>
         </Dialog.Content>
         <Dialog.Actions>
-          <Button variant="contained" disabled={!dashboardForm.formState.isValid} type="submit">
+          <Button variant="contained" type="submit" disabled={!isFormValid}>
             Add
           </Button>
           <Button variant="outlined" color="secondary" onClick={handleClose}>
