@@ -38,6 +38,7 @@ import { useHasPermission } from '../../context/Authorization';
 import { DeleteResourceDialog } from '../../components/dialogs';
 import { ProjectWithDashboards, useProjectsWithDashboards, useDeleteProjectMutation } from '../../model/project-client';
 import { useActiveUser } from '../../model/auth-client';
+import { useDashboardList } from '../../model/dashboard-client';
 
 interface ProjectAccordionProps {
   row: ProjectWithDashboards;
@@ -48,7 +49,13 @@ function ProjectAccordion({ row }: ProjectAccordionProps): ReactElement {
   const isEphemeralDashboardEnabled = useIsEphemeralDashboardEnabled();
   const { successSnackbar, exceptionSnackbar } = useSnackbar();
 
-  const [isDeleteProjectDialogOpen, setIsDeleteProjectDialogOpen] = useState<boolean>(false);
+  const [isDeleteProjectDialogOpen, setIsDeleteProjectDialogOpen] = useState(false);
+  const [expanded, setExpanded] = useState(false);
+
+  const { data: dashboards, isLoading } = useDashboardList({
+    project: row.project.metadata.name,
+    enabled: expanded,
+  });
 
   const hasPermission = useHasPermission('delete', row.project.metadata.name, 'Project');
   const deleteProjectMutation = useDeleteProjectMutation();
@@ -77,7 +84,12 @@ function ProjectAccordion({ row }: ProjectAccordionProps): ReactElement {
 
   return (
     <>
-      <Accordion TransitionProps={{ unmountOnExit: true }} key={row.project.metadata.name}>
+      <Accordion
+        TransitionProps={{ unmountOnExit: true }}
+        key={row.project.metadata.name}
+        expanded={expanded}
+        onChange={() => setExpanded(!expanded)}
+      >
         <AccordionSummary expandIcon={<ChevronDown />}>
           <Stack direction="row" alignItems="center" justifyContent="space-between" width="100%">
             <Stack direction="row" alignItems="center" gap={1}>
@@ -99,7 +111,7 @@ function ProjectAccordion({ row }: ProjectAccordionProps): ReactElement {
         </AccordionSummary>
         <AccordionDetails id={`${row.project.metadata.name}-dashboard-list`} sx={{ padding: 0 }}>
           <DashboardList
-            dashboardList={row.dashboards}
+            dashboardList={dashboards ?? []}
             hideToolbar={true}
             initialState={{
               pagination: {
@@ -133,6 +145,7 @@ interface RenderDashboardListProps {
 
 function RenderDashboardList(props: RenderDashboardListProps): ReactElement {
   const { projectRows } = props;
+  console.log(projectRows);
 
   if (projectRows.length === 0) {
     return (
