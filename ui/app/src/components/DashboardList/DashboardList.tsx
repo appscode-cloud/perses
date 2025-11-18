@@ -68,16 +68,30 @@ export function DashboardList(props: DashboardListProperties): ReactElement {
   );
 
   const rows = useMemo(() => {
-    return dashboardList.map<Row>((dashboard, index) => ({
-      index,
-      project: dashboard.metadata.project,
-      folder: dashboard.metadata.folderName,
-      name: dashboard.metadata.name,
-      displayName: getResourceDisplayName(dashboard),
-      version: dashboard.metadata.version ?? 0,
-      createdAt: dashboard.metadata.createdAt ?? '',
-      updatedAt: dashboard.metadata.updatedAt ?? '',
-    }));
+    const nameFreq: Record<string, number> = {};
+    dashboardList.forEach((dashboard) => {
+      const name = dashboard.metadata.name;
+      nameFreq[name] = (nameFreq[name] ?? 0) + 1;
+    });
+
+    return dashboardList.map<Row>((dashboard, index) => {
+      const folder = dashboard.metadata.folderName;
+      const name = dashboard.metadata.name;
+      const baseDisplayName = getResourceDisplayName(dashboard);
+      const isDuplicate = (nameFreq[name] ?? 0) > 1;
+      const displayName = isDuplicate ? `${folder}/${baseDisplayName}` : baseDisplayName;
+
+      return {
+        index,
+        project: dashboard.metadata.project,
+        folder,
+        name,
+        displayName,
+        version: dashboard.metadata.version ?? 0,
+        createdAt: dashboard.metadata.createdAt ?? '',
+        updatedAt: dashboard.metadata.updatedAt ?? '',
+      };
+    });
   }, [dashboardList]);
 
   const [targetedDashboard, setTargetedDashboard] = useState<DashboardResource>();
