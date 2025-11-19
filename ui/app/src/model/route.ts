@@ -20,3 +20,4 @@ export const ProjectRoute = '/projects';
 export const ExploreRoute = '/explore';
 export const ProfileRoute = '/profile';
 export const FolderRoute = '/folders';
+export const PlatformLoginRoute = '/accounts/user/login';
