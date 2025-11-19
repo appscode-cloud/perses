@@ -34,6 +34,7 @@ import {
   ConfigRoute,
   ExploreRoute,
   ImportRoute,
+  PlatformLoginRoute,
   ProfileRoute,
   ProjectRoute,
   SignInRoute,
@@ -151,18 +152,16 @@ function Router(): ReactElement {
             ],
           },
           {
-            path: SignInRoute,
+            path: PlatformLoginRoute,
             element: <RequireAuthEnabled />,
-            children: [{ index: true, Component: SignInView }],
-          },
-          {
-            path: SignUpRoute,
-            element: <RequireAuthEnabled />,
-            children: [{ index: true, Component: SignUpView }],
+            children: [{ index: true, Component: Outlet }],
           },
         ],
       },
-      { path: '*', element: <Navigate to="/" replace /> },
+      {
+        path: '*',
+        element: <CatchAllRedirect />,
+      },
     ],
     { basename: PERSES_APP_CONFIG.api_prefix }
   );
@@ -190,7 +189,7 @@ function RequireAuth(): ReactElement | null {
   if (!isAuthEnabled || isAccessTokenExist) {
     return <Outlet />;
   }
-  let to = SignInRoute;
+  let to = PlatformLoginRoute;
   if (location.pathname !== '' && location.pathname !== '/') {
     to += `?${buildRedirectQueryString(location.pathname + location.search)}`;
   }
@@ -220,6 +219,16 @@ function RequireEphemeralDashboardEnabled(): ReactElement {
     return <Navigate to="/" replace />;
   }
   return <Outlet />;
+}
+
+function CatchAllRedirect(): ReactElement {
+  const location = useLocation();
+
+  if (location.pathname === PlatformLoginRoute) {
+    return <Outlet />;
+  }
+
+  return <Navigate to="/" replace />;
 }
 
 export default Router;

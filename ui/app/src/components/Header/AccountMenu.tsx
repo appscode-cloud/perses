@@ -166,7 +166,7 @@ export function AccountMenu(): ReactElement {
           </ListItemIcon>
           Profile
         </MenuItem>
-        <MenuItem component="a" href="/api/auth/logout">
+        <MenuItem component="a" href="/accounts/user/logout">
           <ListItemIcon>
             <Logout />
           </ListItemIcon>
