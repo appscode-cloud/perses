@@ -145,7 +145,6 @@ interface RenderDashboardListProps {
 
 function RenderDashboardList(props: RenderDashboardListProps): ReactElement {
   const { projectRows } = props;
-  console.log(projectRows);
 
   if (projectRows.length === 0) {
     return (
