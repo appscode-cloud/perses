@@ -57,6 +57,34 @@ export function DatasourceStoreProvider(props: DatasourceStoreProviderProps): Re
   const owner = useDecodedActiveUser();
 
   const findDatasource = useEvent(async (selector: DatasourceSelector) => {
+    // Fetch all datasources from all sources at the beginning
+    const allDatasources: Record<string, DatasourceSpec> = {};
+
+    // Get dashboard datasources
+    if (dashboardResource?.spec.datasources) {
+      Object.assign(allDatasources, dashboardResource.spec.datasources);
+    }
+
+    // Get project datasources
+    if (project) {
+      const projectDatasources = await datasourceApi.listDatasources(project);
+      projectDatasources.forEach((ds) => {
+        allDatasources[ds.metadata.name] = ds.spec;
+      });
+    }
+
+    // Get global datasources
+    const globalDatasources = await datasourceApi.listGlobalDatasources();
+    globalDatasources.forEach((ds) => {
+      allDatasources[ds.metadata.name] = ds.spec;
+    });
+
+    // If selector.name is not set, use the first datasource name
+    if (!selector.name && Object.keys(allDatasources).length > 0) {
+      const firstDatasourceName = Object.keys(allDatasources)[0];
+      selector.name = firstDatasourceName;
+    }
+
     // Try to find it in dashboard spec
     if (dashboardResource) {
       const { datasources } = dashboardResource.spec;
@@ -97,6 +125,7 @@ export function DatasourceStoreProvider(props: DatasourceStoreProviderProps): Re
         proxyUrl: buildDatasourceProxyUrl(datasourceApi, {
           name: globalDatasource.metadata.name,
         }),
+        allDatasources, // Pass all global datasources
       };
     }
 
@@ -116,7 +145,11 @@ export function DatasourceStoreProvider(props: DatasourceStoreProviderProps): Re
   const getDatasourceClient = useCallback(
     async function getClient<Client extends DatasourceClient>(selector: DatasourceSelector): Promise<Client> {
       const { kind } = selector;
-      const [{ spec, proxyUrl }, plugin] = await Promise.all([findDatasource(selector), getPlugin('Datasource', kind)]);
+
+      const [{ spec, proxyUrl, allDatasources }, plugin] = await Promise.all([
+        findDatasource(selector),
+        getPlugin('Datasource', kind),
+      ]);
 
       // allows extending client
       const client = plugin.createClient(spec.plugin.spec, { proxyUrl }) as Client;
@@ -257,10 +290,19 @@ function findDashboardDatasource(
   const result = Object.entries(dashboardDatasources).find(
     (entry) => entry[1].plugin.kind === selector.kind && entry[1].default
   );
-  if (!result) {
+
+  if (result) {
+    return { name: result[0], spec: result[1] };
+  }
+
+  // If no default found, use the first datasource of the matching kind
+  const firstMatch = Object.entries(dashboardDatasources).find((entry) => entry[1].plugin.kind === selector.kind);
+
+  if (!firstMatch) {
     return undefined;
   }
-  return { name: result[0], spec: result[1] };
+
+  return { name: firstMatch[0], spec: firstMatch[1] };
 }
 
 interface AddDatasouceSelectItemParams {
