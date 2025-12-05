@@ -21,3 +21,6 @@ export const ExploreRoute = '/explore';
 export const ProfileRoute = '/profile';
 export const FolderRoute = '/folders';
 export const PlatformLoginRoute = '/accounts/user/login';
+export const PlatformLogoutRoute = '/accounts/user/logout';
+export const LoginUrl = window.location.origin + PlatformLoginRoute;
+export const LogoutUrl = window.location.origin + PlatformLogoutRoute;

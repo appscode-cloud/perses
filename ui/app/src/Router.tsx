@@ -34,14 +34,11 @@ import {
   ConfigRoute,
   ExploreRoute,
   ImportRoute,
+  LoginUrl,
   PlatformLoginRoute,
   ProfileRoute,
   ProjectRoute,
-  SignInRoute,
-  SignUpRoute,
 } from './model/route';
-import SignInView from './views/auth/SignInView';
-import SignUpView from './views/auth/SignUpView';
 import HomeView from './views/home/HomeView';
 // Default route is eagerly loaded
 import App from './App';
@@ -189,11 +186,14 @@ function RequireAuth(): ReactElement | null {
   if (!isAuthEnabled || isAccessTokenExist) {
     return <Outlet />;
   }
-  let to = PlatformLoginRoute;
+
+  let redirectUrl = LoginUrl;
   if (location.pathname !== '' && location.pathname !== '/') {
-    to += `?${buildRedirectQueryString(location.pathname + location.search)}`;
+    redirectUrl += `?${buildRedirectQueryString(location.pathname + location.search)}`;
   }
-  return <Navigate to={to} />;
+  window.location.href = redirectUrl;
+
+  return null;
 }
 
 function RequireAuthEnabled(): ReactElement {

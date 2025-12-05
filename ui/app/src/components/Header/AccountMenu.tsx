@@ -32,12 +32,13 @@ import ExpandMore from 'mdi-material-ui/ChevronDown';
 import { Link as RouterLink, useLocation, useNavigate } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
 import { useActiveUser, useOrganizationList, useUserApi } from '../../model/auth-client';
-import { ProfileRoute } from '../../model/route';
+import { LoginUrl, LogoutUrl, ProfileRoute } from '../../model/route';
 import { ThemeSwitch } from './ThemeSwitch';
 import { activeOrganization } from '../../constants/auth-token';
 import { Typography } from '@mui/material';
 import CheckIcon from 'mdi-material-ui/Check';
 import { PERSES_APP_CONFIG } from '../../config';
+import { HTTPHeader, HTTPMethodGET } from '../../model/http';
 
 export function AccountMenu(): ReactElement {
   const owner = useActiveUser();
@@ -88,6 +89,15 @@ export function AccountMenu(): ReactElement {
       navigate('/');
     }
   };
+
+  const handleLogout = async (): Promise<void> => {
+    await fetch(LogoutUrl, {
+      method: HTTPMethodGET,
+      headers: HTTPHeader,
+    });
+    window.location.href = LoginUrl;
+  };
+
   const currentAccount = accounts.find((acc) => acc.metadata?.name === owner);
 
   const getAccountTypeLabel = (userType: string) => {
@@ -166,7 +176,7 @@ export function AccountMenu(): ReactElement {
           </ListItemIcon>
           Profile
         </MenuItem>
-        <MenuItem component="a" href="/accounts/user/logout">
+        <MenuItem onClick={handleLogout}>
           <ListItemIcon>
             <Logout />
           </ListItemIcon>
