@@ -51,6 +51,7 @@ export function RecentDashboardList(props: RecentDashboardListProperties): React
       index,
       project: datedDashboard.dashboard.metadata.project,
       name: datedDashboard.dashboard.metadata.name,
+      folder: datedDashboard.dashboard.metadata.folderName,
       displayName: getResourceDisplayName(datedDashboard.dashboard),
       version: datedDashboard.dashboard.metadata.version ?? 0,
       createdAt: datedDashboard.dashboard.metadata.createdAt ?? '',

@@ -79,7 +79,7 @@ export function DashboardList(props: DashboardListProperties): ReactElement {
       const name = dashboard.metadata.name;
       const baseDisplayName = getResourceDisplayName(dashboard);
       const isDuplicate = (nameFreq[name] ?? 0) > 1;
-      const displayName = isDuplicate ? `${folder}/${baseDisplayName}` : baseDisplayName;
+      const displayName = isDuplicate ? `${folder} / ${baseDisplayName}` : baseDisplayName;
 
       return {
         index,

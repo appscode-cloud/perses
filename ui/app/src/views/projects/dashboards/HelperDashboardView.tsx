@@ -108,7 +108,7 @@ export function HelperDashboardView(props: GenericDashboardViewProps): ReactElem
                   datasourceApi={datasourceApi}
                   externalVariableDefinitions={externalVariableDefinitions}
                   dashboardTitleComponent={
-                    <ProjectBreadcrumbs dashboardName={getResourceDisplayName(dashboardResource)} project={project} />
+                    <ProjectBreadcrumbs dashboardName={getResourceDisplayName(dashboardResource)} folder={dashboardResource.metadata.folder} project={project} />
                   }
                   emptyDashboardProps={{
                     additionalText: 'In order to save this dashboard, you need to add at least one panel!',

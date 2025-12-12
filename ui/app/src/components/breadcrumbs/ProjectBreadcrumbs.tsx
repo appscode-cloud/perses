@@ -13,6 +13,7 @@
 
 import { Typography } from '@mui/material';
 import Archive from 'mdi-material-ui/Archive';
+import FolderIcon from 'mdi-material-ui/Folder';
 import ViewDashboardIcon from 'mdi-material-ui/ViewDashboard';
 import { getResourceDisplayName, ProjectResource } from '@perses-dev/core';
 import { ReactElement } from 'react';
@@ -20,11 +21,12 @@ import { HomeLinkCrumb, Breadcrumbs, LinkCrumb, StackCrumb, TitleCrumb } from '.
 
 interface ProjectBreadcrumbsProps {
   project: ProjectResource;
+  folder?: string;
   dashboardName?: string;
 }
 
 function ProjectBreadcrumbs(props: ProjectBreadcrumbsProps): ReactElement {
-  const { project, dashboardName } = props;
+  const { project, folder, dashboardName } = props;
 
   if (dashboardName) {
     return (
@@ -48,6 +50,11 @@ function ProjectBreadcrumbs(props: ProjectBreadcrumbsProps): ReactElement {
             <Archive fontSize="small" /> {getResourceDisplayName(project)}
           </StackCrumb>
         </LinkCrumb>
+        {folder && (
+          <StackCrumb>
+            <FolderIcon fontSize="small" /> {folder}
+          </StackCrumb>
+        )}
         <StackCrumb>
           <ViewDashboardIcon fontSize="small" />
           <Typography variant="h3">{dashboardName}</Typography>
