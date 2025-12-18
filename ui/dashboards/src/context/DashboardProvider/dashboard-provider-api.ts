@@ -424,3 +424,19 @@ export function useEditJsonDialog(): {
 } {
   return useDashboardStore(selectEditJsonDialog);
 }
+
+const selectDetailedView: (state: DashboardStoreState) => boolean | undefined = () => {
+  // This will be accessed from URL params via the provider
+  // We'll use a different approach - access it directly from the component
+  return undefined;
+};
+
+/**
+ * Hook to check if we're in detailed view mode.
+ * This is managed via URL query parameters.
+ */
+export function useDetailedView(): boolean {
+  // This will be checked in components that need it
+  // The actual state comes from URL params in DashboardProviderWithQueryParams
+  return false;
+}

@@ -80,6 +80,8 @@ export interface DashboardStoreProps {
   isEditMode?: boolean;
   viewPanelRef?: VirtualPanelRef;
   setViewPanelRef?: (viewPanelRef: VirtualPanelRef | undefined) => void;
+  detailedView?: boolean;
+  setDetailedView?: (detailedView: boolean | undefined) => void;
 }
 
 export interface DashboardProviderProps {

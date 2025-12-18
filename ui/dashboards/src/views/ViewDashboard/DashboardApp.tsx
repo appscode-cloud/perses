@@ -16,6 +16,7 @@ import { Box } from '@mui/material';
 import { ChartsProvider, ErrorAlert, ErrorBoundary, useChartsTheme } from '@perses-dev/components';
 import { DashboardResource, EphemeralDashboardResource } from '@perses-dev/core';
 import { useDatasourceStore } from '@perses-dev/plugin-system';
+import { BooleanParam, useQueryParam } from 'use-query-params';
 import {
   PanelDrawer,
   Dashboard,
@@ -70,6 +71,10 @@ export const DashboardApp = (props: DashboardAppProps): ReactElement => {
   >(undefined);
   const { setSavedDatasources } = useDatasourceStore();
 
+  // Check if we're in detailed view mode
+  const [detailedView] = useQueryParam('detailedView', BooleanParam);
+  const isDetailedView = detailedView === true;
+
   const { openDiscardChangesConfirmationDialog, closeDiscardChangesConfirmationDialog } =
     useDiscardChangesConfirmationDialog();
 
@@ -117,18 +122,20 @@ export const DashboardApp = (props: DashboardAppProps): ReactElement => {
         flexDirection: 'column',
       }}
     >
-      <DashboardToolbar
-        dashboardName={dashboardResource.metadata.name}
-        dashboardTitleComponent={dashboardTitleComponent}
-        initialVariableIsSticky={isInitialVariableSticky}
-        onSave={onSave}
-        isReadonly={isReadonly}
-        isVariableEnabled={isVariableEnabled}
-        isDatasourceEnabled={isDatasourceEnabled}
-        onEditButtonClick={onEditButtonClick}
-        onCancelButtonClick={onCancelButtonClick}
-      />
-      <Box sx={{ paddingTop: 2, paddingX: 2, height: '100%' }}>
+      {!isDetailedView && (
+        <DashboardToolbar
+          dashboardName={dashboardResource.metadata.name}
+          dashboardTitleComponent={dashboardTitleComponent}
+          initialVariableIsSticky={isInitialVariableSticky}
+          onSave={onSave}
+          isReadonly={isReadonly}
+          isVariableEnabled={isVariableEnabled}
+          isDatasourceEnabled={isDatasourceEnabled}
+          onEditButtonClick={onEditButtonClick}
+          onCancelButtonClick={onCancelButtonClick}
+        />
+      )}
+      <Box sx={{ paddingTop: isDetailedView ? 0 : 2, paddingX: isDetailedView ? 0 : 2, height: '100%' }}>
         <ErrorBoundary FallbackComponent={ErrorAlert}>
           <Dashboard
             emptyDashboardProps={{

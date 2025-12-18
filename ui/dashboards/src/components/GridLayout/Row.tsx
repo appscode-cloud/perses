@@ -17,6 +17,7 @@ import { PanelOptions, useViewPanelGroup } from '@perses-dev/dashboards';
 import { ReactElement, useEffect, useMemo, useState } from 'react';
 import { Layout, Layouts, Responsive, WidthProvider } from 'react-grid-layout';
 import { ErrorAlert, ErrorBoundary } from '@perses-dev/components';
+import { BooleanParam, useQueryParam } from 'use-query-params';
 import { GRID_LAYOUT_COLS, GRID_LAYOUT_SMALL_BREAKPOINT } from '../../constants';
 import { GridContainer } from './GridContainer';
 import { GridItemContent } from './GridItemContent';
@@ -56,6 +57,8 @@ export function Row({
   const ResponsiveGridLayout = useMemo(() => WidthProvider(Responsive), []);
   const theme = useTheme();
   const viewPanelItemId = useViewPanelGroup();
+  const [detailedView] = useQueryParam('detailedView', BooleanParam);
+  const isDetailedView = detailedView === true;
 
   const [isOpen, setIsOpen] = useState(!groupDefinition.isCollapsed);
 
@@ -81,7 +84,7 @@ export function Row({
     if (itemLayoutViewed) {
       return groupDefinition.itemLayouts.map((itemLayout) => {
         if (itemLayout.i === itemLayoutViewed) {
-          const rowTitleHeight = 40 + 8; // 40 is the height of the row title and 8 is the margin height
+          const rowTitleHeight = isDetailedView ? 0 : 40 + 8; // Hide title height in detailed view
           return {
             h: Math.round(((panelFullHeight ?? window.innerHeight) - rowTitleHeight) / (ROW_HEIGHT + DEFAULT_MARGIN)), // Viewed panel should take the full height remaining
             i: itemLayoutViewed,
@@ -94,7 +97,7 @@ export function Row({
       });
     }
     return groupDefinition.itemLayouts;
-  }, [groupDefinition.itemLayouts, itemLayoutViewed, panelFullHeight]);
+  }, [groupDefinition.itemLayouts, itemLayoutViewed, panelFullHeight, isDetailedView]);
 
   return (
     <GridContainer
@@ -104,7 +107,7 @@ export function Row({
         overflow: itemLayoutViewed ? 'hidden' : 'unset',
       }}
     >
-      {groupDefinition.title && (
+      {groupDefinition.title && !isDetailedView && (
         <GridTitle
           panelGroupId={panelGroupId}
           title={groupDefinition.title}

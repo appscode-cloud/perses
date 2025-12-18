@@ -12,11 +12,12 @@
 // limitations under the License.
 
 import { ReactElement } from 'react';
-import { JsonParam, useQueryParam } from 'use-query-params';
+import { BooleanParam, JsonParam, useQueryParam } from 'use-query-params';
 import { DashboardProvider, DashboardProviderProps } from './DashboardProvider';
 
 export function DashboardProviderWithQueryParams({ children, initialState }: DashboardProviderProps): ReactElement {
   const [viewPanelRef, setViewPanelRef] = useQueryParam('viewPanelRef', JsonParam);
+  const [detailedView, setDetailedView] = useQueryParam('detailedView', BooleanParam);
 
   return (
     <DashboardProvider
@@ -24,6 +25,8 @@ export function DashboardProviderWithQueryParams({ children, initialState }: Das
         ...initialState,
         viewPanelRef: viewPanelRef ?? undefined, // viewPanelRef can be null, forcing to undefined
         setViewPanelRef: setViewPanelRef,
+        detailedView: detailedView ?? undefined,
+        setDetailedView: setDetailedView,
       }}
     >
       {children}

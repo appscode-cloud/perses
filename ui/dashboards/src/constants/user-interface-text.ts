@@ -27,6 +27,7 @@ export const TOOLTIP_TEXT = {
   moveGroupUp: 'Move group up',
   // Panel buttons
   viewPanel: 'Toggle View Mode',
+  detailedViewPanel: 'Open Detailed View',
   editPanel: 'Edit',
   duplicatePanel: 'Duplicate',
   deletePanel: 'Delete',
@@ -46,6 +47,7 @@ export const ARIA_LABEL_TEXT = {
   moveGroupUp: (groupName: string): string => `move group ${groupName} up`,
   // Panel buttons
   viewPanel: (panelName: string): string => `toggle panel ${panelName} view mode`,
+  detailedViewPanel: (panelName: string): string => `open panel ${panelName} in detailed view`,
   editPanel: (panelName: string): string => `edit panel ${panelName}`,
   duplicatePanel: (panelName: string): string => `duplicate panel ${panelName}`,
   deletePanel: (panelName: string): string => `delete panel ${panelName}`,

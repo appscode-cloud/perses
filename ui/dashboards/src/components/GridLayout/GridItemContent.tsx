@@ -16,6 +16,7 @@ import { useInView } from 'react-intersection-observer';
 import { DataQueriesProvider, usePlugin, useSuggestedStepMs } from '@perses-dev/plugin-system';
 import React, { ReactElement, useMemo, useState } from 'react';
 import { isPanelGroupItemIdEqual, PanelGroupItemId } from '@perses-dev/core';
+import { BooleanParam, useQueryParam } from 'use-query-params';
 import { useEditMode, usePanel, usePanelActions, useViewPanelGroup } from '../../context';
 import { Panel, PanelProps, PanelOptions } from '../Panel';
 import { QueryViewerDialog } from '../QueryViewerDialog';
@@ -40,6 +41,7 @@ export function GridItemContent(props: GridItemContentProps): ReactElement {
   const { isEditMode } = useEditMode();
   const { openEditPanel, openDeletePanelDialog, duplicatePanel, viewPanel } = usePanelActions(panelGroupItemId);
   const viewPanelGroupItemId = useViewPanelGroup();
+  const [, setDetailedView] = useQueryParam('detailedView', BooleanParam);
   const { ref, inView } = useInView({
     threshold: 0.2, // we have the flexibility to adjust this threshold to trigger queries slightly earlier or later based on performance
     initialInView: false,
@@ -63,9 +65,21 @@ export function GridItemContent(props: GridItemContentProps): ReactElement {
     onViewPanelClick: function (): void {
       if (viewPanelGroupItemId === undefined) {
         viewPanel(panelGroupItemId);
+        // Clear detailed view when using toggle view mode
+        setDetailedView(undefined);
       } else {
         viewPanel(undefined);
+        // Clear detailed view when closing panel
+        setDetailedView(undefined);
       }
+    },
+  };
+
+  const detailedViewHandler = {
+    onDetailedViewClick: function (): void {
+      // Open panel in detailed view mode
+      viewPanel(panelGroupItemId);
+      setDetailedView(true);
     },
   };
 
@@ -97,6 +111,10 @@ export function GridItemContent(props: GridItemContentProps): ReactElement {
       ? plugin?.queryOptions(panelDefinition.spec.plugin.spec)
       : plugin?.queryOptions;
 
+  // Get detailed view state
+  const [detailedView] = useQueryParam('detailedView', BooleanParam);
+  const isDetailedView = detailedView === true;
+
   return (
     <Box
       ref={ref}
@@ -113,9 +131,10 @@ export function GridItemContent(props: GridItemContentProps): ReactElement {
         {inView && (
           <Panel
             definition={panelDefinition}
-            readHandlers={readHandlers}
-            editHandlers={editHandlers}
-            viewQueriesHandler={viewQueriesHandler}
+            readHandlers={isDetailedView ? undefined : readHandlers}
+            detailedViewHandler={isDetailedView ? undefined : detailedViewHandler}
+            editHandlers={isDetailedView ? undefined : editHandlers}
+            viewQueriesHandler={isDetailedView ? undefined : viewQueriesHandler}
             panelOptions={props.panelOptions}
             panelGroupItemId={panelGroupItemId}
           />

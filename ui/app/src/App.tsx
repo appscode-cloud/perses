@@ -15,6 +15,7 @@ import { Box } from '@mui/material';
 import { Outlet, useLocation } from 'react-router-dom';
 import { ReactElement, Suspense, useEffect } from 'react';
 import { ReactRouterProvider } from '@perses-dev/plugin-system';
+import { BooleanParam, useQueryParam } from 'use-query-params';
 import Header from './components/Header/Header';
 import Footer from './components/Footer';
 import { PlatformLoginRoute, SignInRoute, SignUpRoute } from './model/route';
@@ -28,6 +29,8 @@ function isDashboardViewRoute(pathname: string): boolean {
 function App(): ReactElement {
   const location = useLocation();
   const { data: branding } = useBranding();
+  const [detailedView] = useQueryParam('detailedView', BooleanParam);
+  const isDetailedView = detailedView === true;
 
   useEffect(() => {
     if (branding?.favicons?.favicon96x96) {
@@ -38,6 +41,13 @@ function App(): ReactElement {
     }
   }, [branding]);
 
+  // Hide header in detailed view mode or on login/signup pages
+  const shouldShowHeader =
+    !isDetailedView && location.pathname !== PlatformLoginRoute && location.pathname !== SignUpRoute;
+
+  // Hide footer in detailed view mode or on dashboard view routes
+  const shouldShowFooter = !isDetailedView && !isDashboardViewRoute(location.pathname);
+
   return (
     <Box
       sx={{
@@ -47,7 +57,7 @@ function App(): ReactElement {
         backgroundColor: ({ palette }) => palette.background.default,
       }}
     >
-      {location.pathname !== PlatformLoginRoute && location.pathname !== SignUpRoute && <Header />}
+      {shouldShowHeader && <Header />}
 
       <Box
         sx={{
@@ -65,7 +75,7 @@ function App(): ReactElement {
           </Suspense>
         </ReactRouterProvider>
       </Box>
-      {!isDashboardViewRoute(location.pathname) && <Footer />}
+      {shouldShowFooter && <Footer />}
     </Box>
   );
 }

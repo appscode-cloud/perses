@@ -31,6 +31,7 @@ export interface PanelHeaderProps extends Omit<CardHeaderProps, OmittedProps> {
   queryResults: QueryData[];
   viewQueriesHandler?: PanelActionsProps['viewQueriesHandler'];
   readHandlers?: PanelActionsProps['readHandlers'];
+  detailedViewHandler?: PanelActionsProps['detailedViewHandler'];
   editHandlers?: PanelActionsProps['editHandlers'];
   pluginActions?: ReactNode[]; // Add pluginActions prop
   showIcons: PanelOptions['showIcons'];
@@ -44,6 +45,7 @@ export function PanelHeader({
   links,
   queryResults,
   readHandlers,
+  detailedViewHandler,
   editHandlers,
   sx,
   extra,
@@ -97,6 +99,7 @@ export function PanelHeader({
             descriptionTooltipId={descriptionTooltipId}
             links={links}
             readHandlers={readHandlers}
+            detailedViewHandler={detailedViewHandler}
             editHandlers={editHandlers}
             viewQueriesHandler={viewQueriesHandler}
             extra={extra}
